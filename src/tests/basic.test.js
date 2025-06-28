@@ -1,5 +1,5 @@
-import DocumentService from '../src/services/DocumentService.js';
-import { validateReportData } from '../src/utils/validators.js';
+import DocumentService from '../services/DocumentService.js';
+import { validateReportData } from '../utils/validators.js';
 
 describe('DocumentService', () => {
   let documentService;

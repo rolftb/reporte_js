@@ -1,5 +1,69 @@
 # Reporteador de Empresas
 
+## 📁 Estructura Organizada por Temas
+
+Este repositorio ha sido reorganizado por temas funcionales para facilitar la navegación y el mantenimiento del código.
+
+### 🗂️ Directorios Principales
+
+```
+src/
+├── 📊 analyzers/     # Análisis de documentos DOCX
+├── 🖼️ extractors/    # Extracción de imágenes sin duplicados
+├── 📝 generators/    # Generación de documentos DOCX
+├── 🧪 tests/         # Pruebas y validaciones
+├── ✅ validators/    # Validadores de estructura
+├── 🎬 demos/         # Demostraciones del sistema
+├── 🎮 controllers/   # Controladores de API
+├── 🛣️ routes/        # Rutas de la aplicación
+├── ⚙️ services/      # Servicios del sistema
+└── 🔧 utils/         # Utilidades generales
+```
+
+## 🚀 Inicio Rápido
+
+### Para Analizar Documentos
+```bash
+# Análisis general
+node src/analyzers/scanDocx.js "mi_documento.docx"
+
+# Análisis específico PUMA
+node src/analyzers/deepAnalyzePuma.js
+```
+
+### Para Extraer Imágenes
+```bash
+node src/extractors/documentImageExtractor.cjs "mi_documento.docx"
+```
+
+### Para Generar Documentos
+```bash
+# Método recomendado (estructura real)
+node src/tests/testRealStructure.js
+
+# Crear documentos de ejemplo
+node src/generators/createSample.js
+```
+
+### Para Ver Demos
+```bash
+# Generar reporte completo de ejemplo
+node src/demos/generarReporteEjemplo.js
+
+# Ver estado del sistema
+node src/demos/showImageSystem.cjs
+```
+
+## 📖 Documentación Detallada
+
+- 📋 [Guía de Estructura Completa](./src/ESTRUCTURA_ORGANIZADA.md)
+- 🔄 [Documentación de Migración](./MIGRACION_COMPLETA.md)
+- 📊 [Analizadores de Documentos](./src/analyzers/README.md)
+- 🖼️ [Extractores de Imágenes](./src/extractors/README.md)
+- 📝 [Generadores de Documentos](./src/generators/README.md)
+- 🧪 [Tests y Pruebas](./src/tests/README.md)
+- 🎬 [Demos del Sistema](./src/demos/README.md)
+
 ## Objetivo
 Este repositorio permite procesar texto e imágenes y generar reportes Word con un formato estándar para diferentes empresas.
 

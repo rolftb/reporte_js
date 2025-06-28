@@ -3,7 +3,7 @@
  * Basado en el análisis que muestra que es principalmente imágenes, no tablas
  */
 
-import { PumaRealStructureGenerator } from './generators/PumaRealStructureGenerator.js';
+import { PumaRealStructureGenerator } from '../generators/PumaRealStructureGenerator.js';
 import { Packer } from 'docx';
 import fs from 'fs-extra';
 

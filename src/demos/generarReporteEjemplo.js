@@ -1,4 +1,4 @@
-import ReporteCalidadVidaGenerator from './services/ReporteCalidadVidaGenerator.js';
+import ReporteCalidadVidaGenerator from '../services/ReporteCalidadVidaGenerator.js';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
