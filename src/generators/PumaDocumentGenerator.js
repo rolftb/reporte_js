@@ -1,83 +1,117 @@
-import { Document, Packer, Table, TableCell, TableRow, Paragraph, TextRun, Header, Footer, ImageRun, AlignmentType, WidthType, HeadingLevel, BorderStyle } from 'docx';
+import { Document, Packer, Table, TableCell, TableRow, Paragraph, TextRun, Header, SectionType, AlignmentType, WidthType, BorderStyle } from 'docx';
 import fs from 'fs-extra';
 import path from 'path';
 
 /**
  * Generador específico para replicar la estructura exacta de PUMA MES 6 2025.docx
- * Basado en el análisis profundo del documento original
+ * 
+ * ESTRUCTURA REAL IDENTIFICADA tras análisis:
+ * - Header: 3 imágenes posicionadas específicamente (logos corporativos)
+ * - Página 1: Título PUMA + Tabla Aspectos Técnicos
+ * - Páginas 2+: Una actividad por página con tabla de registro + máximo 4 fotos por página
+ * - Total: 18 archivos de imagen, 5 tablas, distribución específica por página
  */
 class PumaDocumentGenerator {
   constructor() {
     this.config = {
-      // Colores corporativos identificados
       primaryColor: "003366",
-      secondaryColor: "F5F5F5",
+      secondaryColor: "F5F5F5", 
       borderColor: "CCCCCC",
+      headerColor: "FFFFFF",
       
-      
-      // Configuración de fuentes
       fontFamily: "Arial",
+      titleFontSize: 28,
+      headerFontSize: 24,
+      tableFontSize: 20,
       
-      // Configuración de márgenes (en twips: 1 inch = 1440 twips)
       margins: {
-        top: 1440,    // 1 inch
+        top: 1440,
         right: 1440,
         bottom: 1440,
         left: 1440
+      },
+      
+      imageConfig: {
+        photos: {
+          maxPerPage: 4,
+          gridColumns: 2
+        }
       }
     };
   }
 
-  /**
-   * Genera el documento principal con la estructura exacta identificada
-   */
   async generateDocument(data) {
-    console.log('📄 Generando documento con estructura PUMA...');
+    console.log('📄 Generando documento con estructura PUMA por páginas...');
     
-    const doc = new Document({
-      sections: [{
+    const sections = [];
+    
+    // PÁGINA 1: Portada
+    sections.push({
+      properties: {
+        page: { margin: this.config.margins }
+      },
+      headers: {
+        default: this.createMainHeader(data)
+      },
+      children: [
+        this.createMainTitle(data.empresa || "PUMA"),
+        new Paragraph({ children: [new TextRun("")] }),
+        this.createAspectosTecnicosTable(data)
+      ]
+    });
+    
+    // PÁGINAS 2+: Una por actividad
+    const registros = data.registros || this.getDefaultRegistros();
+    
+    registros.forEach((registro, index) => {
+      const fotos = this.limitPhotosPerPage(registro.fotos || this.getDefaultPhotos(index), 4);
+      
+      sections.push({
         properties: {
-          page: {
-            margin: this.config.margins
-          }
+          page: { margin: this.config.margins },
+          type: SectionType.NEXT_PAGE
         },
         headers: {
-          default: this.createHeader(data)
+          default: this.createActivityHeader(data, registro, index + 1)
         },
         children: [
-          // Título principal PUMA
-          this.createMainTitle(data.empresa || "PUMA"),
-          
-          // Tabla 1: Aspectos Técnicos (estructura exacta identificada)
-          this.createAspectosTecnicosTable(data),
-          
-          // Espaciado
+          this.createActivityTitle(registro, index + 1),
           new Paragraph({ children: [new TextRun("")] }),
-          
-          // Tablas de registro por fecha (replicando las 4 tablas encontradas)
-          ...this.createRegistroTables(data.registros || this.getDefaultRegistros())
+          this.createActivityRegistrationTable(registro),
+          new Paragraph({ children: [new TextRun("")] }),
+          new Paragraph({ children: [new TextRun("")] }),
+          this.createPhotoGrid(fotos, index + 1)
         ]
-      }]
+      });
     });
 
-    return doc;
+    return new Document({ sections: sections });
   }
 
-  /**
-   * Crea el encabezado del documento
-   */
-  createHeader(data) {
+  createMainHeader(data) {
     return new Header({
       children: [
-        // Aquí iría la banda de logos según la especificación
         new Paragraph({
           alignment: AlignmentType.CENTER,
           children: [
             new TextRun({
               text: "REGISTRO FOTOGRÁFICO DE LA ACTIVIDAD",
               bold: true,
-              size: 24,
-              color: "FFFFFF"
+              size: this.config.headerFontSize,
+              color: this.config.headerColor,
+              font: this.config.fontFamily
+            })
+          ],
+          shading: { fill: this.config.primaryColor }
+        }),
+        new Paragraph({
+          alignment: AlignmentType.CENTER,
+          children: [
+            new TextRun({
+              text: "[LOGO MUTUAL] [MEDIOS VERIFICADORES] [CALIDAD DE VIDA]",
+              size: 16,
+              color: this.config.borderColor,
+              font: this.config.fontFamily
             })
           ]
         })
@@ -85,9 +119,36 @@ class PumaDocumentGenerator {
     });
   }
 
-  /**
-   * Crea el título principal PUMA
-   */
+  createActivityHeader(data, registro, activityNumber) {
+    return new Header({
+      children: [
+        new Paragraph({
+          alignment: AlignmentType.CENTER,
+          children: [
+            new TextRun({
+              text: `REGISTRO FOTOGRÁFICO - ACTIVIDAD ${activityNumber}`,
+              bold: true,
+              size: this.config.headerFontSize,
+              color: this.config.headerColor,
+              font: this.config.fontFamily
+            })
+          ],
+          shading: { fill: this.config.primaryColor }
+        }),
+        new Paragraph({
+          alignment: AlignmentType.CENTER,
+          children: [
+            new TextRun({
+              text: `Fecha: ${registro.fecha} | ${data.empresa || "PUMA"}`,
+              size: 18,
+              font: this.config.fontFamily
+            })
+          ]
+        })
+      ]
+    });
+  }
+
   createMainTitle(empresa) {
     return new Paragraph({
       alignment: AlignmentType.CENTER,
@@ -95,20 +156,30 @@ class PumaDocumentGenerator {
         new TextRun({
           text: empresa,
           bold: true,
-          size: 28,
+          size: this.config.titleFontSize,
           font: this.config.fontFamily
         })
       ]
     });
   }
 
-  /**
-   * Crea la tabla principal de Aspectos Técnicos (Tabla 1 identificada)
-   * Estructura exacta: 5 filas con header + 4 datos
-   */
+  createActivityTitle(registro, numeroActividad) {
+    return new Paragraph({
+      alignment: AlignmentType.CENTER,
+      children: [
+        new TextRun({
+          text: `ACTIVIDAD ${numeroActividad} - ${registro.fecha}`,
+          bold: true,
+          size: this.config.tableFontSize + 2,
+          font: this.config.fontFamily,
+          color: this.config.primaryColor
+        })
+      ]
+    });
+  }
+
   createAspectosTecnicosTable(data) {
     const rows = [
-      // Fila 1: Header (colspan=2 simulado)
       new TableRow({
         children: [
           new TableCell({
@@ -119,47 +190,31 @@ class PumaDocumentGenerator {
                   new TextRun({
                     text: "ASPECTOS TÉCNICOS DE LA ACTIVIDAD EN TERRENO",
                     bold: true,
-                    color: "FFFFFF",
-                    size: 24
+                    color: this.config.headerColor,
+                    size: this.config.headerFontSize
                   })
                 ]
               })
             ],
             columnSpan: 2,
-            shading: {
-              fill: this.config.primaryColor
-            },
+            shading: { fill: this.config.primaryColor },
             borders: this.getTableBorders()
           })
         ]
       }),
-      
-      // Fila 2: Nombre de la actividad
       this.createDataRow("Nombre de la actividad", data.nombreActividad || "Programa de Calidad de Vida."),
-      
-      // Fila 3: Fecha
       this.createDataRow("Fecha", data.fechaRango || "Desde el 21 de mayo al al 20 de junio"),
-      
-      // Fila 4: Lugar
       this.createDataRow("Lugar", data.lugar || "Av. Pdte. Kennedy 5454"),
-      
-      // Fila 5: Profesional a cargo
       this.createDataRow("Profesional a cargo", data.profesional || "Profesional área Calidad de Vida - Mutual Asesorías.")
     ];
 
     return new Table({
       rows: rows,
-      width: {
-        size: 100,
-        type: WidthType.PERCENTAGE
-      },
-      columnWidths: [40, 60] // 40% | 60% como especificado
+      width: { size: 100, type: WidthType.PERCENTAGE },
+      columnWidths: [40, 60]
     });
   }
 
-  /**
-   * Crea una fila de datos para la tabla principal
-   */
   createDataRow(label, value) {
     return new TableRow({
       children: [
@@ -170,17 +225,14 @@ class PumaDocumentGenerator {
                 new TextRun({
                   text: label,
                   bold: true,
-                  size: 20,
+                  size: this.config.tableFontSize,
                   font: this.config.fontFamily
                 })
               ]
             })
           ],
           borders: this.getTableBorders(),
-          width: {
-            size: 40,
-            type: WidthType.PERCENTAGE
-          }
+          width: { size: 40, type: WidthType.PERCENTAGE }
         }),
         new TableCell({
           children: [
@@ -188,62 +240,31 @@ class PumaDocumentGenerator {
               children: [
                 new TextRun({
                   text: value,
-                  size: 20,
+                  size: this.config.tableFontSize,
                   font: this.config.fontFamily
                 })
               ]
             })
           ],
           borders: this.getTableBorders(),
-          width: {
-            size: 60,
-            type: WidthType.PERCENTAGE
-          }
+          width: { size: 60, type: WidthType.PERCENTAGE }
         })
       ]
     });
   }
 
-  /**
-   * Crea las tablas de registro por fecha (Tablas 2-5 identificadas)
-   * Cada tabla tiene exactamente 3 filas: Fecha, Cantidad de pausas, Participantes
-   */
-  createRegistroTables(registros) {
-    const tables = [];
-    
-    registros.forEach((registro, index) => {
-      // Espaciado entre tablas
-      if (index > 0) {
-        tables.push(new Paragraph({ children: [new TextRun("")] }));
-      }
-      
-      const registroTable = new Table({
-        rows: [
-          // Fila 1: Fecha
-          this.createRegistroRow("Fecha", registro.fecha),
-          
-          // Fila 2: Cantidad de pausas
-          this.createRegistroRow("Cantidad de pausas", registro.cantidadPausas.toString()),
-          
-          // Fila 3: Participantes pausa nº1
-          this.createRegistroRow("Participantes pausa nº1", registro.participantes.toString())
-        ],
-        width: {
-          size: 100,
-          type: WidthType.PERCENTAGE
-        },
-        columnWidths: [50, 50]
-      });
-      
-      tables.push(registroTable);
+  createActivityRegistrationTable(registro) {
+    return new Table({
+      rows: [
+        this.createRegistroRow("Fecha", registro.fecha),
+        this.createRegistroRow("Cantidad de pausas", registro.cantidadPausas.toString()),
+        this.createRegistroRow("Participantes pausa nº1", registro.participantes.toString())
+      ],
+      width: { size: 100, type: WidthType.PERCENTAGE },
+      columnWidths: [50, 50]
     });
-    
-    return tables;
   }
 
-  /**
-   * Crea una fila para las tablas de registro
-   */
   createRegistroRow(label, value) {
     return new TableRow({
       children: [
@@ -280,9 +301,85 @@ class PumaDocumentGenerator {
     });
   }
 
-  /**
-   * Configuración de bordes para las tablas
-   */
+  createPhotoGrid(fotos, activityNumber) {
+    const limitedPhotos = fotos.slice(0, this.config.imageConfig.photos.maxPerPage);
+    
+    if (limitedPhotos.length === 0) {
+      return new Paragraph({
+        children: [
+          new TextRun({
+            text: "Sin fotografías disponibles para esta actividad",
+            italic: true,
+            color: this.config.borderColor
+          })
+        ]
+      });
+    }
+
+    const rows = [];
+    
+    for (let i = 0; i < limitedPhotos.length; i += 2) {
+      const foto1 = limitedPhotos[i];
+      const foto2 = limitedPhotos[i + 1] || null;
+      
+      rows.push(new TableRow({
+        children: [
+          this.createPhotoCell(foto1, i + 1),
+          foto2 ? this.createPhotoCell(foto2, i + 2) : this.createEmptyPhotoCell()
+        ]
+      }));
+    }
+
+    return new Table({
+      rows: rows,
+      width: { size: 100, type: WidthType.PERCENTAGE }
+    });
+  }
+
+  createPhotoCell(foto, numero) {
+    return new TableCell({
+      children: [
+        new Paragraph({
+          alignment: AlignmentType.CENTER,
+          children: [
+            new TextRun({
+              text: `[FOTO ${numero}]`,
+              size: 16,
+              font: this.config.fontFamily,
+              color: this.config.borderColor
+            })
+          ]
+        }),
+        new Paragraph({
+          alignment: AlignmentType.CENTER,
+          children: [
+            new TextRun({
+              text: foto.descripcion || `Descripción de la foto ${numero}`,
+              size: 14,
+              font: this.config.fontFamily,
+              italic: true
+            })
+          ]
+        })
+      ],
+      borders: this.getTableBorders(),
+      width: { size: 50, type: WidthType.PERCENTAGE }
+    });
+  }
+
+  createEmptyPhotoCell() {
+    return new TableCell({
+      children: [new Paragraph({ children: [new TextRun("")] })],
+      borders: this.getTableBorders(),
+      width: { size: 50, type: WidthType.PERCENTAGE }
+    });
+  }
+
+  limitPhotosPerPage(fotos, maxFotos = 4) {
+    if (!fotos || fotos.length === 0) return [];
+    return fotos.slice(0, maxFotos);
+  }
+
   getTableBorders() {
     return {
       top: { style: BorderStyle.SINGLE, size: 1, color: this.config.borderColor },
@@ -292,37 +389,44 @@ class PumaDocumentGenerator {
     };
   }
 
-  /**
-   * Datos por defecto basados en el análisis del documento original
-   */
+  getDefaultPhotos(activityIndex) {
+    return [
+      { descripcion: "Vista general de la actividad" },
+      { descripcion: "Participantes durante la pausa" },
+      { descripcion: "Desarrollo de la actividad" },
+      { descripcion: "Cierre de la actividad" }
+    ];
+  }
+
   getDefaultRegistros() {
     return [
       {
         fecha: "27-05-2025",
         cantidadPausas: 1,
-        participantes: 16
+        participantes: 16,
+        fotos: this.getDefaultPhotos(0)
       },
       {
         fecha: "03-06-2025",
         cantidadPausas: 1,
-        participantes: 12
+        participantes: 12,
+        fotos: this.getDefaultPhotos(1)
       },
       {
         fecha: "10-06-2025",
         cantidadPausas: 1,
-        participantes: 18
+        participantes: 18,
+        fotos: this.getDefaultPhotos(2)
       },
       {
         fecha: "17-06-2025",
         cantidadPausas: 1,
-        participantes: 16
+        participantes: 16,
+        fotos: this.getDefaultPhotos(3)
       }
     ];
   }
 
-  /**
-   * Genera y guarda el documento
-   */
   async generateAndSave(data, outputPath) {
     try {
       console.log('🔧 Iniciando generación del documento PUMA...');
@@ -334,6 +438,10 @@ class PumaDocumentGenerator {
       await fs.writeFile(outputPath, buffer);
       
       console.log(`✅ Documento generado exitosamente: ${outputPath}`);
+      console.log(`📊 Estructura generada:`);
+      console.log(`   - Página 1: Título + Aspectos Técnicos`);
+      console.log(`   - Páginas 2+: ${data.registros?.length || 4} actividades con tablas y fotos (máx 4 c/u)`);
+      
       return { success: true, path: outputPath };
       
     } catch (error) {
@@ -341,59 +449,6 @@ class PumaDocumentGenerator {
       return { success: false, error: error.message };
     }
   }
-}
-
-// Script de prueba
-async function testPumaGenerator() {
-  console.log('🧪 PRUEBA DEL GENERADOR PUMA');
-  console.log('='.repeat(50));
-  
-  const generator = new PumaDocumentGenerator();
-  
-  const testData = {
-    empresa: "PUMA",
-    nombreActividad: "Programa de Calidad de Vida.",
-    fechaRango: "Desde el 21 de mayo al al 20 de junio",
-    lugar: "Av. Pdte. Kennedy 5454",
-    profesional: "Profesional área Calidad de Vida - Mutual Asesorías.",
-    registros: [
-      {
-        fecha: "27-05-2025",
-        cantidadPausas: 1,
-        participantes: 16
-      },
-      {
-        fecha: "03-06-2025",
-        cantidadPausas: 1,
-        participantes: 12
-      },
-      {
-        fecha: "10-06-2025",
-        cantidadPausas: 1,
-        participantes: 18
-      },
-      {
-        fecha: "17-06-2025",
-        cantidadPausas: 1,
-        participantes: 16
-      }
-    ]
-  };
-  
-  const outputPath = path.join('output', `puma_replica_${Date.now()}.docx`);
-  const result = await generator.generateAndSave(testData, outputPath);
-  
-  if (result.success) {
-    console.log('🎉 Generación exitosa!');
-    console.log(`📄 Archivo: ${result.path}`);
-  } else {
-    console.log('❌ Error en la generación:', result.error);
-  }
-}
-
-// Ejecutar prueba si este archivo se ejecuta directamente
-if (import.meta.url === `file://${process.argv[1]}`) {
-  testPumaGenerator().catch(console.error);
 }
 
 export default PumaDocumentGenerator;
