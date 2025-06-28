@@ -26,8 +26,6 @@ if "%1"=="lint" goto lint
 if "%1"=="format" goto format
 if "%1"=="clean" goto clean
 if "%1"=="build" goto build
-if "%1"=="create-sample" goto create-sample
-if "%1"=="scan" goto scan
 goto help
 
 :help
@@ -45,12 +43,6 @@ echo   %GREEN%setup.bat format%NC%     - Formatear código con Prettier
 echo   %GREEN%setup.bat build%NC%      - Construir para producción
 echo   %GREEN%setup.bat clean%NC%      - Limpiar archivos temporales
 echo   %GREEN%setup.bat check-deps%NC% - Verificar dependencias del sistema
-echo   %GREEN%setup.bat create-sample%NC% - Crear documento DOCX de ejemplo
-echo   %GREEN%setup.bat scan%NC%       - Escanear documento DOCX (requiere archivo como parámetro)
-echo.
-echo %YELLOW%Ejemplos de uso:%NC%
-echo   %GREEN%setup.bat create-sample%NC%              - Crea documento de ejemplo
-echo   %GREEN%setup.bat scan templates\archivo.docx%NC% - Escanea archivo específico
 echo.
 goto end
 
@@ -166,28 +158,6 @@ if exist "uploads\*" del /q "uploads\*" 2>nul
 if exist "output\*" del /q "output\*" 2>nul
 if exist "logs\*" del /q "logs\*" 2>nul
 echo %GREEN%✅ Limpieza completada%NC%
-goto end
-
-:create-sample
-echo %BLUE%📝 Creando documento DOCX de ejemplo...%NC%
-node src/createSample.js
-if errorlevel 1 (
-    echo %RED%❌ Error creando documento de ejemplo%NC%
-    goto end
-)
-echo %GREEN%✅ Documento de ejemplo creado en templates/%NC%
-echo %YELLOW%Puedes escanearlo con: setup.bat scan templates\documento-ejemplo-analisis.docx%NC%
-goto end
-
-:scan
-if "%2"=="" (
-    echo %RED%❌ Error: Debes proporcionar la ruta del archivo DOCX%NC%
-    echo %YELLOW%Uso: setup.bat scan [ruta-del-archivo.docx]%NC%
-    echo %YELLOW%Ejemplo: setup.bat scan templates\mi-documento.docx%NC%
-    goto end
-)
-echo %BLUE%🔍 Escaneando archivo DOCX: %2%NC%
-node src/scanDocx.js "%2"
 goto end
 
 :end
