@@ -1,4 +1,4 @@
-import { Document, Packer, Table, TableCell, TableRow, Paragraph, TextRun, Header, SectionType, AlignmentType, WidthType, BorderStyle } from 'docx';
+import { Document, Packer, Table, TableCell, TableRow, Paragraph, TextRun, Header, SectionType, AlignmentType, WidthType, BorderStyle, ImageRun } from 'docx';
 import fs from 'fs-extra';
 import path from 'path';
 
@@ -10,9 +10,19 @@ import path from 'path';
  * - Página 1: Título PUMA + Tabla Aspectos Técnicos
  * - Páginas 2+: Una actividad por página con tabla de registro + máximo 4 fotos por página
  * - Total: 18 archivos de imagen, 5 tablas, distribución específica por página
+ * 
+ * INTEGRACIÓN DE IMÁGENES REALES:
+ * - Usa imágenes extraídas del documento original
+ * - Carga automáticamente el registro de imágenes
  */
 class PumaDocumentGenerator {
-  constructor() {
+  constructor(useRealImages = true) {
+    this.useRealImages = useRealImages;
+    this.extractedImagesPath = './extracted_images';
+    this.imageRegistry = null;
+    this.headerImages = {};
+    this.documentImages = [];
+    
     this.config = {
       primaryColor: "003366",
       secondaryColor: "F5F5F5", 
@@ -40,8 +50,56 @@ class PumaDocumentGenerator {
     };
   }
 
+  async loadExtractedImages() {
+    if (!this.useRealImages) {
+      console.log('🖼️ Modo placeholder activado - no se cargarán imágenes reales');
+      return;
+    }
+
+    try {
+      // Cargar el registro de imágenes
+      const registryPath = path.join(this.extractedImagesPath, 'image_registry.json');
+      
+      if (await fs.pathExists(registryPath)) {
+        const registryData = await fs.readFile(registryPath, 'utf8');
+        this.imageRegistry = JSON.parse(registryData);
+        
+        console.log(`📋 Registro de imágenes cargado: ${Object.keys(this.imageRegistry).length} imágenes disponibles`);
+        
+        // Cargar el último análisis completo para obtener las relaciones
+        const analysisFiles = await fs.readdir('./output');
+        const completeAnalysisFiles = analysisFiles
+          .filter(f => f.startsWith('complete_analysis_with_images_'))
+          .sort()
+          .reverse();
+        
+        if (completeAnalysisFiles.length > 0) {
+          const latestAnalysis = path.join('./output', completeAnalysisFiles[0]);
+          const analysisData = await fs.readFile(latestAnalysis, 'utf8');
+          const analysis = JSON.parse(analysisData);
+          
+          // Extraer rutas de imágenes del header
+          this.headerImages = analysis.rutas_imagenes_para_generador.header_images;
+          this.documentImages = analysis.rutas_imagenes_para_generador.document_images;
+          
+          console.log(`🎯 Imágenes del header identificadas: ${Object.keys(this.headerImages).length}`);
+          console.log(`🖼️ Imágenes del documento disponibles: ${this.documentImages.length}`);
+        }
+        
+      } else {
+        console.warn('⚠️ No se encontró registro de imágenes. Ejecute primero documentImageExtractor.cjs');
+      }
+    } catch (error) {
+      console.error('❌ Error cargando imágenes extraídas:', error);
+      this.useRealImages = false;
+    }
+  }
+
   async generateDocument(data) {
     console.log('📄 Generando documento con estructura PUMA por páginas...');
+    
+    // Cargar imágenes extraídas si está habilitado
+    await this.loadExtractedImages();
     
     const sections = [];
     
@@ -51,7 +109,7 @@ class PumaDocumentGenerator {
         page: { margin: this.config.margins }
       },
       headers: {
-        default: this.createMainHeader(data)
+        default: await this.createMainHeader(data)
       },
       children: [
         this.createMainTitle(data.empresa || "PUMA"),
@@ -63,7 +121,8 @@ class PumaDocumentGenerator {
     // PÁGINAS 2+: Una por actividad
     const registros = data.registros || this.getDefaultRegistros();
     
-    registros.forEach((registro, index) => {
+    for (let index = 0; index < registros.length; index++) {
+      const registro = registros[index];
       const fotos = this.limitPhotosPerPage(registro.fotos || this.getDefaultPhotos(index), 4);
       
       sections.push({
@@ -72,7 +131,7 @@ class PumaDocumentGenerator {
           type: SectionType.NEXT_PAGE
         },
         headers: {
-          default: this.createActivityHeader(data, registro, index + 1)
+          default: await this.createActivityHeader(data, registro, index + 1)
         },
         children: [
           this.createActivityTitle(registro, index + 1),
@@ -80,46 +139,95 @@ class PumaDocumentGenerator {
           this.createActivityRegistrationTable(registro),
           new Paragraph({ children: [new TextRun("")] }),
           new Paragraph({ children: [new TextRun("")] }),
-          this.createPhotoGrid(fotos, index + 1)
+          await this.createPhotoGrid(fotos, index + 1)
         ]
       });
-    });
+    }
 
     return new Document({ sections: sections });
   }
 
-  createMainHeader(data) {
-    return new Header({
+  async createMainHeader(data) {
+    const headerElements = [
+      new Paragraph({
+        alignment: AlignmentType.CENTER,
+        children: [
+          new TextRun({
+            text: "REGISTRO FOTOGRÁFICO DE LA ACTIVIDAD",
+            bold: true,
+            size: this.config.headerFontSize,
+            color: this.config.headerColor,
+            font: this.config.fontFamily
+          })
+        ],
+        shading: { fill: this.config.primaryColor }
+      })
+    ];
+
+    // Agregar logos del header si están disponibles
+    if (this.useRealImages && Object.keys(this.headerImages).length > 0) {
+      console.log('🎨 Integrando imágenes reales del header...');
+      
+      const logosParagraph = new Paragraph({
+        alignment: AlignmentType.CENTER,
+        children: []
+      });
+
+      // Agregar logos identificados
+      for (const [relId, imageInfo] of Object.entries(this.headerImages)) {
+        try {
+          if (await fs.pathExists(imageInfo.extractedPath)) {
+            const imageBuffer = await fs.readFile(imageInfo.extractedPath);
+            
+            logosParagraph.children.push(
+              new ImageRun({
+                data: imageBuffer,
+                transformation: {
+                  width: 100,
+                  height: 60
+                }
+              })
+            );
+            
+            // Espaciado entre logos
+            logosParagraph.children.push(new TextRun("  "));
+            
+            console.log(`✅ Logo integrado: ${imageInfo.fileName}`);
+          }
+        } catch (error) {
+          console.warn(`⚠️ Error cargando logo ${imageInfo.fileName}:`, error);
+        }
+      }
+      
+      if (logosParagraph.children.length > 0) {
+        headerElements.push(logosParagraph);
+      } else {
+        // Fallback a placeholders
+        headerElements.push(this.createHeaderPlaceholder());
+      }
+    } else {
+      // Usar placeholders
+      headerElements.push(this.createHeaderPlaceholder());
+    }
+
+    return new Header({ children: headerElements });
+  }
+
+  createHeaderPlaceholder() {
+    return new Paragraph({
+      alignment: AlignmentType.CENTER,
       children: [
-        new Paragraph({
-          alignment: AlignmentType.CENTER,
-          children: [
-            new TextRun({
-              text: "REGISTRO FOTOGRÁFICO DE LA ACTIVIDAD",
-              bold: true,
-              size: this.config.headerFontSize,
-              color: this.config.headerColor,
-              font: this.config.fontFamily
-            })
-          ],
-          shading: { fill: this.config.primaryColor }
-        }),
-        new Paragraph({
-          alignment: AlignmentType.CENTER,
-          children: [
-            new TextRun({
-              text: "[LOGO MUTUAL] [MEDIOS VERIFICADORES] [CALIDAD DE VIDA]",
-              size: 16,
-              color: this.config.borderColor,
-              font: this.config.fontFamily
-            })
-          ]
+        new TextRun({
+          text: "[LOGO MUTUAL] [MEDIOS VERIFICADORES] [CALIDAD DE VIDA]",
+          size: 16,
+          color: this.config.borderColor,
+          font: this.config.fontFamily
         })
       ]
     });
   }
 
-  createActivityHeader(data, registro, activityNumber) {
+  async createActivityHeader(data, registro, activityNumber) {
     return new Header({
       children: [
         new Paragraph({
@@ -301,7 +409,7 @@ class PumaDocumentGenerator {
     });
   }
 
-  createPhotoGrid(fotos, activityNumber) {
+  async createPhotoGrid(fotos, activityNumber) {
     const limitedPhotos = fotos.slice(0, this.config.imageConfig.photos.maxPerPage);
     
     if (limitedPhotos.length === 0) {
@@ -324,8 +432,8 @@ class PumaDocumentGenerator {
       
       rows.push(new TableRow({
         children: [
-          this.createPhotoCell(foto1, i + 1),
-          foto2 ? this.createPhotoCell(foto2, i + 2) : this.createEmptyPhotoCell()
+          await this.createPhotoCell(foto1, i + 1, activityNumber),
+          foto2 ? await this.createPhotoCell(foto2, i + 2, activityNumber) : this.createEmptyPhotoCell()
         ]
       }));
     }
@@ -336,34 +444,81 @@ class PumaDocumentGenerator {
     });
   }
 
-  createPhotoCell(foto, numero) {
+  async createPhotoCell(foto, numero, activityNumber) {
+    const cellChildren = [];
+    
+    // Intentar cargar imagen real si está disponible
+    if (this.useRealImages && this.documentImages.length > 0) {
+      try {
+        // Calcular índice de imagen basado en actividad y número de foto
+        const imageIndex = ((activityNumber - 1) * 4 + (numero - 1)) % this.documentImages.length;
+        const imageInfo = this.documentImages[imageIndex];
+        
+        if (await fs.pathExists(imageInfo.extractedPath)) {
+          const imageBuffer = await fs.readFile(imageInfo.extractedPath);
+          
+          cellChildren.push(
+            new Paragraph({
+              alignment: AlignmentType.CENTER,
+              children: [
+                new ImageRun({
+                  data: imageBuffer,
+                  transformation: {
+                    width: 200,
+                    height: 150
+                  }
+                })
+              ]
+            })
+          );
+          
+          console.log(`📸 Imagen real integrada: ${imageInfo.fileName} para foto ${numero}`);
+        } else {
+          // Fallback a placeholder
+          cellChildren.push(this.createPhotoPlaceholder(numero));
+        }
+      } catch (error) {
+        console.warn(`⚠️ Error cargando imagen para foto ${numero}:`, error);
+        cellChildren.push(this.createPhotoPlaceholder(numero));
+      }
+    } else {
+      // Usar placeholder
+      cellChildren.push(this.createPhotoPlaceholder(numero));
+    }
+    
+    // Agregar descripción
+    cellChildren.push(
+      new Paragraph({
+        alignment: AlignmentType.CENTER,
+        children: [
+          new TextRun({
+            text: foto.descripcion || `Descripción de la foto ${numero}`,
+            size: 14,
+            font: this.config.fontFamily,
+            italic: true
+          })
+        ]
+      })
+    );
+
     return new TableCell({
-      children: [
-        new Paragraph({
-          alignment: AlignmentType.CENTER,
-          children: [
-            new TextRun({
-              text: `[FOTO ${numero}]`,
-              size: 16,
-              font: this.config.fontFamily,
-              color: this.config.borderColor
-            })
-          ]
-        }),
-        new Paragraph({
-          alignment: AlignmentType.CENTER,
-          children: [
-            new TextRun({
-              text: foto.descripcion || `Descripción de la foto ${numero}`,
-              size: 14,
-              font: this.config.fontFamily,
-              italic: true
-            })
-          ]
-        })
-      ],
+      children: cellChildren,
       borders: this.getTableBorders(),
       width: { size: 50, type: WidthType.PERCENTAGE }
+    });
+  }
+
+  createPhotoPlaceholder(numero) {
+    return new Paragraph({
+      alignment: AlignmentType.CENTER,
+      children: [
+        new TextRun({
+          text: `[FOTO ${numero}]`,
+          size: 16,
+          font: this.config.fontFamily,
+          color: this.config.borderColor
+        })
+      ]
     });
   }
 
