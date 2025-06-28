@@ -57,7 +57,7 @@ class PumaDocumentGenerator {
     }
 
     try {
-      // Cargar el registro de imágenes
+      // Cargar el registro de imágenes directamente
       const registryPath = path.join(this.extractedImagesPath, 'image_registry.json');
       
       if (await fs.pathExists(registryPath)) {
@@ -66,25 +66,36 @@ class PumaDocumentGenerator {
         
         console.log(`📋 Registro de imágenes cargado: ${Object.keys(this.imageRegistry).length} imágenes disponibles`);
         
-        // Cargar el último análisis completo para obtener las relaciones
-        const analysisFiles = await fs.readdir('./output');
-        const completeAnalysisFiles = analysisFiles
-          .filter(f => f.startsWith('complete_analysis_with_images_'))
-          .sort()
-          .reverse();
+        // Crear rutas de imágenes para el generador directamente del registro
+        this.headerImages = {};
+        this.documentImages = [];
         
-        if (completeAnalysisFiles.length > 0) {
-          const latestAnalysis = path.join('./output', completeAnalysisFiles[0]);
-          const analysisData = await fs.readFile(latestAnalysis, 'utf8');
-          const analysis = JSON.parse(analysisData);
+        for (const [hash, imageInfo] of Object.entries(this.imageRegistry)) {
+          // Determinar si es imagen del header (típicamente image1, image2, image3)
+          const isHeaderImage = imageInfo.originalPath.includes('image1.') || 
+                               imageInfo.originalPath.includes('image2.') || 
+                               imageInfo.originalPath.includes('image3.');
           
-          // Extraer rutas de imágenes del header
-          this.headerImages = analysis.rutas_imagenes_para_generador.header_images;
-          this.documentImages = analysis.rutas_imagenes_para_generador.document_images;
-          
-          console.log(`🎯 Imágenes del header identificadas: ${Object.keys(this.headerImages).length}`);
-          console.log(`🖼️ Imágenes del documento disponibles: ${this.documentImages.length}`);
+          if (isHeaderImage) {
+            const relId = `rId${imageInfo.originalPath.match(/image(\d+)/)[1]}`;
+            this.headerImages[relId] = {
+              originalPath: imageInfo.originalPath,
+              extractedPath: imageInfo.extractedPath,
+              fileName: imageInfo.fileName,
+              hash: hash
+            };
+          } else {
+            this.documentImages.push({
+              originalPath: imageInfo.originalPath,
+              extractedPath: imageInfo.extractedPath,
+              fileName: imageInfo.fileName,
+              hash: hash
+            });
+          }
         }
+        
+        console.log(`🎯 Imágenes del header identificadas: ${Object.keys(this.headerImages).length}`);
+        console.log(`🖼️ Imágenes del documento disponibles: ${this.documentImages.length}`);
         
       } else {
         console.warn('⚠️ No se encontró registro de imágenes. Ejecute primero documentImageExtractor.cjs');
@@ -176,8 +187,10 @@ class PumaDocumentGenerator {
       // Agregar logos identificados
       for (const [relId, imageInfo] of Object.entries(this.headerImages)) {
         try {
-          if (await fs.pathExists(imageInfo.extractedPath)) {
-            const imageBuffer = await fs.readFile(imageInfo.extractedPath);
+          const imageFile = path.join(this.extractedImagesPath, imageInfo.fileName);
+          
+          if (await fs.pathExists(imageFile)) {
+            const imageBuffer = await fs.readFile(imageFile);
             
             logosParagraph.children.push(
               new ImageRun({
@@ -193,6 +206,8 @@ class PumaDocumentGenerator {
             logosParagraph.children.push(new TextRun("  "));
             
             console.log(`✅ Logo integrado: ${imageInfo.fileName}`);
+          } else {
+            console.warn(`⚠️ Archivo de logo no encontrado: ${imageFile}`);
           }
         } catch (error) {
           console.warn(`⚠️ Error cargando logo ${imageInfo.fileName}:`, error);
@@ -454,8 +469,10 @@ class PumaDocumentGenerator {
         const imageIndex = ((activityNumber - 1) * 4 + (numero - 1)) % this.documentImages.length;
         const imageInfo = this.documentImages[imageIndex];
         
-        if (await fs.pathExists(imageInfo.extractedPath)) {
-          const imageBuffer = await fs.readFile(imageInfo.extractedPath);
+        const imageFile = path.join(this.extractedImagesPath, imageInfo.fileName);
+        
+        if (await fs.pathExists(imageFile)) {
+          const imageBuffer = await fs.readFile(imageFile);
           
           cellChildren.push(
             new Paragraph({
@@ -474,6 +491,7 @@ class PumaDocumentGenerator {
           
           console.log(`📸 Imagen real integrada: ${imageInfo.fileName} para foto ${numero}`);
         } else {
+          console.warn(`⚠️ Archivo de imagen no encontrado: ${imageFile}`);
           // Fallback a placeholder
           cellChildren.push(this.createPhotoPlaceholder(numero));
         }

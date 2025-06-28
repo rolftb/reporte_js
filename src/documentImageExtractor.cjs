@@ -369,27 +369,34 @@ class DocumentImageExtractor {
       document_images: []
     };
     
-    // Mapear imágenes del header
-    for (const [relId, relInfo] of Object.entries(this.headerInfo.relationships)) {
-      if (relInfo.isImage && relInfo.extractedImageInfo) {
+    // Usar el registro de imágenes existente para crear las relaciones
+    for (const [hash, imageInfo] of this.imageRegistry.entries()) {
+      // Determinar si la imagen pertenece al header o al documento
+      const isHeaderImage = imageInfo.originalPath.includes('image1.') || 
+                           imageInfo.originalPath.includes('image2.') || 
+                           imageInfo.originalPath.includes('image3.');
+      
+      if (isHeaderImage) {
+        // Mapear imágenes del header
+        const relId = `rId${imageInfo.originalPath.match(/image(\d+)/)[1]}`;
         paths.header_images[relId] = {
-          originalPath: relInfo.target,
-          extractedPath: relInfo.extractedImageInfo.extractedPath,
-          fileName: relInfo.extractedImageInfo.fileName
+          originalPath: imageInfo.originalPath,
+          extractedPath: imageInfo.extractedPath,
+          fileName: imageInfo.fileName,
+          hash: hash
         };
+      } else {
+        // Mapear imágenes del documento
+        paths.document_images.push({
+          originalPath: imageInfo.originalPath,
+          extractedPath: imageInfo.extractedPath,
+          fileName: imageInfo.fileName,
+          hash: hash
+        });
       }
     }
     
-    // Mapear imágenes del documento
-    this.extractedImages.forEach(img => {
-      if (!img.originalPath.includes('header')) {
-        paths.document_images.push({
-          originalPath: img.originalPath,
-          extractedPath: img.extractedPath,
-          fileName: img.fileName
-        });
-      }
-    });
+    console.log(`🔗 Rutas generadas: ${Object.keys(paths.header_images).length} header, ${paths.document_images.length} documento`);
     
     return paths;
   }
