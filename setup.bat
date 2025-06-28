@@ -28,29 +28,32 @@ if "%1"=="clean" goto clean
 if "%1"=="build" goto build
 if "%1"=="create-sample" goto create-sample
 if "%1"=="scan" goto scan
+if "%1"=="generar-reporte" goto generar-reporte
 goto help
 
 :help
 echo %BLUE%=== Reporteador de Empresas ===%NC%
 echo.
 echo %YELLOW%Comandos disponibles:%NC%
-echo   %GREEN%setup.bat%NC%            - Configuración inicial completa
-echo   %GREEN%setup.bat help%NC%       - Mostrar esta ayuda
-echo   %GREEN%setup.bat install%NC%    - Instalar dependencias
-echo   %GREEN%setup.bat dev%NC%        - Ejecutar en modo desarrollo
-echo   %GREEN%setup.bat start%NC%      - Ejecutar en modo producción
-echo   %GREEN%setup.bat test%NC%       - Ejecutar pruebas
-echo   %GREEN%setup.bat lint%NC%       - Verificar código con ESLint
-echo   %GREEN%setup.bat format%NC%     - Formatear código con Prettier
-echo   %GREEN%setup.bat build%NC%      - Construir para producción
-echo   %GREEN%setup.bat clean%NC%      - Limpiar archivos temporales
-echo   %GREEN%setup.bat check-deps%NC% - Verificar dependencias del sistema
+echo   %GREEN%setup.bat%NC%               - Configuración inicial completa
+echo   %GREEN%setup.bat help%NC%          - Mostrar esta ayuda
+echo   %GREEN%setup.bat install%NC%       - Instalar dependencias
+echo   %GREEN%setup.bat dev%NC%           - Ejecutar en modo desarrollo
+echo   %GREEN%setup.bat start%NC%         - Ejecutar en modo producción
+echo   %GREEN%setup.bat test%NC%          - Ejecutar pruebas
+echo   %GREEN%setup.bat lint%NC%          - Verificar código con ESLint
+echo   %GREEN%setup.bat format%NC%        - Formatear código con Prettier
+echo   %GREEN%setup.bat build%NC%         - Construir para producción
+echo   %GREEN%setup.bat clean%NC%         - Limpiar archivos temporales
+echo   %GREEN%setup.bat check-deps%NC%    - Verificar dependencias del sistema
 echo   %GREEN%setup.bat create-sample%NC% - Crear documento DOCX de ejemplo
-echo   %GREEN%setup.bat scan%NC%       - Escanear documento DOCX (requiere archivo como parámetro)
+echo   %GREEN%setup.bat scan%NC%          - Escanear documento DOCX (requiere archivo como parámetro)
+echo   %GREEN%setup.bat generar-reporte%NC% - Generar reporte de Calidad de Vida
 echo.
 echo %YELLOW%Ejemplos de uso:%NC%
-echo   %GREEN%setup.bat create-sample%NC%              - Crea documento de ejemplo
-echo   %GREEN%setup.bat scan templates\archivo.docx%NC% - Escanea archivo específico
+echo   %GREEN%setup.bat create-sample%NC%                        - Crea documento de ejemplo
+echo   %GREEN%setup.bat scan templates\archivo.docx%NC%           - Escanea archivo específico
+echo   %GREEN%setup.bat generar-reporte%NC%                      - Genera reporte corporativo
 echo.
 goto end
 
