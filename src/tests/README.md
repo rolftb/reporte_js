@@ -20,6 +20,9 @@ Este directorio contiene scripts de prueba para validar el funcionamiento de ext
 - **`test-scan.js`** - Prueba básica del escáner de documentos
 - **`basic.test.js`** - Tests unitarios formales con Jest
 
+### Tests de Replicación
+- **`testExactReplicator.js`** - 🆕 Genera replicación exacta del documento "PUMA MES 6 2025.docx"
+
 ## 🚀 Ejecución de Tests
 
 ### Test Recomendado (Estructura Real)
@@ -45,6 +48,12 @@ node src/tests/testPumaWithImages.js
 node src/tests/testSimple.js
 ```
 **Qué hace**: Verificación rápida del sistema básico
+
+### Test de Replicación Exacta (Nuevo)
+```bash
+node src/tests/testExactReplicator.js
+```
+**Qué hace**: Genera una replicación exacta del documento "PUMA MES 6 2025.docx" con todos los datos específicos extraídos
 
 ## 📊 Resultados de Tests
 
@@ -107,3 +116,4 @@ miNuevoTest();
 - **Puma With Images**: Comparar generación con/sin imágenes
 - **Simple**: Verificación rápida de funcionalidad básica
 - **Document**: Test general de capacidades del generador
+- **Exact Replicator**: Asegurar replicación exacta de documentos fuente

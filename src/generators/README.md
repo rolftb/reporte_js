@@ -6,6 +6,7 @@ Este directorio contiene los generadores que crean documentos DOCX con diferente
 
 - **`PumaDocumentGenerator.js`** - Generador original con estructura de tablas y formularios
 - **`PumaRealStructureGenerator.js`** - Generador que replica la estructura real visual del documento PUMA
+- **`PumaExactReplicator.js`** - 🆕 Replicador exacto que genera el mismo contenido que "PUMA MES 6 2025.docx"
 - **`createSample.js`** - Crea documentos DOCX de ejemplo para pruebas y análisis
 
 ## 🎯 Generadores Disponibles
@@ -37,6 +38,21 @@ const document = await generator.generateDocument();
 - Páginas orientadas a contenido fotográfico
 - Mínimo texto, máximo impacto visual
 - Estructura fiel al documento original
+
+### PumaExactReplicator (Nuevo)
+**Uso**: Replicación exacta del documento "PUMA MES 6 2025.docx"
+```javascript
+import { PumaExactReplicatorGenerator } from './generators/PumaExactReplicator.js';
+const generator = new PumaExactReplicatorGenerator(true);
+const document = await generator.generateDocument();
+```
+
+**Características**:
+- Replica exacta de un documento DOCX existente
+- Datos extraídos por análisis automático
+- 4 sesiones con fechas y participantes específicos
+- 16 imágenes reales de actividades
+- Estructura idéntica al documento original
 
 ## 🔧 Configuración
 
