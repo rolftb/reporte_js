@@ -246,7 +246,7 @@ class ImageFormattingAnalyzer {
     }
 
     findBlipInfo(element, imageInfo) {
-        // Buscar recursivamente a:blip para obtener r:embed
+        // Buscar recursivamente a:blip para obtener r:embed y información de recorte
         const findBlip = (obj) => {
             if (typeof obj !== 'object' || obj === null) return;
             
@@ -254,6 +254,77 @@ class ImageFormattingAnalyzer {
                 const blip = obj['a:blip'][0];
                 if (blip['$'] && blip['$']['r:embed']) {
                     imageInfo.relacionId = blip['$']['r:embed'];
+                }
+            }
+
+            // Buscar información de recorte en a:srcRect
+            if (obj['a:srcRect']) {
+                const srcRect = obj['a:srcRect'][0]['$'];
+                if (srcRect) {
+                    imageInfo.recorte = {
+                        left: srcRect.l || '0',
+                        top: srcRect.t || '0', 
+                        right: srcRect.r || '0',
+                        bottom: srcRect.b || '0',
+                        descripcion: 'Recorte aplicado a la imagen original'
+                    };
+                    console.log(`✂️ Recorte detectado: l=${srcRect.l}, t=${srcRect.t}, r=${srcRect.r}, b=${srcRect.b}`);
+                }
+            }
+
+            // Buscar en a:stretch para detectar información de escalado
+            if (obj['a:stretch']) {
+                const stretch = obj['a:stretch'][0];
+                if (stretch['a:fillRect']) {
+                    const fillRect = stretch['a:fillRect'][0]['$'];
+                    if (fillRect) {
+                        imageInfo.escalado = {
+                            left: fillRect.l || '0',
+                            top: fillRect.t || '0',
+                            right: fillRect.r || '0', 
+                            bottom: fillRect.b || '0',
+                            descripcion: 'Área de relleno para escalado'
+                        };
+                        console.log(`📏 Escalado detectado: l=${fillRect.l}, t=${fillRect.t}, r=${fillRect.r}, b=${fillRect.b}`);
+                    }
+                }
+            }
+
+            // Buscar transformaciones adicionales
+            if (obj['a:xfrm']) {
+                const xfrm = obj['a:xfrm'][0];
+                imageInfo.transformacion = {};
+                
+                if (xfrm['a:off'] && xfrm['a:off'][0]['$']) {
+                    const off = xfrm['a:off'][0]['$'];
+                    imageInfo.transformacion.offset = {
+                        x: off.x,
+                        y: off.y
+                    };
+                }
+                
+                if (xfrm['a:ext'] && xfrm['a:ext'][0]['$']) {
+                    const ext = xfrm['a:ext'][0]['$'];
+                    imageInfo.transformacion.extent = {
+                        cx: ext.cx,
+                        cy: ext.cy
+                    };
+                }
+
+                if (xfrm['$']) {
+                    const attrs = xfrm['$'];
+                    if (attrs.rot) {
+                        imageInfo.transformacion.rotacion = attrs.rot;
+                        console.log(`🔄 Rotación detectada: ${attrs.rot}`);
+                    }
+                    if (attrs.flipH === '1') {
+                        imageInfo.transformacion.flipHorizontal = true;
+                        console.log(`↔️ Flip horizontal detectado`);
+                    }
+                    if (attrs.flipV === '1') {
+                        imageInfo.transformacion.flipVertical = true;
+                        console.log(`↕️ Flip vertical detectado`);
+                    }
                 }
             }
             

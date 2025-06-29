@@ -153,7 +153,7 @@ class PumaExactReplicatorGenerator {
      * Crea una imagen para el header con formato específico que no desplace el contenido
      * Basado en el análisis del documento original que usa wp:wrapNone (behind text)
      */
-    async createHeaderImageRun(imageName, width = 200, height = 150, positioning = {}) {
+    async createHeaderImageRun(imageName, width = 200, height = 150, positioning = {}, cropping = null) {
         if (!this.useRealImages) {
             return new TextRun({
                 text: `[${imageName}]`,
@@ -217,6 +217,41 @@ class PumaExactReplicatorGenerator {
                             layoutInCell: true, // Mantiene imagen dentro del header
                         }
                     };
+
+                    // Aplicar recorte si se proporciona
+                    if (cropping) {
+                        console.log(`✂️ Aplicando recorte a ${imageName}:`, cropping);
+                        
+                        // Convertir valores de porcentaje (1000 = 1%) a decimales (0.0-1.0)
+                        const cropLeft = cropping.left ? parseInt(cropping.left) / 100000 : 0;
+                        const cropTop = cropping.top ? parseInt(cropping.top) / 100000 : 0;
+                        const cropRight = cropping.right ? parseInt(cropping.right) / 100000 : 0;
+                        const cropBottom = cropping.bottom ? parseInt(cropping.bottom) / 100000 : 0;
+                        
+                        // Aplicar recorte usando Sharp para procesar la imagen
+                        const { default: sharp } = await import('sharp');
+                        const metadata = await sharp(imageBuffer).metadata();
+                        
+                        // Calcular coordenadas de recorte en píxeles
+                        const cropX = Math.round(metadata.width * cropLeft);
+                        const cropY = Math.round(metadata.height * cropTop);
+                        const cropWidth = Math.round(metadata.width * (1 - cropLeft - cropRight));
+                        const cropHeight = Math.round(metadata.height * (1 - cropTop - cropBottom));
+                        
+                        console.log(`📐 Recorte calculado: x=${cropX}, y=${cropY}, w=${cropWidth}, h=${cropHeight}`);
+                        
+                        // Aplicar recorte
+                        const croppedBuffer = await sharp(imageBuffer)
+                            .extract({
+                                left: cropX,
+                                top: cropY, 
+                                width: cropWidth,
+                                height: cropHeight
+                            })
+                            .toBuffer();
+                        
+                        imageRunConfig.data = croppedBuffer;
+                    }
 
                     return new ImageRun(imageRunConfig);
                 }
@@ -557,30 +592,45 @@ class PumaExactReplicatorGenerator {
                         children: [
                             new Paragraph({
                                 children: [
-                                    // Primera imagen: offset horizontal 19050, vertical -133350
+                                    // Primera imagen: offset horizontal 19050, vertical -133350, recorte específico
                                     await this.createHeaderImageRun("encabezado_default", 814, 1072, {
                                         horizontalOffset: Math.round(19050 / 635), // Convertir EMUs a puntos
                                         verticalOffset: Math.round(-133350 / 635)
+                                    }, {
+                                        left: "900",
+                                        top: "0", 
+                                        right: "26170",
+                                        bottom: "30269"
                                     }),
                                 ],
                                 alignment: AlignmentType.LEFT, // Cambio a LEFT para posicionamiento absoluto
                             }),
                             new Paragraph({
                                 children: [
-                                    // Segunda imagen: offset horizontal 457007, vertical 914207  
+                                    // Segunda imagen: offset horizontal 457007, vertical 914207, recorte específico
                                     await this.createHeaderImageRun("encabezado_default", 816, 1042, {
                                         horizontalOffset: Math.round(457007 / 635),
                                         verticalOffset: Math.round(914207 / 635)
+                                    }, {
+                                        left: "0",
+                                        top: "0",
+                                        right: "22029", 
+                                        bottom: "30269"
                                     }),
                                 ],
                                 alignment: AlignmentType.LEFT,
                             }),
                             new Paragraph({
                                 children: [
-                                    // Tercera imagen: offset horizontal 19878, vertical 19878
+                                    // Tercera imagen: offset horizontal 19878, vertical 19878, recorte específico
                                     await this.createHeaderImageRun("image_primera_pagina", 814, 1172, {
                                         horizontalOffset: Math.round(19878 / 635),
                                         verticalOffset: Math.round(19878 / 635)
+                                    }, {
+                                        left: "0",
+                                        top: "0",
+                                        right: "24934",
+                                        bottom: "15846"
                                     }),
                                 ],
                                 alignment: AlignmentType.LEFT,
@@ -592,10 +642,15 @@ class PumaExactReplicatorGenerator {
                         children: [
                             new Paragraph({
                                 children: [
-                                    // Imagen única: offset horizontal 0, vertical 0
+                                    // Imagen única: offset horizontal 0, vertical 0, recorte específico
                                     await this.createHeaderImageRun("image_primera_pagina", 820, 1150, {
                                         horizontalOffset: 0,
                                         verticalOffset: 0
+                                    }, {
+                                        left: "0",
+                                        top: "0", 
+                                        right: "24934",
+                                        bottom: "15846"
                                     }),
                                 ],
                                 alignment: AlignmentType.LEFT,
