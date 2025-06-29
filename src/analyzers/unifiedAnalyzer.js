@@ -11,38 +11,29 @@ const { ConsolidatedValidator } = require('../lib/consolidatedValidator.js');
 class UnifiedAnalyzer {
     constructor(docxPath) {
         this.docxPath = docxPath;
-        this.analyzer = new ConsolidatedAnalyzer(docxPath);
+        this.analyzer = new ConsolidatedAnalyzer(docxPath, {
+            extractImages: true,
+            extractText: true,
+            analyzeStyles: true,
+            analyzeMetadata: true,
+            analyzeRelationships: true,
+            logLevel: 'info'
+        });
         this.validator = new ConsolidatedValidator();
     }
 
     async runFullAnalysis() {
-        console.log('🚀 ANÁLISIS COMPLETO DE DOCUMENTO DOCX');
+        console.log('🚀 ANÁLISIS COMPLETO Y DETALLADO DE DOCUMENTO DOCX');
         console.log('============================================================');
         console.log(`📄 Documento: ${this.docxPath}`);
         console.log('');
 
-        const results = {};
-
         try {
-            // 1. Análisis de formato de imágenes
-            console.log('🔍 1. Analizando formato de imágenes...');
-            results.imageFormatting = await this.analyzer.analyzeImageFormatting();
-            console.log('✅ Formato de imágenes completado\n');
-
-            // 2. Análisis de dimensiones de headers
-            console.log('🔍 2. Analizando dimensiones de headers...');
-            results.headerDimensions = await this.analyzer.analyzeHeaderDimensions();
-            console.log('✅ Dimensiones de headers completado\n');
-
-            // 3. Análisis de posicionamiento del body
-            console.log('🔍 3. Analizando posicionamiento del body...');
-            results.bodyPositioning = await this.analyzer.analyzeBodyPositioning();
-            console.log('✅ Posicionamiento del body completado\n');
-
-            // 4. Análisis de estructura del documento
-            console.log('🔍 4. Analizando estructura del documento...');
-            results.documentStructure = await this.analyzer.analyzeDocumentStructure();
-            console.log('✅ Estructura del documento completado\n');
+            // Ejecutar análisis completo con todas las opciones habilitadas
+            console.log('🔍 Ejecutando análisis exhaustivo...');
+            const results = await this.analyzer.analyzeComplete();
+            
+            console.log('✅ Análisis completo exitoso\n');
 
             // Mostrar resumen consolidado
             this.analyzer.showAnalysisSummary();
