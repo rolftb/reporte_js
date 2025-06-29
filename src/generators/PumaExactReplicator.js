@@ -13,7 +13,7 @@
  * - 16 imágenes reales de las actividades
  */
 
-import { Document, Packer, Paragraph, TextRun, ImageRun, Header, SectionType, AlignmentType, Table, TableRow, TableCell, WidthType, BorderStyle, ShadingType } from 'docx';
+import { Document, Packer, Paragraph, TextRun, ImageRun, Header, SectionType, AlignmentType, Table, TableRow, TableCell, WidthType, BorderStyle, ShadingType, TextWrappingType, TextWrappingSide, HorizontalPositionRelativeFrom, VerticalPositionRelativeFrom, HorizontalPositionAlign, VerticalPositionAlign } from 'docx';
 import fs from 'fs-extra';
 import path from 'path';
 
@@ -141,6 +141,96 @@ class PumaExactReplicatorGenerator {
 
         } catch (error) {
             console.log(`⚠️ No se pudo cargar imagen ${imageName}: ${error.message}`);
+            return new TextRun({
+                text: `[${imageName}]`,
+                color: "666666",
+                italics: true
+            });
+        }
+    }
+
+    /**
+     * Crea una imagen para el header con formato específico que no desplace el contenido
+     * Basado en el análisis del documento original que usa wp:wrapNone (behind text)
+     */
+    async createHeaderImageRun(imageName, width = 200, height = 150, positioning = {}) {
+        if (!this.useRealImages) {
+            return new TextRun({
+                text: `[${imageName}]`,
+                color: "666666",
+                italics: true
+            });
+        }
+
+        try {
+            // Buscar imagen en el registro
+            let imageInfo = null;
+            if (this.imageRegistry) {
+                for (const [hash, info] of Object.entries(this.imageRegistry)) {
+                    // Mapear nombres personalizados a nombres originales
+                    let searchName = imageName;
+                    if (imageName === "encabezado_default") {
+                        searchName = "image17.jpeg";
+                    } else if (imageName === "image_primera_pagina") {
+                        searchName = "image18.jpeg";
+                    }
+                    
+                    // Buscar por nombre de imagen (ej: "image1.jpeg" en "word/media/image1.jpeg")
+                    if (info.originalPath.includes(searchName) || info.originalPath.endsWith(searchName)) {
+                        imageInfo = info;
+                        break;
+                    }
+                }
+            }
+
+            if (imageInfo) {
+                const imagePath = path.join(this.extractedImagesPath, imageInfo.fileName);
+                if (await fs.pathExists(imagePath)) {
+                    const imageBuffer = await fs.readFile(imagePath);
+                    
+                    // Configuración de imagen para header basada en análisis XML
+                    // El documento original usa wp:wrapNone (behind text) y posicionamiento absoluto
+                    const imageRunConfig = {
+                        data: imageBuffer,
+                        transformation: {
+                            width: width,
+                            height: height,
+                        },
+                        // Configuración de posicionamiento que evita desplazar contenido
+                        floating: {
+                            horizontalPosition: {
+                                relative: HorizontalPositionRelativeFrom.PAGE,
+                                align: HorizontalPositionAlign.LEFT,
+                                offset: positioning.horizontalOffset || 0,
+                            },
+                            verticalPosition: {
+                                relative: VerticalPositionRelativeFrom.PAGE,
+                                align: VerticalPositionAlign.TOP,
+                                offset: positioning.verticalOffset || 0,
+                            },
+                            // Importante: Behind text para que no desplace contenido
+                            wrap: {
+                                type: TextWrappingType.NONE, // Equivale a wp:wrapNone del XML
+                                side: TextWrappingSide.BOTH_SIDES,
+                            },
+                            allowOverlap: true, // Permite superposición como en el original
+                            layoutInCell: true, // Mantiene imagen dentro del header
+                        }
+                    };
+
+                    return new ImageRun(imageRunConfig);
+                }
+            }
+
+            // Fallback a placeholder
+            return new TextRun({
+                text: `[${imageName}]`,
+                color: "666666",
+                italics: true
+            });
+
+        } catch (error) {
+            console.log(`⚠️ No se pudo cargar imagen del header ${imageName}: ${error.message}`);
             return new TextRun({
                 text: `[${imageName}]`,
                 color: "666666",
@@ -467,21 +557,33 @@ class PumaExactReplicatorGenerator {
                         children: [
                             new Paragraph({
                                 children: [
-                                    await this.createImageRun("encabezado_default", 814, 1072), // image17.jpeg - dimensiones exactas
+                                    // Primera imagen: offset horizontal 19050, vertical -133350
+                                    await this.createHeaderImageRun("encabezado_default", 814, 1072, {
+                                        horizontalOffset: Math.round(19050 / 635), // Convertir EMUs a puntos
+                                        verticalOffset: Math.round(-133350 / 635)
+                                    }),
                                 ],
-                                alignment: AlignmentType.CENTER,
+                                alignment: AlignmentType.LEFT, // Cambio a LEFT para posicionamiento absoluto
                             }),
                             new Paragraph({
                                 children: [
-                                    await this.createImageRun("encabezado_default", 816, 1042), // image17.jpeg - segunda instancia
+                                    // Segunda imagen: offset horizontal 457007, vertical 914207  
+                                    await this.createHeaderImageRun("encabezado_default", 816, 1042, {
+                                        horizontalOffset: Math.round(457007 / 635),
+                                        verticalOffset: Math.round(914207 / 635)
+                                    }),
                                 ],
-                                alignment: AlignmentType.CENTER,
+                                alignment: AlignmentType.LEFT,
                             }),
                             new Paragraph({
                                 children: [
-                                    await this.createImageRun("image_primera_pagina", 814, 1172), // image18.jpeg - dimensiones exactas
+                                    // Tercera imagen: offset horizontal 19878, vertical 19878
+                                    await this.createHeaderImageRun("image_primera_pagina", 814, 1172, {
+                                        horizontalOffset: Math.round(19878 / 635),
+                                        verticalOffset: Math.round(19878 / 635)
+                                    }),
                                 ],
-                                alignment: AlignmentType.CENTER,
+                                alignment: AlignmentType.LEFT,
                             })
                         ]
                     }),
@@ -490,9 +592,13 @@ class PumaExactReplicatorGenerator {
                         children: [
                             new Paragraph({
                                 children: [
-                                    await this.createImageRun("image_primera_pagina", 820, 1150), // image18.jpeg - dimensiones exactas
+                                    // Imagen única: offset horizontal 0, vertical 0
+                                    await this.createHeaderImageRun("image_primera_pagina", 820, 1150, {
+                                        horizontalOffset: 0,
+                                        verticalOffset: 0
+                                    }),
                                 ],
-                                alignment: AlignmentType.CENTER,
+                                alignment: AlignmentType.LEFT,
                             })
                         ]
                     })

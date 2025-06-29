@@ -318,3 +318,29 @@ sudo chown -R $USER:$USER .
 - [ ] Logs estructurados
 - [ ] Métricas y monitoreo
 - [ ] Contenedorización con Docker
+
+## 🖼️ Sistema de Formato de Imágenes Anti-Desplazamiento
+
+**NUEVA FUNCIONALIDAD**: Las imágenes del header ahora se posicionan correctamente sin desplazar el contenido del documento.
+
+### ✅ Características Implementadas:
+- **TextWrappingType.NONE**: Imágenes "behind text" (detrás del texto)
+- **Posicionamiento absoluto**: Coordenadas exactas del documento original
+- **allowOverlap: true**: Permite superposición de imágenes
+- **layoutInCell: true**: Mantiene imágenes dentro del header
+- **Conversión EMU → puntos**: Mapeo preciso de coordenadas
+
+### 📄 Archivos Relacionados:
+- `src/analyzers/analyzeImageFormatting.cjs` - Analiza formato XML
+- `src/validators/validateImageFormatting.cjs` - Valida implementación  
+- `src/generators/PumaExactReplicator.js` - Aplica formato correcto
+- `FORMATO_IMAGENES_HEADER.md` - Documentación detallada
+
+### 🚀 Uso:
+```bash
+# Generar documento con formato aplicado
+node src/tests/testExactReplicator.js
+
+# Validar configuraciones
+node src/validators/validateImageFormatting.cjs
+```
