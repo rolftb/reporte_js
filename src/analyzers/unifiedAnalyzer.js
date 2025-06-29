@@ -5,8 +5,8 @@
  * usando las bibliotecas consolidadas.
  */
 
-const { ConsolidatedAnalyzer } = require('../lib/consolidatedAnalyzer.js');
-const { ConsolidatedValidator } = require('../lib/consolidatedValidator.js');
+import { ConsolidatedAnalyzer } from '../lib/consolidatedAnalyzer.js';
+import { ConsolidatedValidator } from '../lib/consolidatedValidator.js';
 
 class UnifiedAnalyzer {
     constructor(docxPath) {
@@ -114,8 +114,12 @@ class UnifiedAnalyzer {
 
 // Ejecutar análisis
 async function main() {
-    const docxPath = process.argv[2] || './input/PUMA MES 6 2025.docx';
+    console.log('📋 Función main iniciada');
+    const docxPath = process.argv[2] || './templates/documento-ejemplo-analisis.docx';
     const mode = process.argv[3] || 'complete'; // complete, analysis, validation
+    
+    console.log(`📄 Archivo: ${docxPath}`);
+    console.log(`🎯 Modo: ${mode}`);
 
     const unifiedAnalyzer = new UnifiedAnalyzer(docxPath);
 
@@ -143,11 +147,15 @@ async function main() {
 }
 
 // Ejecutar si se llama directamente
-if (require.main === module) {
-    main();
+if (import.meta.url.startsWith('file://') && process.argv[1].includes('unifiedAnalyzer.js')) {
+    console.log('🚀 Iniciando analizador unificado...');
+    main().catch(error => {
+        console.error('❌ Error crítico:', error);
+        process.exit(1);
+    });
 }
 
-module.exports = {
+export {
     UnifiedAnalyzer,
     main
 };

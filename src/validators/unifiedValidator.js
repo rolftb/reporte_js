@@ -5,7 +5,7 @@
  * usando las bibliotecas consolidadas.
  */
 
-const { ConsolidatedValidator } = require('../lib/consolidatedValidator.js');
+import { ConsolidatedValidator } from '../lib/consolidatedValidator.js';
 
 class UnifiedValidator {
     constructor() {
@@ -181,11 +181,11 @@ async function main() {
 }
 
 // Ejecutar si se llama directamente
-if (require.main === module) {
+if (import.meta.url === `file://${process.argv[1]}`) {
     main();
 }
 
-module.exports = {
+export {
     UnifiedValidator,
     main
 };
