@@ -1,256 +1,138 @@
-# Reporteador de Empresas
+# 🎯 Generador de Reportes PUMA
 
-## Objetivo
-Este repositorio permite procesar texto e imágenes y generar reportes Word con un formato estándar para diferentes empresas.
+Sistema simplificado para generar reportes PUMA con imágenes reales extraídas del documento original "PUMA MES 6 2025.docx".
 
-## Lenguajes y Tecnologías
-El lenaguaje principal es JavaScript, utilizando Node.js como entorno de ejecución y reactjs para la interfaz de usuario. También se emplean bibliotecas y herramientas específicas para manipular archivos .docx.
-### JavaScript libraries and tools
+## 🚀 Características
 
-Aquí tienes un listado de bibliotecas y herramientas JavaScript para editar archivos .doc
+- ✅ **Extrae imágenes automáticamente** del documento DOCX original
+- ✅ **Genera reportes con estructura real** basada en el documento original
+- ✅ **Incluye logos corporativos** en el header
+- ✅ **Distribuye fotos de actividades** en las páginas (4 por página)
+- ✅ **Evita duplicados** usando hash MD5
+- ✅ **Sistema totalmente automatizado**
 
-- **Syncfusion JavaScript Word Processor**: Componente con interfaz gráfica que permite crear, editar, visualizar e imprimir documentos Word.
-- **Docx.js Editor**: Entorno interactivo para generar y modificar archivos .docx con JavaScript, compatible tanto con Node como con navegadores.
-- **docx.js**: Biblioteca que facilita la generación y modificación de documentos .docx usando JavaScript/TypeScript. [github repositorio](https://github.com/dolanmiu/docx)
-- **Apryse JavaScript DOCX Editor SDK**: Permite la colaboración segura en archivos DOCX integrando capacidades de edición nativas en aplicaciones web.
-- Docxtemplater
+## ⚡ Uso Rápido
 
+### 1. Extraer Imágenes (Solo una vez)
+```bash
+cd C:\Users\rolft\Repositorios\Pauli\reporte_js
+node src/documentImageExtractor.cjs "./uploads/PUMA MES 6 2025.docx"
+```
 
-# Proyecto y Configuración
+### 2. Generar Reporte
+```bash
+node generatePumaReport.js
+```
 
-## 🛠️ Librerías Seleccionadas
-
-Después del análisis de opciones, se han seleccionado las siguientes librerías por su robustez y facilidad de uso:
-
-### Principales
-- **[docx](https://github.com/dolanmiu/docx)** - Generación y manipulación de documentos .docx con JavaScript/TypeScript
-- **mammoth** - Lectura y extracción de contenido de archivos .docx existentes
-- **sharp** - Procesamiento y optimización de imágenes de alta performance
-- **express** - Framework web para crear la API REST
-- **multer** - Middleware para manejo de archivos subidos
-
-### Adicionales
-- **joi** - Validación de esquemas de datos
-- **fs-extra** - Operaciones de sistema de archivos mejoradas
-- **helmet** - Seguridad para Express
-- **cors** - Manejo de CORS
-- **compression** - Compresión gzip
+¡Eso es todo! El reporte se genera en `./output/reporte_puma_[timestamp].docx`
 
 ## 📁 Estructura del Proyecto
 
 ```
 reporte_js/
 ├── src/
-│   ├── controllers/          # Controladores de la aplicación
-│   ├── services/            # Servicios de negocio
-│   │   └── DocumentService.js
-│   ├── routes/              # Definición de rutas de la API
-│   │   ├── reportRoutes.js
-│   │   └── templateRoutes.js
-│   ├── utils/               # Utilidades y helpers
-│   │   ├── validators.js
-│   │   └── fileUtils.js
-│   └── index.js             # Punto de entrada de la aplicación
-├── templates/               # Plantillas de documentos Word
-├── uploads/                 # Archivos subidos temporalmente
-├── output/                  # Documentos generados
-├── tests/                   # Pruebas unitarias e integración
-├── package.json
-├── Makefile                 # Comandos automatizados
-└── README.md
+│   ├── documentImageExtractor.cjs     # Extractor de imágenes
+│   └── generators/
+│       ├── PumaRealStructureGenerator.js   # Generador principal
+│       └── PumaDocumentGenerator.js        # Generador alternativo
+├── extracted_images/                  # Imágenes extraídas (18 imágenes)
+│   ├── image1_32f311ba.jpeg          # Header primer pagina (logo 1) TODO
+│   ├── image2_077bc1b1.jpeg          # Header segunda pagina (logo 2) TODO
+│   ├── image4_fe4f8c66.jpeg          # Foto actividad 1
+│   ├── ...                           # Fotos actividades 2-15
+│   └── image_registry.json           # Registro de imágenes
+├── uploads/
+│   └── PUMA MES 6 2025.docx          # Documento original
+├── output/                           # Reportes generados
+├── generatePumaReport.js             # Generador principal
+└── package.json                      # Dependencias
 ```
 
-## 🚀 Instalación y Configuración
+## 🎯 Archivos Esenciales
 
-### Prerrequisitos
-- **Node.js** v18.0.0 o superior
-- **NPM** v9.0.0 o superior
+### `src/documentImageExtractor.cjs`
+Extrae las 18 imágenes del documento original PUMA:
+- 2 imágenes distintas para el header según pagina
+    - Primera pagina (logos corporativos)
+    - Segunda pagina (header sin logos)
+- 15 imágenes de actividades
+- Evita duplicados usando hash MD5
+- Genera registro JSON con metadatos, definiendo:
+    - Nombre de la imagen
+    - Hash MD5
+    - Tipo de imagen (header o actividad)
+    - Fecha de extracción
+    - Define la úbicación especifica en cada página de las imágenes.
+    - Define si las imagenes están cortadas o no.
 
-### Configuración Rápida
+### `src/generators/PumaRealStructureGenerator.js`
+Genera documentos con la estructura real del original:
+- Header completamente visual
+- primera pagina tabla de `ASPECTOS TÉCNICOS DE LA ACTIVIDAD EN TERRENO` 
+| ASPECTOS TÉCNICOS DE LA ACTIVIDAD EN TERRENO |   |
+|----------------------------------------------|---|
+| Nombre de la actividad | Programa de Calidad de Vida. |
+| Fecha | Desde el 21 de mayo al 20 de junio |
+| Lugar | Av. Pdte. Kennedy 5454 |
+| Profesional a cargo | Profesional área Calidad de Vida - Mutual Asesorías. |
+- luego de la tabla anterior, se coloca otra tabla con los `REGISTRO FOTOGRÁFICO DE LA ACTIVAD` este recuadro o tabla está en el encabezado de la página (en todas las páginas incluyendo la primera) y es una tabla de dos filas, la cual la primera fila tiene el título y la segunda fila tiene un espacio para colocar al inicio una tabla de 3 filas, dos columnas y luego las 4 fotos de la actividad
+- Páginas basadas en imágenes (4 por página)
+- Distribución fiel al documento original
+- Carga automática de imágenes extraídas
+
+### `generatePumaReport.js`
+Script principal simplificado:
+- Punto de entrada único
+- Verificaciones automáticas
+- Manejo de errores claro
+- Salida en formato DOCX
+
+## 📊 Resultados
+
+El sistema genera reportes que incluyen:
+
+- **Header**: Logos corporativos reales del documento original
+- **Página 1**: 4 imágenes de actividades
+- **Página 2**: 4 imágenes de actividades  
+- **Página 3**: 4 imágenes de actividades
+- **Página 4**: 4 imágenes de actividades
+
+**Total**: 18 imágenes distribuidas correctamente
+
+## 🔧 Instalación
 
 ```bash
-# Clonar o navegar al directorio del proyecto
-cd reporte_js
-
-# Configuración automática (recomendado)
-make setup
-```
-
-### Configuración Manual
-
-```bash
-# 1. Verificar dependencias del sistema
-make check-deps
-
-# 2. Instalar dependencias de Node.js
+# Instalar dependencias
 npm install
 
-# 3. Copiar archivo de configuración
-copy .env.example .env
-
-# 4. Crear directorios necesarios
-mkdir uploads templates output logs
+# Ya está listo para usar
 ```
 
-### Variables de Entorno
+## 💡 Resolución de Problemas
 
-Edita el archivo `.env` según tus necesidades:
-
-```env
-NODE_ENV=development
-PORT=3000
-UPLOAD_PATH=./uploads
-TEMPLATE_PATH=./templates
-OUTPUT_PATH=./output
-MAX_FILE_SIZE=10485760
-```
-
-## ▶️ Ejecución
-
-### Modo Desarrollo
+### "No se encontraron imágenes extraídas"
 ```bash
-make dev
-# o
-npm run dev
+# Extraer imágenes primero
+node src/documentImageExtractor.cjs "./uploads/PUMA MES 6 2025.docx"
 ```
 
-### Modo Producción
-```bash
-make start
-# o
-npm start
-```
+### "Error al generar reporte"
+- Verifica que el archivo `PUMA MES 6 2025.docx` esté en `./uploads/`
+- Asegúrate de haber extraído las imágenes primero
+- Verifica que el directorio `./output/` sea escribible
 
-El servidor estará disponible en `http://localhost:3000`
+## 📋 Estado del Sistema
 
-## 📋 Comandos Disponibles
+- ✅ **Extracción**: 18 imágenes extraídas y registradas
+- ✅ **Generación**: Documento con estructura real replicada
+- ✅ **Validación**: Sistema probado y funcional
+- ✅ **Optimización**: Sin archivos obsoletos o test
 
-```bash
-make help          # Mostrar todos los comandos disponibles
-make setup          # Configuración inicial completa
-make dev            # Ejecutar en modo desarrollo
-make start          # Ejecutar en modo producción
-make test           # Ejecutar pruebas
-make lint           # Verificar código con ESLint
-make format         # Formatear código con Prettier
-make clean          # Limpiar archivos temporales
-make check-deps     # Verificar dependencias del sistema
-```
+## 🎉 Ventajas del Sistema Limpio
 
-## 🔌 API Endpoints
+- **Simplicidad**: Solo archivos esenciales
+- **Velocidad**: Sin código obsoleto que ralentice
+- **Claridad**: Estructura fácil de entender
+- **Mantenibilidad**: Código enfocado en la funcionalidad principal
 
-### Reportes
-- `POST /api/reports/create` - Crear nuevo reporte
-- `GET /api/reports/list` - Listar reportes generados
-- `GET /api/reports/download/:fileName` - Descargar reporte específico
-- `DELETE /api/reports/:fileName` - Eliminar reporte
-- `POST /api/reports/analyze-template` - Analizar formato de plantilla
-
-### Plantillas
-- `GET /api/templates/list` - Listar plantillas disponibles
-- `POST /api/templates/upload` - Subir nueva plantilla
-- `GET /api/templates/download/:fileName` - Descargar plantilla
-- `DELETE /api/templates/:fileName` - Eliminar plantilla
-
-### Sistema
-- `GET /health` - Estado del servicio
-- `GET /` - Información de la API
-
-## 📤 Uso de la API
-
-### Crear un Reporte
-
-```bash
-curl -X POST http://localhost:3000/api/reports/create \
-  -F "title=Reporte Mensual" \
-  -F "company=Mi Empresa" \
-  -F "content=Contenido del reporte aquí..." \
-  -F "images=@imagen1.jpg" \
-  -F "images=@imagen2.png" \
-  -F "template=@plantilla.docx"
-```
-
-### Listar Reportes Generados
-
-```bash
-curl http://localhost:3000/api/reports/list
-```
-
-## 🧪 Pruebas
-
-```bash
-# Ejecutar todas las pruebas
-make test
-
-# Ejecutar pruebas específicas
-npm test -- basic.test.js
-```
-
-## 📝 Procesamiento de Archivos
-
-### Formatos Soportados
-
-#### Documentos
-- **.docx** - Microsoft Word (recomendado)
-- **.doc** - Microsoft Word (legacy)
-
-#### Imágenes
-- **JPG/JPEG** - Fotografías y gráficos
-- **PNG** - Imágenes con transparencia
-- **GIF** - Imágenes animadas
-- **BMP** - Bitmaps
-
-#### Texto
-- **TXT** - Archivos de texto plano
-- **JSON** - Datos estructurados
-
-### Flujo de Procesamiento
-
-1. **Carga de Archivos**: Los archivos se suben a través de la API
-2. **Validación**: Se verifica tipo, tamaño y contenido
-3. **Procesamiento de Imágenes**: Optimización y redimensionado con Sharp
-4. **Lectura de Plantilla**: Extracción de formato con Mammoth (opcional)
-5. **Generación**: Creación del documento con la librería docx
-6. **Almacenamiento**: Guardado en el directorio de salida
-
-## 🛡️ Seguridad y Limitaciones
-
-- **Tamaño máximo de archivo**: 10MB por defecto
-- **Tipos de archivo**: Validación estricta de extensiones
-- **Sanitización**: Nombres de archivo y contenido
-- **Headers de seguridad**: Implementados con Helmet
-- **CORS**: Configurado para desarrollo
-
-## 🔧 Troubleshooting
-
-### Problemas Comunes
-
-**Error: "Cannot find module"**
-```bash
-make clean
-make install
-```
-
-**Puerto ocupado**
-```bash
-# Cambiar puerto en .env
-PORT=3001
-```
-
-**Errores de permisos**
-```bash
-# En Windows, ejecutar como administrador
-# En Linux/Mac
-sudo chown -R $USER:$USER .
-```
-
-## 📈 Mejoras Futuras
-
-- [ ] Interfaz web con React
-- [ ] Soporte para más formatos de imagen
-- [ ] Plantillas dinámicas con variables
-- [ ] Integración con bases de datos
-- [ ] Autenticación y autorización
-- [ ] Logs estructurados
-- [ ] Métricas y monitoreo
-- [ ] Contenedorización con Docker
+El sistema está optimizado para generar reportes PUMA de alta calidad con el mínimo de archivos y máxima eficiencia.

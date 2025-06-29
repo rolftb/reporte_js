@@ -233,7 +233,7 @@ class PumaDocumentGenerator {
       alignment: AlignmentType.CENTER,
       children: [
         new TextRun({
-          text: "[LOGO MUTUAL] [MEDIOS VERIFICADORES] [CALIDAD DE VIDA]",
+          text: "<EMPRESA_NOMBRE>",
           size: 16,
           color: this.config.borderColor,
           font: this.config.fontFamily

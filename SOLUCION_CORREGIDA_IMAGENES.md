@@ -99,7 +99,7 @@ const imageBuffer = await fs.readFile(imagePath);
 
 ### Extraer Imágenes (una vez)
 ```bash
-node src/documentImageExtractor.cjs "./uploads/template-word/PUMA MES 6 2025.docx"
+node src/documentImageExtractor.cjs "./uploads/PUMA MES 6 2025.docx"
 ```
 **Resultado**: 18 imágenes extraídas, relaciones correctas generadas
 

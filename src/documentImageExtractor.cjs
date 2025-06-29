@@ -426,7 +426,7 @@ class DocumentImageExtractor {
 // Ejecutar análisis si se llama directamente
 if (require.main === module) {
   const extractor = new DocumentImageExtractor();
-  const docxPath = 'c:\\Users\\rolft\\Repositorios\\Pauli\\reporte_py\\template-word\\PUMA MES 6 2025.docx';
+  const docxPath = 'c:\\Users\\rolft\\Repositorios\\Pauli\\reporte_js\\uploads\\PUMA MES 6 2025.docx';
   
   extractor.analyzeAndExtractImages(docxPath)
     .then(report => {
