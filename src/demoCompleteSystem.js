@@ -14,7 +14,7 @@ import path from 'path';
 
 class DocumentSystemDemo {
     constructor() {
-        this.originalDocPath = '../reporte_py/template-word/PUMA MES 6 2025.docx';
+        this.originalDocPath = './uploads/template-word/PUMA MES 6 2025.docx';
         this.extractedImagesDir = './extracted_images';
         this.outputDir = './output';
     }

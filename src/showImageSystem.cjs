@@ -77,7 +77,7 @@ async function demonstrateExtraction() {
     console.log('=' .repeat(45));
     console.log('');
     console.log('1. Extraer imágenes del documento PUMA:');
-    console.log('   node src/documentImageExtractor.cjs "../reporte_py/template-word/PUMA MES 6 2025.docx"');
+    console.log('   node src/documentImageExtractor.cjs "./uploads/template-word/PUMA MES 6 2025.docx"');
     console.log('');
     console.log('2. Especificar directorio de salida:');
     console.log('   node src/documentImageExtractor.cjs "documento.docx" "./mi_directorio"');

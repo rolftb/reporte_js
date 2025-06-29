@@ -37,7 +37,7 @@ Se ha implementado exitosamente un **sistema completo** que:
 ### 1. **Extractor Principal** (`documentImageExtractor.cjs`)
 ```bash
 # Extraer del documento PUMA
-node src/documentImageExtractor.cjs "../reporte_py/template-word/PUMA MES 6 2025.docx"
+node src/documentImageExtractor.cjs "./uploads/template-word/PUMA MES 6 2025.docx"
 
 # Resultado: 18 imágenes extraídas, 0 duplicados
 ```
@@ -135,7 +135,7 @@ reporte_js/
 
 ### Extracción de Imágenes (ejecutar una sola vez por documento)
 ```bash
-node src/documentImageExtractor.cjs "../reporte_py/template-word/PUMA MES 6 2025.docx"
+node src/documentImageExtractor.cjs "./uploads/template-word/PUMA MES 6 2025.docx"
 ```
 
 ### Verificación del Sistema
@@ -150,7 +150,7 @@ node src/testPumaWithImages.js
 
 ### Verificación de No-Duplicados (opcional)
 ```bash
-node src/documentImageExtractor.cjs "../reporte_py/template-word/PUMA MES 6 2025.docx"
+node src/documentImageExtractor.cjs "./uploads/template-word/PUMA MES 6 2025.docx"
 # Resultado esperado: 0 nuevas, 18 duplicados detectados
 ```
 

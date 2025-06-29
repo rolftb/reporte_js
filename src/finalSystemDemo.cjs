@@ -14,7 +14,7 @@ const path = require('path');
 
 class CompleteSystemDemo {
     constructor() {
-        this.pumaDocument = '../reporte_py/template-word/PUMA MES 6 2025.docx';
+        this.pumaDocument = './uploads/template-word/PUMA MES 6 2025.docx';
         this.extractedDir = './extracted_images';
         this.outputDir = './output';
     }

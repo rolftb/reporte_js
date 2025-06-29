@@ -23,7 +23,7 @@ Se ha implementado exitosamente un **sistema completo de extracción y gestión 
 **Uso**:
 ```bash
 # Extraer imágenes del documento PUMA
-node src/documentImageExtractor.cjs "../reporte_py/template-word/PUMA MES 6 2025.docx"
+node src/documentImageExtractor.cjs "./uploads/template-word/PUMA MES 6 2025.docx"
 
 # Especificar directorio de salida
 node src/documentImageExtractor.cjs "documento.docx" "./mi_directorio"
@@ -88,7 +88,7 @@ extracted_images/
 
 ### Paso 1: Extracción (Solo una vez)
 ```bash
-node src/documentImageExtractor.cjs "../reporte_py/template-word/PUMA MES 6 2025.docx"
+node src/documentImageExtractor.cjs "./uploads/template-word/PUMA MES 6 2025.docx"
 ```
 **Resultado**: 18 imágenes extraídas en `./extracted_images/`
 

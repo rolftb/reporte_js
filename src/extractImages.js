@@ -6,7 +6,7 @@
  * node src/extractImages.js [ruta_documento] [directorio_salida]
  * 
  * Ejemplo:
- * node src/extractImages.js "../reporte_py/template-word/PUMA MES 6 2025.docx" "./extracted_images"
+ * node src/extractImages.js "./uploads/template-word/PUMA MES 6 2025.docx" "./extracted_images"
  */
 
 import { createRequire } from 'module';
