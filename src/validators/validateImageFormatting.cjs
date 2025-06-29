@@ -1,37 +1,11 @@
 /**
- * Validador de Formato de Imágenes en Headers
+ * Validador de Formato de Imágenes en Headers (Refactorizado)
  * 
  * Verifica que las imágenes del header tengan las configuraciones correctas
- * para no desplazar el contenido del documento, basándose en el análisis
- * del documento original PUMA MES 6 2025.docx
+ * usando la biblioteca consolidada de validadores.
  */
 
-const fs = require('fs');
-
-// Cargar resultados del análisis de formato de imágenes
-function loadImageFormattingResults() {
-    console.log('🔍 Cargando análisis de formato de imágenes...');
-    
-    // Buscar el archivo más reciente de análisis
-    const outputDir = './output';
-    const files = fs.readdirSync(outputDir);
-    const imageFormattingFiles = files.filter(f => f.startsWith('image_formatting_'));
-    
-    if (imageFormattingFiles.length === 0) {
-        console.log('❌ No se encontraron archivos de análisis de formato de imágenes');
-        console.log('💡 Ejecuta primero: node src/analyzers/analyzeImageFormatting.cjs');
-        return null;
-    }
-    
-    // Obtener el más reciente
-    const latestFile = imageFormattingFiles.sort().pop();
-    const analysisPath = `${outputDir}/${latestFile}`;
-    
-    console.log(`📄 Cargando: ${analysisPath}`);
-    const analysis = JSON.parse(fs.readFileSync(analysisPath, 'utf8'));
-    
-    return analysis;
-}
+const { ConsolidatedValidator } = require('../lib/consolidatedValidator.js');
 
 // Validar configuraciones de formato
 function validateImageFormatting(analysis) {

@@ -1,0 +1,162 @@
+/**
+ * Analizador Unificado
+ * 
+ * Punto de entrada único para todos los análisis de documentos DOCX
+ * usando las bibliotecas consolidadas.
+ */
+
+const { ConsolidatedAnalyzer } = require('../lib/consolidatedAnalyzer.js');
+const { ConsolidatedValidator } = require('../lib/consolidatedValidator.js');
+
+class UnifiedAnalyzer {
+    constructor(docxPath) {
+        this.docxPath = docxPath;
+        this.analyzer = new ConsolidatedAnalyzer(docxPath);
+        this.validator = new ConsolidatedValidator();
+    }
+
+    async runFullAnalysis() {
+        console.log('🚀 ANÁLISIS COMPLETO DE DOCUMENTO DOCX');
+        console.log('============================================================');
+        console.log(`📄 Documento: ${this.docxPath}`);
+        console.log('');
+
+        const results = {};
+
+        try {
+            // 1. Análisis de formato de imágenes
+            console.log('🔍 1. Analizando formato de imágenes...');
+            results.imageFormatting = await this.analyzer.analyzeImageFormatting();
+            console.log('✅ Formato de imágenes completado\n');
+
+            // 2. Análisis de dimensiones de headers
+            console.log('🔍 2. Analizando dimensiones de headers...');
+            results.headerDimensions = await this.analyzer.analyzeHeaderDimensions();
+            console.log('✅ Dimensiones de headers completado\n');
+
+            // 3. Análisis de posicionamiento del body
+            console.log('🔍 3. Analizando posicionamiento del body...');
+            results.bodyPositioning = await this.analyzer.analyzeBodyPositioning();
+            console.log('✅ Posicionamiento del body completado\n');
+
+            // 4. Análisis de estructura del documento
+            console.log('🔍 4. Analizando estructura del documento...');
+            results.documentStructure = await this.analyzer.analyzeDocumentStructure();
+            console.log('✅ Estructura del documento completado\n');
+
+            // Mostrar resumen consolidado
+            this.analyzer.showAnalysisSummary();
+
+            return results;
+
+        } catch (error) {
+            console.error('❌ Error durante el análisis:', error.message);
+            throw error;
+        }
+    }
+
+    async runFullValidation() {
+        console.log('🎯 VALIDACIÓN COMPLETA DE ANÁLISIS');
+        console.log('============================================================');
+
+        try {
+            // Cargar análisis más recientes
+            const imageAnalysis = this.validator.loadLatestAnalysis('image_formatting_');
+            const bodyAnalysis = this.validator.loadLatestAnalysis('body_positioning_');
+            const headerAnalysis = this.validator.loadLatestAnalysis('header_dimensions_');
+
+            const validationResults = {};
+
+            // 1. Validar formato de imágenes
+            if (imageAnalysis) {
+                console.log('🎯 1. Validando formato de imágenes...');
+                validationResults.imageFormatting = this.validator.validateImageFormatting(imageAnalysis);
+                console.log('✅ Validación de formato de imágenes completada\n');
+            }
+
+            // 2. Validar recortes de imágenes
+            if (imageAnalysis) {
+                console.log('🎯 2. Validando recortes de imágenes...');
+                validationResults.imageCropping = this.validator.validateImageCropping(imageAnalysis);
+                console.log('✅ Validación de recortes completada\n');
+            }
+
+            // 3. Validar posicionamiento del body
+            if (bodyAnalysis) {
+                console.log('🎯 3. Validando posicionamiento del body...');
+                validationResults.bodyPositioning = this.validator.validateBodyPositioning(bodyAnalysis);
+                console.log('✅ Validación de posicionamiento completada\n');
+            }
+
+            // 4. Validar estructura de páginas
+            if (bodyAnalysis) {
+                console.log('🎯 4. Validando estructura de páginas...');
+                validationResults.pageStructure = this.validator.validatePageStructure(bodyAnalysis);
+                console.log('✅ Validación de estructura completada\n');
+            }
+
+            // Mostrar resumen de validación
+            this.validator.showValidationSummary();
+
+            return validationResults;
+
+        } catch (error) {
+            console.error('❌ Error durante la validación:', error.message);
+            throw error;
+        }
+    }
+
+    async runComplete() {
+        console.log('🌟 PROCESO COMPLETO: ANÁLISIS + VALIDACIÓN');
+        console.log('============================================================');
+
+        const analysisResults = await this.runFullAnalysis();
+        console.log('\n' + '='.repeat(60) + '\n');
+        const validationResults = await this.runFullValidation();
+
+        return {
+            analysis: analysisResults,
+            validation: validationResults
+        };
+    }
+}
+
+// Ejecutar análisis
+async function main() {
+    const docxPath = process.argv[2] || './input/PUMA MES 6 2025.docx';
+    const mode = process.argv[3] || 'complete'; // complete, analysis, validation
+
+    const unifiedAnalyzer = new UnifiedAnalyzer(docxPath);
+
+    try {
+        switch (mode) {
+            case 'analysis':
+                await unifiedAnalyzer.runFullAnalysis();
+                break;
+            case 'validation':
+                await unifiedAnalyzer.runFullValidation();
+                break;
+            case 'complete':
+            default:
+                await unifiedAnalyzer.runComplete();
+                break;
+        }
+
+        console.log('\n🎉 PROCESO COMPLETADO EXITOSAMENTE');
+        console.log('📁 Todos los resultados guardados en: ./output/');
+
+    } catch (error) {
+        console.error('❌ Error en el proceso:', error.message);
+        process.exit(1);
+    }
+}
+
+// Ejecutar si se llama directamente
+if (require.main === module) {
+    main();
+}
+
+module.exports = {
+    UnifiedAnalyzer,
+    main
+};
