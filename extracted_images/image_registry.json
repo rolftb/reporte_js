@@ -1,146 +1,4330 @@
 {
-  "bfca8351268c989e4d2d6333649d5233": {
-    "originalPath": "word/media/image17.jpeg",
-    "extractedPath": "extracted_images\\image17_bfca8351.jpeg",
-    "fileName": "image17_bfca8351.jpeg",
-    "hash": "bfca8351268c989e4d2d6333649d5233",
-    "size": 94882,
-    "extractedAt": "2025-06-29T03:30:46.199Z"
+  "metadata": {
+    "version": "3.0",
+    "generatedAt": "2025-06-29T04:26:28.521Z",
+    "totalImages": 18,
+    "analysisLevel": "advanced",
+    "features": [
+      "positioning",
+      "cropping",
+      "context",
+      "formatting",
+      "page_distribution",
+      "table_analysis",
+      "text_context",
+      "xml_relations",
+      "drawing_properties",
+      "absolute_positioning",
+      "wrap_settings",
+      "transformations"
+    ]
   },
-  "6fa52ec64f82de579e342db3f1a202cf": {
-    "originalPath": "word/media/image5.jpeg",
-    "extractedPath": "extracted_images\\image5_6fa52ec6.jpeg",
-    "fileName": "image5_6fa52ec6.jpeg",
-    "hash": "6fa52ec64f82de579e342db3f1a202cf",
-    "size": 277624,
-    "extractedAt": "2025-06-29T03:30:46.201Z"
+  "documentStructure": {
+    "totalPages": 1,
+    "sections": 1,
+    "tables": 5,
+    "paragraphs": 137,
+    "headerTypes": [],
+    "footerTypes": []
   },
-  "6d5eee18bfa2bd17680421698fa04e2f": {
-    "originalPath": "word/media/image6.jpeg",
-    "extractedPath": "extracted_images\\image6_6d5eee18.jpeg",
-    "fileName": "image6_6d5eee18.jpeg",
-    "hash": "6d5eee18bfa2bd17680421698fa04e2f",
-    "size": 245559,
-    "extractedAt": "2025-06-29T03:30:46.203Z"
+  "pageDistribution": {
+    "1": [
+      {
+        "fileName": "image5_6fa52ec6.jpeg",
+        "hash": "6fa52ec64f82de579e342db3f1a202cf",
+        "position": {
+          "page": 1,
+          "section": 1,
+          "headerType": null,
+          "tableId": null,
+          "cellPosition": null,
+          "paragraphId": 61,
+          "runId": null,
+          "absolutePosition": {
+            "x": 4079875,
+            "xRelativeFrom": "column",
+            "y": 153670,
+            "yRelativeFrom": "paragraph"
+          },
+          "relativePosition": null
+        },
+        "context": {
+          "isInHeader": false,
+          "isInFooter": false,
+          "isInTable": false,
+          "isFloating": true,
+          "isInline": false,
+          "wrapType": "square",
+          "anchor": null,
+          "zOrder": null,
+          "behindText": false
+        },
+        "formatting": {
+          "width": 265,
+          "height": 265,
+          "scaleX": 100,
+          "scaleY": 100,
+          "rotation": 0,
+          "flipHorizontal": false,
+          "flipVertical": false,
+          "brightness": 0,
+          "contrast": 0,
+          "cropLeft": 12.5,
+          "cropTop": 0,
+          "cropRight": 12.5,
+          "cropBottom": 0
+        }
+      },
+      {
+        "fileName": "image6_6d5eee18.jpeg",
+        "hash": "6d5eee18bfa2bd17680421698fa04e2f",
+        "position": {
+          "page": 1,
+          "section": 1,
+          "headerType": null,
+          "tableId": null,
+          "cellPosition": null,
+          "paragraphId": 61,
+          "runId": null,
+          "absolutePosition": {
+            "x": 1100455,
+            "xRelativeFrom": "column",
+            "y": 153670,
+            "yRelativeFrom": "paragraph"
+          },
+          "relativePosition": null
+        },
+        "context": {
+          "isInHeader": false,
+          "isInFooter": false,
+          "isInTable": false,
+          "isFloating": true,
+          "isInline": false,
+          "wrapType": "square",
+          "anchor": null,
+          "zOrder": null,
+          "behindText": false
+        },
+        "formatting": {
+          "width": 265,
+          "height": 265,
+          "scaleX": 100,
+          "scaleY": 100,
+          "rotation": 0,
+          "flipHorizontal": false,
+          "flipVertical": false,
+          "brightness": 0,
+          "contrast": 0,
+          "cropLeft": 12.5,
+          "cropTop": 0,
+          "cropRight": 12.5,
+          "cropBottom": 0
+        }
+      },
+      {
+        "fileName": "image7_6cdb4b1e.jpeg",
+        "hash": "6cdb4b1e61f65724091e3d919c5ceb07",
+        "position": {
+          "page": 1,
+          "section": 1,
+          "headerType": null,
+          "tableId": null,
+          "cellPosition": null,
+          "paragraphId": 69,
+          "runId": null,
+          "absolutePosition": {
+            "x": 4079875,
+            "xRelativeFrom": "column",
+            "y": 207645,
+            "yRelativeFrom": "paragraph"
+          },
+          "relativePosition": null
+        },
+        "context": {
+          "isInHeader": false,
+          "isInFooter": false,
+          "isInTable": false,
+          "isFloating": true,
+          "isInline": false,
+          "wrapType": "square",
+          "anchor": null,
+          "zOrder": null,
+          "behindText": false
+        },
+        "formatting": {
+          "width": 265,
+          "height": 265,
+          "scaleX": 100,
+          "scaleY": 100,
+          "rotation": 0,
+          "flipHorizontal": false,
+          "flipVertical": false,
+          "brightness": 0,
+          "contrast": 0,
+          "cropLeft": 12.5,
+          "cropTop": 0,
+          "cropRight": 12.5,
+          "cropBottom": 0
+        }
+      },
+      {
+        "fileName": "image8_16e2aa59.jpeg",
+        "hash": "16e2aa59876832906e93f18665f27bd6",
+        "position": {
+          "page": 1,
+          "section": 1,
+          "headerType": null,
+          "tableId": null,
+          "cellPosition": null,
+          "paragraphId": 69,
+          "runId": null,
+          "absolutePosition": {
+            "x": 1115695,
+            "xRelativeFrom": "column",
+            "y": 207645,
+            "yRelativeFrom": "paragraph"
+          },
+          "relativePosition": null
+        },
+        "context": {
+          "isInHeader": false,
+          "isInFooter": false,
+          "isInTable": false,
+          "isFloating": true,
+          "isInline": false,
+          "wrapType": "square",
+          "anchor": null,
+          "zOrder": null,
+          "behindText": false
+        },
+        "formatting": {
+          "width": 265,
+          "height": 265,
+          "scaleX": 100,
+          "scaleY": 100,
+          "rotation": 0,
+          "flipHorizontal": false,
+          "flipVertical": false,
+          "brightness": 0,
+          "contrast": 0,
+          "cropLeft": 12.5,
+          "cropTop": 0,
+          "cropRight": 12.5,
+          "cropBottom": 0
+        }
+      },
+      {
+        "fileName": "image9_a76dccda.jpeg",
+        "hash": "a76dccdafbdef422a8fef8f60c200135",
+        "position": {
+          "page": 1,
+          "section": 1,
+          "headerType": null,
+          "tableId": null,
+          "cellPosition": null,
+          "paragraphId": 89,
+          "runId": null,
+          "absolutePosition": {
+            "x": 4079875,
+            "xRelativeFrom": "column",
+            "y": 150495,
+            "yRelativeFrom": "paragraph"
+          },
+          "relativePosition": null
+        },
+        "context": {
+          "isInHeader": false,
+          "isInFooter": false,
+          "isInTable": false,
+          "isFloating": true,
+          "isInline": false,
+          "wrapType": "square",
+          "anchor": null,
+          "zOrder": null,
+          "behindText": false
+        },
+        "formatting": {
+          "width": 265,
+          "height": 265,
+          "scaleX": 100,
+          "scaleY": 100,
+          "rotation": 0,
+          "flipHorizontal": false,
+          "flipVertical": false,
+          "brightness": 0,
+          "contrast": 0,
+          "cropLeft": 0,
+          "cropTop": 12.5,
+          "cropRight": 0,
+          "cropBottom": 12.5
+        }
+      },
+      {
+        "fileName": "image3_44c3c1fe.jpeg",
+        "hash": "44c3c1fe062bd42789c8e4f31b7d13d9",
+        "position": {
+          "page": 1,
+          "section": 1,
+          "headerType": null,
+          "tableId": null,
+          "cellPosition": null,
+          "paragraphId": 38,
+          "runId": null,
+          "absolutePosition": {
+            "x": 4079875,
+            "xRelativeFrom": "column",
+            "y": 205105,
+            "yRelativeFrom": "paragraph"
+          },
+          "relativePosition": null
+        },
+        "context": {
+          "isInHeader": false,
+          "isInFooter": false,
+          "isInTable": false,
+          "isFloating": true,
+          "isInline": false,
+          "wrapType": "square",
+          "anchor": null,
+          "zOrder": null,
+          "behindText": false
+        },
+        "formatting": {
+          "width": 265,
+          "height": 265,
+          "scaleX": 100,
+          "scaleY": 100,
+          "rotation": 0,
+          "flipHorizontal": false,
+          "flipVertical": false,
+          "brightness": 0,
+          "contrast": 0,
+          "cropLeft": 12.5,
+          "cropTop": 0,
+          "cropRight": 12.5,
+          "cropBottom": 0
+        }
+      },
+      {
+        "fileName": "image2_077bc1b1.jpeg",
+        "hash": "077bc1b116fa9b21d6f208764f67ad73",
+        "position": {
+          "page": 1,
+          "section": 1,
+          "headerType": null,
+          "tableId": null,
+          "cellPosition": null,
+          "paragraphId": 30,
+          "runId": null,
+          "absolutePosition": {
+            "x": 1100455,
+            "xRelativeFrom": "column",
+            "y": 150495,
+            "yRelativeFrom": "paragraph"
+          },
+          "relativePosition": null
+        },
+        "context": {
+          "isInHeader": false,
+          "isInFooter": false,
+          "isInTable": false,
+          "isFloating": true,
+          "isInline": false,
+          "wrapType": "square",
+          "anchor": null,
+          "zOrder": null,
+          "behindText": false
+        },
+        "formatting": {
+          "width": 265,
+          "height": 265,
+          "scaleX": 100,
+          "scaleY": 100,
+          "rotation": 0,
+          "flipHorizontal": false,
+          "flipVertical": false,
+          "brightness": 0,
+          "contrast": 0,
+          "cropLeft": 0,
+          "cropTop": 12.5,
+          "cropRight": 0,
+          "cropBottom": 12.5
+        }
+      },
+      {
+        "fileName": "image1_32f311ba.jpeg",
+        "hash": "32f311ba5055b7ecb8ba3d06d447a353",
+        "position": {
+          "page": 1,
+          "section": 1,
+          "headerType": null,
+          "tableId": null,
+          "cellPosition": null,
+          "paragraphId": 30,
+          "runId": null,
+          "absolutePosition": {
+            "x": 4079875,
+            "xRelativeFrom": "column",
+            "y": 150495,
+            "yRelativeFrom": "paragraph"
+          },
+          "relativePosition": null
+        },
+        "context": {
+          "isInHeader": false,
+          "isInFooter": false,
+          "isInTable": false,
+          "isFloating": true,
+          "isInline": false,
+          "wrapType": "square",
+          "anchor": null,
+          "zOrder": null,
+          "behindText": false
+        },
+        "formatting": {
+          "width": 265,
+          "height": 265,
+          "scaleX": 100,
+          "scaleY": 100,
+          "rotation": 0,
+          "flipHorizontal": false,
+          "flipVertical": false,
+          "brightness": 0,
+          "contrast": 0,
+          "cropLeft": 12.5,
+          "cropTop": 0,
+          "cropRight": 12.5,
+          "cropBottom": 0
+        }
+      },
+      {
+        "fileName": "image10_9ea91d3f.jpeg",
+        "hash": "9ea91d3f853c245f605962ea8c8075c3",
+        "position": {
+          "page": 1,
+          "section": 1,
+          "headerType": null,
+          "tableId": null,
+          "cellPosition": null,
+          "paragraphId": 89,
+          "runId": null,
+          "absolutePosition": {
+            "x": 1100455,
+            "xRelativeFrom": "column",
+            "y": 150495,
+            "yRelativeFrom": "paragraph"
+          },
+          "relativePosition": null
+        },
+        "context": {
+          "isInHeader": false,
+          "isInFooter": false,
+          "isInTable": false,
+          "isFloating": true,
+          "isInline": false,
+          "wrapType": "square",
+          "anchor": null,
+          "zOrder": null,
+          "behindText": false
+        },
+        "formatting": {
+          "width": 265,
+          "height": 265,
+          "scaleX": 100,
+          "scaleY": 100,
+          "rotation": 0,
+          "flipHorizontal": false,
+          "flipVertical": false,
+          "brightness": 0,
+          "contrast": 0,
+          "cropLeft": 0,
+          "cropTop": 12.5,
+          "cropRight": 0,
+          "cropBottom": 12.5
+        }
+      },
+      {
+        "fileName": "image11_a501ce4e.jpeg",
+        "hash": "a501ce4e0c760c420642b0ea9bfb0ae0",
+        "position": {
+          "page": 1,
+          "section": 1,
+          "headerType": null,
+          "tableId": null,
+          "cellPosition": null,
+          "paragraphId": 97,
+          "runId": null,
+          "absolutePosition": {
+            "x": 4079875,
+            "xRelativeFrom": "column",
+            "y": 205105,
+            "yRelativeFrom": "paragraph"
+          },
+          "relativePosition": null
+        },
+        "context": {
+          "isInHeader": false,
+          "isInFooter": false,
+          "isInTable": false,
+          "isFloating": true,
+          "isInline": false,
+          "wrapType": "square",
+          "anchor": null,
+          "zOrder": null,
+          "behindText": false
+        },
+        "formatting": {
+          "width": 265,
+          "height": 265,
+          "scaleX": 100,
+          "scaleY": 100,
+          "rotation": 0,
+          "flipHorizontal": false,
+          "flipVertical": false,
+          "brightness": 0,
+          "contrast": 0,
+          "cropLeft": 12.5,
+          "cropTop": 0,
+          "cropRight": 12.5,
+          "cropBottom": 0
+        }
+      },
+      {
+        "fileName": "image12_b8645677.jpeg",
+        "hash": "b8645677ead4537f77decf4ff9d7bb04",
+        "position": {
+          "page": 1,
+          "section": 1,
+          "headerType": null,
+          "tableId": null,
+          "cellPosition": null,
+          "paragraphId": 97,
+          "runId": null,
+          "absolutePosition": {
+            "x": 1115695,
+            "xRelativeFrom": "column",
+            "y": 205105,
+            "yRelativeFrom": "paragraph"
+          },
+          "relativePosition": null
+        },
+        "context": {
+          "isInHeader": false,
+          "isInFooter": false,
+          "isInTable": false,
+          "isFloating": true,
+          "isInline": false,
+          "wrapType": "square",
+          "anchor": null,
+          "zOrder": null,
+          "behindText": false
+        },
+        "formatting": {
+          "width": 265,
+          "height": 265,
+          "scaleX": 100,
+          "scaleY": 100,
+          "rotation": 0,
+          "flipHorizontal": false,
+          "flipVertical": false,
+          "brightness": 0,
+          "contrast": 0,
+          "cropLeft": 12.5,
+          "cropTop": 0,
+          "cropRight": 12.5,
+          "cropBottom": 0
+        }
+      },
+      {
+        "fileName": "image13_d09b35bb.jpeg",
+        "hash": "d09b35bbe539d32d018e1e277b8a19bc",
+        "position": {
+          "page": 1,
+          "section": 1,
+          "headerType": null,
+          "tableId": null,
+          "cellPosition": null,
+          "paragraphId": 120,
+          "runId": null,
+          "absolutePosition": {
+            "x": 4085590,
+            "xRelativeFrom": "column",
+            "y": 153670,
+            "yRelativeFrom": "paragraph"
+          },
+          "relativePosition": null
+        },
+        "context": {
+          "isInHeader": false,
+          "isInFooter": false,
+          "isInTable": false,
+          "isFloating": true,
+          "isInline": false,
+          "wrapType": "square",
+          "anchor": null,
+          "zOrder": null,
+          "behindText": false
+        },
+        "formatting": {
+          "width": 265,
+          "height": 265,
+          "scaleX": 100,
+          "scaleY": 100,
+          "rotation": 0,
+          "flipHorizontal": false,
+          "flipVertical": false,
+          "brightness": 0,
+          "contrast": 0,
+          "cropLeft": 12.5,
+          "cropTop": 0,
+          "cropRight": 12.5,
+          "cropBottom": 0
+        }
+      },
+      {
+        "fileName": "image14_3570ed4b.jpeg",
+        "hash": "3570ed4bd0c6a3ca83602f317ff2cce1",
+        "position": {
+          "page": 1,
+          "section": 1,
+          "headerType": null,
+          "tableId": null,
+          "cellPosition": null,
+          "paragraphId": 120,
+          "runId": null,
+          "absolutePosition": {
+            "x": 1092835,
+            "xRelativeFrom": "column",
+            "y": 153670,
+            "yRelativeFrom": "paragraph"
+          },
+          "relativePosition": null
+        },
+        "context": {
+          "isInHeader": false,
+          "isInFooter": false,
+          "isInTable": false,
+          "isFloating": true,
+          "isInline": false,
+          "wrapType": "square",
+          "anchor": null,
+          "zOrder": null,
+          "behindText": false
+        },
+        "formatting": {
+          "width": 265,
+          "height": 265,
+          "scaleX": 100,
+          "scaleY": 100,
+          "rotation": 0,
+          "flipHorizontal": false,
+          "flipVertical": false,
+          "brightness": 0,
+          "contrast": 0,
+          "cropLeft": 12.5,
+          "cropTop": 0,
+          "cropRight": 12.5,
+          "cropBottom": 0
+        }
+      },
+      {
+        "fileName": "image15_b7b5d6a6.jpeg",
+        "hash": "b7b5d6a69161da7329b50928263040e5",
+        "position": {
+          "page": 1,
+          "section": 1,
+          "headerType": null,
+          "tableId": null,
+          "cellPosition": null,
+          "paragraphId": 128,
+          "runId": null,
+          "absolutePosition": {
+            "x": 4085590,
+            "xRelativeFrom": "column",
+            "y": 197485,
+            "yRelativeFrom": "paragraph"
+          },
+          "relativePosition": null
+        },
+        "context": {
+          "isInHeader": false,
+          "isInFooter": false,
+          "isInTable": false,
+          "isFloating": true,
+          "isInline": false,
+          "wrapType": "square",
+          "anchor": null,
+          "zOrder": null,
+          "behindText": false
+        },
+        "formatting": {
+          "width": 265,
+          "height": 265,
+          "scaleX": 100,
+          "scaleY": 100,
+          "rotation": 0,
+          "flipHorizontal": false,
+          "flipVertical": false,
+          "brightness": 0,
+          "contrast": 0,
+          "cropLeft": 12.5,
+          "cropTop": 0,
+          "cropRight": 12.5,
+          "cropBottom": 0
+        }
+      },
+      {
+        "fileName": "image16_8348b85b.jpeg",
+        "hash": "8348b85bb63a01c5f1a08dff41db0846",
+        "position": {
+          "page": 1,
+          "section": 1,
+          "headerType": null,
+          "tableId": null,
+          "cellPosition": null,
+          "paragraphId": 128,
+          "runId": null,
+          "absolutePosition": {
+            "x": 1109980,
+            "xRelativeFrom": "column",
+            "y": 197485,
+            "yRelativeFrom": "paragraph"
+          },
+          "relativePosition": null
+        },
+        "context": {
+          "isInHeader": false,
+          "isInFooter": false,
+          "isInTable": false,
+          "isFloating": true,
+          "isInline": false,
+          "wrapType": "square",
+          "anchor": null,
+          "zOrder": null,
+          "behindText": false
+        },
+        "formatting": {
+          "width": 265,
+          "height": 265,
+          "scaleX": 100,
+          "scaleY": 100,
+          "rotation": 0,
+          "flipHorizontal": false,
+          "flipVertical": false,
+          "brightness": 0,
+          "contrast": 0,
+          "cropLeft": 12.5,
+          "cropTop": 0,
+          "cropRight": 12.5,
+          "cropBottom": 0
+        }
+      },
+      {
+        "fileName": "image18_1eeb3f5e.jpeg",
+        "hash": "1eeb3f5e1fdecce211e82bda38cc502c",
+        "position": {
+          "page": 1,
+          "section": 1,
+          "headerType": "header2",
+          "tableId": null,
+          "cellPosition": null,
+          "paragraphId": 0,
+          "runId": null,
+          "absolutePosition": {
+            "x": 0,
+            "xRelativeFrom": "page",
+            "y": 0,
+            "yRelativeFrom": "page"
+          },
+          "relativePosition": null
+        },
+        "context": {
+          "isInHeader": true,
+          "isInFooter": false,
+          "isInTable": false,
+          "isFloating": true,
+          "isInline": false,
+          "wrapType": "none",
+          "anchor": null,
+          "zOrder": null,
+          "behindText": true
+        },
+        "formatting": {
+          "width": 820,
+          "height": 1150,
+          "scaleX": 100,
+          "scaleY": 100,
+          "rotation": 0,
+          "flipHorizontal": false,
+          "flipVertical": false,
+          "brightness": 0,
+          "contrast": 0,
+          "cropLeft": 0.9,
+          "cropTop": 0,
+          "cropRight": 24.934,
+          "cropBottom": 15.846
+        }
+      },
+      {
+        "fileName": "image4_fe4f8c66.jpeg",
+        "hash": "fe4f8c66e4f7e78d54c8cc13fe4f785f",
+        "position": {
+          "page": 1,
+          "section": 1,
+          "headerType": null,
+          "tableId": null,
+          "cellPosition": null,
+          "paragraphId": 38,
+          "runId": null,
+          "absolutePosition": {
+            "x": 1115695,
+            "xRelativeFrom": "column",
+            "y": 205105,
+            "yRelativeFrom": "paragraph"
+          },
+          "relativePosition": null
+        },
+        "context": {
+          "isInHeader": false,
+          "isInFooter": false,
+          "isInTable": false,
+          "isFloating": true,
+          "isInline": false,
+          "wrapType": "square",
+          "anchor": null,
+          "zOrder": null,
+          "behindText": false
+        },
+        "formatting": {
+          "width": 265,
+          "height": 265,
+          "scaleX": 100,
+          "scaleY": 100,
+          "rotation": 0,
+          "flipHorizontal": false,
+          "flipVertical": false,
+          "brightness": 0,
+          "contrast": 0,
+          "cropLeft": 12.5,
+          "cropTop": 0,
+          "cropRight": 12.5,
+          "cropBottom": 0
+        }
+      }
+    ],
+    "unknown": [
+      {
+        "fileName": "image17_bfca8351.jpeg",
+        "hash": "bfca8351268c989e4d2d6333649d5233",
+        "position": {
+          "page": null,
+          "section": null,
+          "headerType": null,
+          "tableId": null,
+          "cellPosition": null,
+          "paragraphId": null,
+          "runId": null,
+          "absolutePosition": null,
+          "relativePosition": null
+        },
+        "context": {
+          "isInHeader": false,
+          "isInFooter": false,
+          "isInTable": false,
+          "isFloating": false,
+          "isInline": false,
+          "wrapType": null,
+          "anchor": null,
+          "zOrder": null,
+          "behindText": false
+        },
+        "formatting": {
+          "width": null,
+          "height": null,
+          "scaleX": 100,
+          "scaleY": 100,
+          "rotation": 0,
+          "flipHorizontal": false,
+          "flipVertical": false,
+          "brightness": 0,
+          "contrast": 0,
+          "cropLeft": 0,
+          "cropTop": 0,
+          "cropRight": 0,
+          "cropBottom": 0
+        }
+      }
+    ]
   },
-  "6cdb4b1e61f65724091e3d919c5ceb07": {
-    "originalPath": "word/media/image7.jpeg",
-    "extractedPath": "extracted_images\\image7_6cdb4b1e.jpeg",
-    "fileName": "image7_6cdb4b1e.jpeg",
-    "hash": "6cdb4b1e61f65724091e3d919c5ceb07",
-    "size": 267263,
-    "extractedAt": "2025-06-29T03:30:46.205Z"
+  "contextDistribution": {
+    "header": [
+      {
+        "originalPath": "word/media/image18.jpeg",
+        "extractedPath": "extracted_images\\image18_1eeb3f5e.jpeg",
+        "fileName": "image18_1eeb3f5e.jpeg",
+        "hash": "1eeb3f5e1fdecce211e82bda38cc502c",
+        "size": 118656,
+        "extractedAt": "2025-06-29T04:15:53.919Z",
+        "formatInfo": {
+          "width": 2519680,
+          "height": 2519680,
+          "dpi": null,
+          "compression": null
+        },
+        "positionInfo": {
+          "page": 3,
+          "section": null,
+          "paragraph": null,
+          "line": null,
+          "xPosition": 4079875,
+          "yPosition": 205105,
+          "anchor": "floating",
+          "wrapType": "wrapSquare",
+          "zOrder": null
+        },
+        "cropInfo": {
+          "left": 12500,
+          "top": 0,
+          "right": 12500,
+          "bottom": 0,
+          "rotation": 0,
+          "flipHorizontal": false,
+          "flipVertical": false
+        },
+        "relationshipInfo": {
+          "relationshipId": null,
+          "embedId": "rId17",
+          "linkId": null
+        },
+        "contextInfo": {
+          "isInHeader": false,
+          "isInFooter": false,
+          "isInTable": false,
+          "tablePosition": null,
+          "precedingText": "",
+          "followingText": "",
+          "isFloating": false,
+          "isInline": true
+        },
+        "relationship": {
+          "relationshipId": "rId1",
+          "embedId": null,
+          "context": "header2"
+        },
+        "position": {
+          "page": 1,
+          "section": 1,
+          "headerType": "header2",
+          "tableId": null,
+          "cellPosition": null,
+          "paragraphId": 0,
+          "runId": null,
+          "absolutePosition": {
+            "x": 0,
+            "xRelativeFrom": "page",
+            "y": 0,
+            "yRelativeFrom": "page"
+          },
+          "relativePosition": null
+        },
+        "context": {
+          "isInHeader": true,
+          "isInFooter": false,
+          "isInTable": false,
+          "isFloating": true,
+          "isInline": false,
+          "wrapType": "none",
+          "anchor": null,
+          "zOrder": null,
+          "behindText": true
+        },
+        "formatting": {
+          "width": 820,
+          "height": 1150,
+          "scaleX": 100,
+          "scaleY": 100,
+          "rotation": 0,
+          "flipHorizontal": false,
+          "flipVertical": false,
+          "brightness": 0,
+          "contrast": 0,
+          "cropLeft": 0.9,
+          "cropTop": 0,
+          "cropRight": 24.934,
+          "cropBottom": 15.846
+        }
+      }
+    ],
+    "footer": [],
+    "table": [],
+    "paragraph": [
+      {
+        "originalPath": "word/media/image17.jpeg",
+        "extractedPath": "extracted_images\\image17_bfca8351.jpeg",
+        "fileName": "image17_bfca8351.jpeg",
+        "hash": "bfca8351268c989e4d2d6333649d5233",
+        "size": 94882,
+        "extractedAt": "2025-06-29T04:15:53.891Z",
+        "formatInfo": {
+          "width": null,
+          "height": null,
+          "dpi": null,
+          "compression": null
+        },
+        "positionInfo": {
+          "page": null,
+          "section": null,
+          "paragraph": null,
+          "line": null,
+          "xPosition": null,
+          "yPosition": null,
+          "anchor": null,
+          "wrapType": null,
+          "zOrder": null
+        },
+        "cropInfo": {
+          "left": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "rotation": 0,
+          "flipHorizontal": false,
+          "flipVertical": false
+        },
+        "relationshipInfo": {
+          "relationshipId": null,
+          "embedId": null,
+          "linkId": null
+        },
+        "contextInfo": {
+          "isInHeader": false,
+          "isInFooter": false,
+          "isInTable": false,
+          "tablePosition": null,
+          "precedingText": null,
+          "followingText": null,
+          "isFloating": false,
+          "isInline": true
+        },
+        "position": {
+          "page": null,
+          "section": null,
+          "headerType": null,
+          "tableId": null,
+          "cellPosition": null,
+          "paragraphId": null,
+          "runId": null,
+          "absolutePosition": null,
+          "relativePosition": null
+        },
+        "context": {
+          "isInHeader": false,
+          "isInFooter": false,
+          "isInTable": false,
+          "isFloating": false,
+          "isInline": false,
+          "wrapType": null,
+          "anchor": null,
+          "zOrder": null,
+          "behindText": false
+        },
+        "formatting": {
+          "width": null,
+          "height": null,
+          "scaleX": 100,
+          "scaleY": 100,
+          "rotation": 0,
+          "flipHorizontal": false,
+          "flipVertical": false,
+          "brightness": 0,
+          "contrast": 0,
+          "cropLeft": 0,
+          "cropTop": 0,
+          "cropRight": 0,
+          "cropBottom": 0
+        }
+      }
+    ],
+    "floating": [
+      {
+        "originalPath": "word/media/image5.jpeg",
+        "extractedPath": "extracted_images\\image5_6fa52ec6.jpeg",
+        "fileName": "image5_6fa52ec6.jpeg",
+        "hash": "6fa52ec64f82de579e342db3f1a202cf",
+        "size": 277624,
+        "extractedAt": "2025-06-29T04:15:53.893Z",
+        "formatInfo": {
+          "width": null,
+          "height": null,
+          "dpi": null,
+          "compression": null
+        },
+        "positionInfo": {
+          "page": null,
+          "section": null,
+          "paragraph": null,
+          "line": null,
+          "xPosition": null,
+          "yPosition": null,
+          "anchor": null,
+          "wrapType": null,
+          "zOrder": null
+        },
+        "cropInfo": {
+          "left": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "rotation": 0,
+          "flipHorizontal": false,
+          "flipVertical": false
+        },
+        "relationshipInfo": {
+          "relationshipId": null,
+          "embedId": null,
+          "linkId": null
+        },
+        "contextInfo": {
+          "isInHeader": false,
+          "isInFooter": false,
+          "isInTable": false,
+          "tablePosition": null,
+          "precedingText": null,
+          "followingText": null,
+          "isFloating": false,
+          "isInline": true
+        },
+        "relationship": {
+          "relationshipId": "rId11",
+          "embedId": null,
+          "context": "document"
+        },
+        "position": {
+          "page": 1,
+          "section": 1,
+          "headerType": null,
+          "tableId": null,
+          "cellPosition": null,
+          "paragraphId": 61,
+          "runId": null,
+          "absolutePosition": {
+            "x": 4079875,
+            "xRelativeFrom": "column",
+            "y": 153670,
+            "yRelativeFrom": "paragraph"
+          },
+          "relativePosition": null
+        },
+        "context": {
+          "isInHeader": false,
+          "isInFooter": false,
+          "isInTable": false,
+          "isFloating": true,
+          "isInline": false,
+          "wrapType": "square",
+          "anchor": null,
+          "zOrder": null,
+          "behindText": false
+        },
+        "formatting": {
+          "width": 265,
+          "height": 265,
+          "scaleX": 100,
+          "scaleY": 100,
+          "rotation": 0,
+          "flipHorizontal": false,
+          "flipVertical": false,
+          "brightness": 0,
+          "contrast": 0,
+          "cropLeft": 12.5,
+          "cropTop": 0,
+          "cropRight": 12.5,
+          "cropBottom": 0
+        }
+      },
+      {
+        "originalPath": "word/media/image6.jpeg",
+        "extractedPath": "extracted_images\\image6_6d5eee18.jpeg",
+        "fileName": "image6_6d5eee18.jpeg",
+        "hash": "6d5eee18bfa2bd17680421698fa04e2f",
+        "size": 245559,
+        "extractedAt": "2025-06-29T04:15:53.894Z",
+        "formatInfo": {
+          "width": null,
+          "height": null,
+          "dpi": null,
+          "compression": null
+        },
+        "positionInfo": {
+          "page": null,
+          "section": null,
+          "paragraph": null,
+          "line": null,
+          "xPosition": null,
+          "yPosition": null,
+          "anchor": null,
+          "wrapType": null,
+          "zOrder": null
+        },
+        "cropInfo": {
+          "left": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "rotation": 0,
+          "flipHorizontal": false,
+          "flipVertical": false
+        },
+        "relationshipInfo": {
+          "relationshipId": null,
+          "embedId": null,
+          "linkId": null
+        },
+        "contextInfo": {
+          "isInHeader": false,
+          "isInFooter": false,
+          "isInTable": false,
+          "tablePosition": null,
+          "precedingText": null,
+          "followingText": null,
+          "isFloating": false,
+          "isInline": true
+        },
+        "relationship": {
+          "relationshipId": "rId12",
+          "embedId": null,
+          "context": "document"
+        },
+        "position": {
+          "page": 1,
+          "section": 1,
+          "headerType": null,
+          "tableId": null,
+          "cellPosition": null,
+          "paragraphId": 61,
+          "runId": null,
+          "absolutePosition": {
+            "x": 1100455,
+            "xRelativeFrom": "column",
+            "y": 153670,
+            "yRelativeFrom": "paragraph"
+          },
+          "relativePosition": null
+        },
+        "context": {
+          "isInHeader": false,
+          "isInFooter": false,
+          "isInTable": false,
+          "isFloating": true,
+          "isInline": false,
+          "wrapType": "square",
+          "anchor": null,
+          "zOrder": null,
+          "behindText": false
+        },
+        "formatting": {
+          "width": 265,
+          "height": 265,
+          "scaleX": 100,
+          "scaleY": 100,
+          "rotation": 0,
+          "flipHorizontal": false,
+          "flipVertical": false,
+          "brightness": 0,
+          "contrast": 0,
+          "cropLeft": 12.5,
+          "cropTop": 0,
+          "cropRight": 12.5,
+          "cropBottom": 0
+        }
+      },
+      {
+        "originalPath": "word/media/image7.jpeg",
+        "extractedPath": "extracted_images\\image7_6cdb4b1e.jpeg",
+        "fileName": "image7_6cdb4b1e.jpeg",
+        "hash": "6cdb4b1e61f65724091e3d919c5ceb07",
+        "size": 267263,
+        "extractedAt": "2025-06-29T04:15:53.896Z",
+        "formatInfo": {
+          "width": null,
+          "height": null,
+          "dpi": null,
+          "compression": null
+        },
+        "positionInfo": {
+          "page": null,
+          "section": null,
+          "paragraph": null,
+          "line": null,
+          "xPosition": null,
+          "yPosition": null,
+          "anchor": null,
+          "wrapType": null,
+          "zOrder": null
+        },
+        "cropInfo": {
+          "left": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "rotation": 0,
+          "flipHorizontal": false,
+          "flipVertical": false
+        },
+        "relationshipInfo": {
+          "relationshipId": null,
+          "embedId": null,
+          "linkId": null
+        },
+        "contextInfo": {
+          "isInHeader": false,
+          "isInFooter": false,
+          "isInTable": false,
+          "tablePosition": null,
+          "precedingText": null,
+          "followingText": null,
+          "isFloating": false,
+          "isInline": true
+        },
+        "relationship": {
+          "relationshipId": "rId13",
+          "embedId": null,
+          "context": "document"
+        },
+        "position": {
+          "page": 1,
+          "section": 1,
+          "headerType": null,
+          "tableId": null,
+          "cellPosition": null,
+          "paragraphId": 69,
+          "runId": null,
+          "absolutePosition": {
+            "x": 4079875,
+            "xRelativeFrom": "column",
+            "y": 207645,
+            "yRelativeFrom": "paragraph"
+          },
+          "relativePosition": null
+        },
+        "context": {
+          "isInHeader": false,
+          "isInFooter": false,
+          "isInTable": false,
+          "isFloating": true,
+          "isInline": false,
+          "wrapType": "square",
+          "anchor": null,
+          "zOrder": null,
+          "behindText": false
+        },
+        "formatting": {
+          "width": 265,
+          "height": 265,
+          "scaleX": 100,
+          "scaleY": 100,
+          "rotation": 0,
+          "flipHorizontal": false,
+          "flipVertical": false,
+          "brightness": 0,
+          "contrast": 0,
+          "cropLeft": 12.5,
+          "cropTop": 0,
+          "cropRight": 12.5,
+          "cropBottom": 0
+        }
+      },
+      {
+        "originalPath": "word/media/image8.jpeg",
+        "extractedPath": "extracted_images\\image8_16e2aa59.jpeg",
+        "fileName": "image8_16e2aa59.jpeg",
+        "hash": "16e2aa59876832906e93f18665f27bd6",
+        "size": 284247,
+        "extractedAt": "2025-06-29T04:15:53.898Z",
+        "formatInfo": {
+          "width": null,
+          "height": null,
+          "dpi": null,
+          "compression": null
+        },
+        "positionInfo": {
+          "page": null,
+          "section": null,
+          "paragraph": null,
+          "line": null,
+          "xPosition": null,
+          "yPosition": null,
+          "anchor": null,
+          "wrapType": null,
+          "zOrder": null
+        },
+        "cropInfo": {
+          "left": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "rotation": 0,
+          "flipHorizontal": false,
+          "flipVertical": false
+        },
+        "relationshipInfo": {
+          "relationshipId": null,
+          "embedId": null,
+          "linkId": null
+        },
+        "contextInfo": {
+          "isInHeader": false,
+          "isInFooter": false,
+          "isInTable": false,
+          "tablePosition": null,
+          "precedingText": null,
+          "followingText": null,
+          "isFloating": false,
+          "isInline": true
+        },
+        "relationship": {
+          "relationshipId": "rId14",
+          "embedId": null,
+          "context": "document"
+        },
+        "position": {
+          "page": 1,
+          "section": 1,
+          "headerType": null,
+          "tableId": null,
+          "cellPosition": null,
+          "paragraphId": 69,
+          "runId": null,
+          "absolutePosition": {
+            "x": 1115695,
+            "xRelativeFrom": "column",
+            "y": 207645,
+            "yRelativeFrom": "paragraph"
+          },
+          "relativePosition": null
+        },
+        "context": {
+          "isInHeader": false,
+          "isInFooter": false,
+          "isInTable": false,
+          "isFloating": true,
+          "isInline": false,
+          "wrapType": "square",
+          "anchor": null,
+          "zOrder": null,
+          "behindText": false
+        },
+        "formatting": {
+          "width": 265,
+          "height": 265,
+          "scaleX": 100,
+          "scaleY": 100,
+          "rotation": 0,
+          "flipHorizontal": false,
+          "flipVertical": false,
+          "brightness": 0,
+          "contrast": 0,
+          "cropLeft": 12.5,
+          "cropTop": 0,
+          "cropRight": 12.5,
+          "cropBottom": 0
+        }
+      },
+      {
+        "originalPath": "word/media/image9.jpeg",
+        "extractedPath": "extracted_images\\image9_a76dccda.jpeg",
+        "fileName": "image9_a76dccda.jpeg",
+        "hash": "a76dccdafbdef422a8fef8f60c200135",
+        "size": 258149,
+        "extractedAt": "2025-06-29T04:15:53.900Z",
+        "formatInfo": {
+          "width": null,
+          "height": null,
+          "dpi": null,
+          "compression": null
+        },
+        "positionInfo": {
+          "page": null,
+          "section": null,
+          "paragraph": null,
+          "line": null,
+          "xPosition": null,
+          "yPosition": null,
+          "anchor": null,
+          "wrapType": null,
+          "zOrder": null
+        },
+        "cropInfo": {
+          "left": 0,
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "rotation": 0,
+          "flipHorizontal": false,
+          "flipVertical": false
+        },
+        "relationshipInfo": {
+          "relationshipId": null,
+          "embedId": null,
+          "linkId": null
+        },
+        "contextInfo": {
+          "isInHeader": false,
+          "isInFooter": false,
+          "isInTable": false,
+          "tablePosition": null,
+          "precedingText": null,
+          "followingText": null,
+          "isFloating": false,
+          "isInline": true
+        },
+        "relationship": {
+          "relationshipId": "rId15",
+          "embedId": null,
+          "context": "document"
+        },
+        "position": {
+          "page": 1,
+          "section": 1,
+          "headerType": null,
+          "tableId": null,
+          "cellPosition": null,
+          "paragraphId": 89,
+          "runId": null,
+          "absolutePosition": {
+            "x": 4079875,
+            "xRelativeFrom": "column",
+            "y": 150495,
+            "yRelativeFrom": "paragraph"
+          },
+          "relativePosition": null
+        },
+        "context": {
+          "isInHeader": false,
+          "isInFooter": false,
+          "isInTable": false,
+          "isFloating": true,
+          "isInline": false,
+          "wrapType": "square",
+          "anchor": null,
+          "zOrder": null,
+          "behindText": false
+        },
+        "formatting": {
+          "width": 265,
+          "height": 265,
+          "scaleX": 100,
+          "scaleY": 100,
+          "rotation": 0,
+          "flipHorizontal": false,
+          "flipVertical": false,
+          "brightness": 0,
+          "contrast": 0,
+          "cropLeft": 0,
+          "cropTop": 12.5,
+          "cropRight": 0,
+          "cropBottom": 12.5
+        }
+      },
+      {
+        "originalPath": "word/media/image3.jpeg",
+        "extractedPath": "extracted_images\\image3_44c3c1fe.jpeg",
+        "fileName": "image3_44c3c1fe.jpeg",
+        "hash": "44c3c1fe062bd42789c8e4f31b7d13d9",
+        "size": 173795,
+        "extractedAt": "2025-06-29T04:15:53.905Z",
+        "formatInfo": {
+          "width": 2519680,
+          "height": 2519680,
+          "dpi": null,
+          "compression": null
+        },
+        "positionInfo": {
+          "page": 1,
+          "section": null,
+          "paragraph": null,
+          "line": null,
+          "xPosition": 4079875,
+          "yPosition": 150495,
+          "anchor": "floating",
+          "wrapType": "wrapSquare",
+          "zOrder": null
+        },
+        "cropInfo": {
+          "left": 12500,
+          "top": 0,
+          "right": 12500,
+          "bottom": 0,
+          "rotation": 0,
+          "flipHorizontal": false,
+          "flipVertical": false
+        },
+        "relationshipInfo": {
+          "relationshipId": null,
+          "embedId": "rId7",
+          "linkId": null
+        },
+        "contextInfo": {
+          "isInHeader": false,
+          "isInFooter": false,
+          "isInTable": false,
+          "tablePosition": null,
+          "precedingText": "",
+          "followingText": "",
+          "isFloating": false,
+          "isInline": true
+        },
+        "relationship": {
+          "relationshipId": "rId9",
+          "embedId": null,
+          "context": "document"
+        },
+        "position": {
+          "page": 1,
+          "section": 1,
+          "headerType": null,
+          "tableId": null,
+          "cellPosition": null,
+          "paragraphId": 38,
+          "runId": null,
+          "absolutePosition": {
+            "x": 4079875,
+            "xRelativeFrom": "column",
+            "y": 205105,
+            "yRelativeFrom": "paragraph"
+          },
+          "relativePosition": null
+        },
+        "context": {
+          "isInHeader": false,
+          "isInFooter": false,
+          "isInTable": false,
+          "isFloating": true,
+          "isInline": false,
+          "wrapType": "square",
+          "anchor": null,
+          "zOrder": null,
+          "behindText": false
+        },
+        "formatting": {
+          "width": 265,
+          "height": 265,
+          "scaleX": 100,
+          "scaleY": 100,
+          "rotation": 0,
+          "flipHorizontal": false,
+          "flipVertical": false,
+          "brightness": 0,
+          "contrast": 0,
+          "cropLeft": 12.5,
+          "cropTop": 0,
+          "cropRight": 12.5,
+          "cropBottom": 0
+        }
+      },
+      {
+        "originalPath": "word/media/image2.jpeg",
+        "extractedPath": "extracted_images\\image2_077bc1b1.jpeg",
+        "fileName": "image2_077bc1b1.jpeg",
+        "hash": "077bc1b116fa9b21d6f208764f67ad73",
+        "size": 146112,
+        "extractedAt": "2025-06-29T04:15:53.907Z",
+        "formatInfo": {
+          "width": 2519680,
+          "height": 2519680,
+          "dpi": null,
+          "compression": null
+        },
+        "positionInfo": {
+          "page": 1,
+          "section": null,
+          "paragraph": null,
+          "line": null,
+          "xPosition": 1100455,
+          "yPosition": 150495,
+          "anchor": "floating",
+          "wrapType": "wrapSquare",
+          "zOrder": null
+        },
+        "cropInfo": {
+          "left": 0,
+          "top": 12500,
+          "right": 0,
+          "bottom": 12500,
+          "rotation": 0,
+          "flipHorizontal": false,
+          "flipVertical": false
+        },
+        "relationshipInfo": {
+          "relationshipId": null,
+          "embedId": "rId8",
+          "linkId": null
+        },
+        "contextInfo": {
+          "isInHeader": false,
+          "isInFooter": false,
+          "isInTable": false,
+          "tablePosition": null,
+          "precedingText": "",
+          "followingText": "",
+          "isFloating": false,
+          "isInline": true
+        },
+        "relationship": {
+          "relationshipId": "rId8",
+          "embedId": null,
+          "context": "document"
+        },
+        "position": {
+          "page": 1,
+          "section": 1,
+          "headerType": null,
+          "tableId": null,
+          "cellPosition": null,
+          "paragraphId": 30,
+          "runId": null,
+          "absolutePosition": {
+            "x": 1100455,
+            "xRelativeFrom": "column",
+            "y": 150495,
+            "yRelativeFrom": "paragraph"
+          },
+          "relativePosition": null
+        },
+        "context": {
+          "isInHeader": false,
+          "isInFooter": false,
+          "isInTable": false,
+          "isFloating": true,
+          "isInline": false,
+          "wrapType": "square",
+          "anchor": null,
+          "zOrder": null,
+          "behindText": false
+        },
+        "formatting": {
+          "width": 265,
+          "height": 265,
+          "scaleX": 100,
+          "scaleY": 100,
+          "rotation": 0,
+          "flipHorizontal": false,
+          "flipVertical": false,
+          "brightness": 0,
+          "contrast": 0,
+          "cropLeft": 0,
+          "cropTop": 12.5,
+          "cropRight": 0,
+          "cropBottom": 12.5
+        }
+      },
+      {
+        "originalPath": "word/media/image1.jpeg",
+        "extractedPath": "extracted_images\\image1_32f311ba.jpeg",
+        "fileName": "image1_32f311ba.jpeg",
+        "hash": "32f311ba5055b7ecb8ba3d06d447a353",
+        "size": 175436,
+        "extractedAt": "2025-06-29T04:15:53.908Z",
+        "formatInfo": {
+          "width": 2519680,
+          "height": 2519680,
+          "dpi": null,
+          "compression": null
+        },
+        "positionInfo": {
+          "page": 1,
+          "section": null,
+          "paragraph": null,
+          "line": null,
+          "xPosition": 4079875,
+          "yPosition": 205105,
+          "anchor": "floating",
+          "wrapType": "wrapSquare",
+          "zOrder": null
+        },
+        "cropInfo": {
+          "left": 12500,
+          "top": 0,
+          "right": 12500,
+          "bottom": 0,
+          "rotation": 0,
+          "flipHorizontal": false,
+          "flipVertical": false
+        },
+        "relationshipInfo": {
+          "relationshipId": null,
+          "embedId": "rId9",
+          "linkId": null
+        },
+        "contextInfo": {
+          "isInHeader": false,
+          "isInFooter": false,
+          "isInTable": false,
+          "tablePosition": null,
+          "precedingText": "",
+          "followingText": "",
+          "isFloating": false,
+          "isInline": true
+        },
+        "relationship": {
+          "relationshipId": "rId7",
+          "embedId": null,
+          "context": "document"
+        },
+        "position": {
+          "page": 1,
+          "section": 1,
+          "headerType": null,
+          "tableId": null,
+          "cellPosition": null,
+          "paragraphId": 30,
+          "runId": null,
+          "absolutePosition": {
+            "x": 4079875,
+            "xRelativeFrom": "column",
+            "y": 150495,
+            "yRelativeFrom": "paragraph"
+          },
+          "relativePosition": null
+        },
+        "context": {
+          "isInHeader": false,
+          "isInFooter": false,
+          "isInTable": false,
+          "isFloating": true,
+          "isInline": false,
+          "wrapType": "square",
+          "anchor": null,
+          "zOrder": null,
+          "behindText": false
+        },
+        "formatting": {
+          "width": 265,
+          "height": 265,
+          "scaleX": 100,
+          "scaleY": 100,
+          "rotation": 0,
+          "flipHorizontal": false,
+          "flipVertical": false,
+          "brightness": 0,
+          "contrast": 0,
+          "cropLeft": 12.5,
+          "cropTop": 0,
+          "cropRight": 12.5,
+          "cropBottom": 0
+        }
+      },
+      {
+        "originalPath": "word/media/image10.jpeg",
+        "extractedPath": "extracted_images\\image10_9ea91d3f.jpeg",
+        "fileName": "image10_9ea91d3f.jpeg",
+        "hash": "9ea91d3f853c245f605962ea8c8075c3",
+        "size": 196297,
+        "extractedAt": "2025-06-29T04:15:53.910Z",
+        "formatInfo": {
+          "width": 2519680,
+          "height": 2519680,
+          "dpi": null,
+          "compression": null
+        },
+        "positionInfo": {
+          "page": 2,
+          "section": null,
+          "paragraph": null,
+          "line": null,
+          "xPosition": 1115695,
+          "yPosition": 205105,
+          "anchor": "floating",
+          "wrapType": "wrapSquare",
+          "zOrder": null
+        },
+        "cropInfo": {
+          "left": 12500,
+          "top": 0,
+          "right": 12500,
+          "bottom": 0,
+          "rotation": 0,
+          "flipHorizontal": false,
+          "flipVertical": false
+        },
+        "relationshipInfo": {
+          "relationshipId": null,
+          "embedId": "rId10",
+          "linkId": null
+        },
+        "contextInfo": {
+          "isInHeader": false,
+          "isInFooter": false,
+          "isInTable": false,
+          "tablePosition": null,
+          "precedingText": "",
+          "followingText": "",
+          "isFloating": false,
+          "isInline": true
+        },
+        "relationship": {
+          "relationshipId": "rId16",
+          "embedId": null,
+          "context": "document"
+        },
+        "position": {
+          "page": 1,
+          "section": 1,
+          "headerType": null,
+          "tableId": null,
+          "cellPosition": null,
+          "paragraphId": 89,
+          "runId": null,
+          "absolutePosition": {
+            "x": 1100455,
+            "xRelativeFrom": "column",
+            "y": 150495,
+            "yRelativeFrom": "paragraph"
+          },
+          "relativePosition": null
+        },
+        "context": {
+          "isInHeader": false,
+          "isInFooter": false,
+          "isInTable": false,
+          "isFloating": true,
+          "isInline": false,
+          "wrapType": "square",
+          "anchor": null,
+          "zOrder": null,
+          "behindText": false
+        },
+        "formatting": {
+          "width": 265,
+          "height": 265,
+          "scaleX": 100,
+          "scaleY": 100,
+          "rotation": 0,
+          "flipHorizontal": false,
+          "flipVertical": false,
+          "brightness": 0,
+          "contrast": 0,
+          "cropLeft": 0,
+          "cropTop": 12.5,
+          "cropRight": 0,
+          "cropBottom": 12.5
+        }
+      },
+      {
+        "originalPath": "word/media/image11.jpeg",
+        "extractedPath": "extracted_images\\image11_a501ce4e.jpeg",
+        "fileName": "image11_a501ce4e.jpeg",
+        "hash": "a501ce4e0c760c420642b0ea9bfb0ae0",
+        "size": 267070,
+        "extractedAt": "2025-06-29T04:15:53.911Z",
+        "formatInfo": {
+          "width": 2519680,
+          "height": 2519680,
+          "dpi": null,
+          "compression": null
+        },
+        "positionInfo": {
+          "page": 2,
+          "section": null,
+          "paragraph": null,
+          "line": null,
+          "xPosition": 4079875,
+          "yPosition": 153670,
+          "anchor": "floating",
+          "wrapType": "wrapSquare",
+          "zOrder": null
+        },
+        "cropInfo": {
+          "left": 12500,
+          "top": 0,
+          "right": 12500,
+          "bottom": 0,
+          "rotation": 0,
+          "flipHorizontal": false,
+          "flipVertical": false
+        },
+        "relationshipInfo": {
+          "relationshipId": null,
+          "embedId": "rId11",
+          "linkId": null
+        },
+        "contextInfo": {
+          "isInHeader": false,
+          "isInFooter": false,
+          "isInTable": false,
+          "tablePosition": null,
+          "precedingText": "",
+          "followingText": "",
+          "isFloating": false,
+          "isInline": true
+        },
+        "relationship": {
+          "relationshipId": "rId17",
+          "embedId": null,
+          "context": "document"
+        },
+        "position": {
+          "page": 1,
+          "section": 1,
+          "headerType": null,
+          "tableId": null,
+          "cellPosition": null,
+          "paragraphId": 97,
+          "runId": null,
+          "absolutePosition": {
+            "x": 4079875,
+            "xRelativeFrom": "column",
+            "y": 205105,
+            "yRelativeFrom": "paragraph"
+          },
+          "relativePosition": null
+        },
+        "context": {
+          "isInHeader": false,
+          "isInFooter": false,
+          "isInTable": false,
+          "isFloating": true,
+          "isInline": false,
+          "wrapType": "square",
+          "anchor": null,
+          "zOrder": null,
+          "behindText": false
+        },
+        "formatting": {
+          "width": 265,
+          "height": 265,
+          "scaleX": 100,
+          "scaleY": 100,
+          "rotation": 0,
+          "flipHorizontal": false,
+          "flipVertical": false,
+          "brightness": 0,
+          "contrast": 0,
+          "cropLeft": 12.5,
+          "cropTop": 0,
+          "cropRight": 12.5,
+          "cropBottom": 0
+        }
+      },
+      {
+        "originalPath": "word/media/image12.jpeg",
+        "extractedPath": "extracted_images\\image12_b8645677.jpeg",
+        "fileName": "image12_b8645677.jpeg",
+        "hash": "b8645677ead4537f77decf4ff9d7bb04",
+        "size": 291725,
+        "extractedAt": "2025-06-29T04:15:53.913Z",
+        "formatInfo": {
+          "width": 2519680,
+          "height": 2519680,
+          "dpi": null,
+          "compression": null
+        },
+        "positionInfo": {
+          "page": 2,
+          "section": null,
+          "paragraph": null,
+          "line": null,
+          "xPosition": 1100455,
+          "yPosition": 153670,
+          "anchor": "floating",
+          "wrapType": "wrapSquare",
+          "zOrder": null
+        },
+        "cropInfo": {
+          "left": 12500,
+          "top": 0,
+          "right": 12500,
+          "bottom": 0,
+          "rotation": 0,
+          "flipHorizontal": false,
+          "flipVertical": false
+        },
+        "relationshipInfo": {
+          "relationshipId": null,
+          "embedId": "rId12",
+          "linkId": null
+        },
+        "contextInfo": {
+          "isInHeader": false,
+          "isInFooter": false,
+          "isInTable": false,
+          "tablePosition": null,
+          "precedingText": "",
+          "followingText": "",
+          "isFloating": false,
+          "isInline": true
+        },
+        "relationship": {
+          "relationshipId": "rId18",
+          "embedId": null,
+          "context": "document"
+        },
+        "position": {
+          "page": 1,
+          "section": 1,
+          "headerType": null,
+          "tableId": null,
+          "cellPosition": null,
+          "paragraphId": 97,
+          "runId": null,
+          "absolutePosition": {
+            "x": 1115695,
+            "xRelativeFrom": "column",
+            "y": 205105,
+            "yRelativeFrom": "paragraph"
+          },
+          "relativePosition": null
+        },
+        "context": {
+          "isInHeader": false,
+          "isInFooter": false,
+          "isInTable": false,
+          "isFloating": true,
+          "isInline": false,
+          "wrapType": "square",
+          "anchor": null,
+          "zOrder": null,
+          "behindText": false
+        },
+        "formatting": {
+          "width": 265,
+          "height": 265,
+          "scaleX": 100,
+          "scaleY": 100,
+          "rotation": 0,
+          "flipHorizontal": false,
+          "flipVertical": false,
+          "brightness": 0,
+          "contrast": 0,
+          "cropLeft": 12.5,
+          "cropTop": 0,
+          "cropRight": 12.5,
+          "cropBottom": 0
+        }
+      },
+      {
+        "originalPath": "word/media/image13.jpeg",
+        "extractedPath": "extracted_images\\image13_d09b35bb.jpeg",
+        "fileName": "image13_d09b35bb.jpeg",
+        "hash": "d09b35bbe539d32d018e1e277b8a19bc",
+        "size": 205941,
+        "extractedAt": "2025-06-29T04:15:53.914Z",
+        "formatInfo": {
+          "width": 2519680,
+          "height": 2519680,
+          "dpi": null,
+          "compression": null
+        },
+        "positionInfo": {
+          "page": 2,
+          "section": null,
+          "paragraph": null,
+          "line": null,
+          "xPosition": 4079875,
+          "yPosition": 207645,
+          "anchor": "floating",
+          "wrapType": "wrapSquare",
+          "zOrder": null
+        },
+        "cropInfo": {
+          "left": 12500,
+          "top": 0,
+          "right": 12500,
+          "bottom": 0,
+          "rotation": 0,
+          "flipHorizontal": false,
+          "flipVertical": false
+        },
+        "relationshipInfo": {
+          "relationshipId": null,
+          "embedId": "rId13",
+          "linkId": null
+        },
+        "contextInfo": {
+          "isInHeader": false,
+          "isInFooter": false,
+          "isInTable": false,
+          "tablePosition": null,
+          "precedingText": "",
+          "followingText": "",
+          "isFloating": false,
+          "isInline": true
+        },
+        "relationship": {
+          "relationshipId": "rId19",
+          "embedId": null,
+          "context": "document"
+        },
+        "position": {
+          "page": 1,
+          "section": 1,
+          "headerType": null,
+          "tableId": null,
+          "cellPosition": null,
+          "paragraphId": 120,
+          "runId": null,
+          "absolutePosition": {
+            "x": 4085590,
+            "xRelativeFrom": "column",
+            "y": 153670,
+            "yRelativeFrom": "paragraph"
+          },
+          "relativePosition": null
+        },
+        "context": {
+          "isInHeader": false,
+          "isInFooter": false,
+          "isInTable": false,
+          "isFloating": true,
+          "isInline": false,
+          "wrapType": "square",
+          "anchor": null,
+          "zOrder": null,
+          "behindText": false
+        },
+        "formatting": {
+          "width": 265,
+          "height": 265,
+          "scaleX": 100,
+          "scaleY": 100,
+          "rotation": 0,
+          "flipHorizontal": false,
+          "flipVertical": false,
+          "brightness": 0,
+          "contrast": 0,
+          "cropLeft": 12.5,
+          "cropTop": 0,
+          "cropRight": 12.5,
+          "cropBottom": 0
+        }
+      },
+      {
+        "originalPath": "word/media/image14.jpeg",
+        "extractedPath": "extracted_images\\image14_3570ed4b.jpeg",
+        "fileName": "image14_3570ed4b.jpeg",
+        "hash": "3570ed4bd0c6a3ca83602f317ff2cce1",
+        "size": 189718,
+        "extractedAt": "2025-06-29T04:15:53.915Z",
+        "formatInfo": {
+          "width": 2519680,
+          "height": 2519680,
+          "dpi": null,
+          "compression": null
+        },
+        "positionInfo": {
+          "page": 3,
+          "section": null,
+          "paragraph": null,
+          "line": null,
+          "xPosition": 1115695,
+          "yPosition": 207645,
+          "anchor": "floating",
+          "wrapType": "wrapSquare",
+          "zOrder": null
+        },
+        "cropInfo": {
+          "left": 12500,
+          "top": 0,
+          "right": 12500,
+          "bottom": 0,
+          "rotation": 0,
+          "flipHorizontal": false,
+          "flipVertical": false
+        },
+        "relationshipInfo": {
+          "relationshipId": null,
+          "embedId": "rId14",
+          "linkId": null
+        },
+        "contextInfo": {
+          "isInHeader": false,
+          "isInFooter": false,
+          "isInTable": false,
+          "tablePosition": null,
+          "precedingText": "",
+          "followingText": "",
+          "isFloating": false,
+          "isInline": true
+        },
+        "relationship": {
+          "relationshipId": "rId20",
+          "embedId": null,
+          "context": "document"
+        },
+        "position": {
+          "page": 1,
+          "section": 1,
+          "headerType": null,
+          "tableId": null,
+          "cellPosition": null,
+          "paragraphId": 120,
+          "runId": null,
+          "absolutePosition": {
+            "x": 1092835,
+            "xRelativeFrom": "column",
+            "y": 153670,
+            "yRelativeFrom": "paragraph"
+          },
+          "relativePosition": null
+        },
+        "context": {
+          "isInHeader": false,
+          "isInFooter": false,
+          "isInTable": false,
+          "isFloating": true,
+          "isInline": false,
+          "wrapType": "square",
+          "anchor": null,
+          "zOrder": null,
+          "behindText": false
+        },
+        "formatting": {
+          "width": 265,
+          "height": 265,
+          "scaleX": 100,
+          "scaleY": 100,
+          "rotation": 0,
+          "flipHorizontal": false,
+          "flipVertical": false,
+          "brightness": 0,
+          "contrast": 0,
+          "cropLeft": 12.5,
+          "cropTop": 0,
+          "cropRight": 12.5,
+          "cropBottom": 0
+        }
+      },
+      {
+        "originalPath": "word/media/image15.jpeg",
+        "extractedPath": "extracted_images\\image15_b7b5d6a6.jpeg",
+        "fileName": "image15_b7b5d6a6.jpeg",
+        "hash": "b7b5d6a69161da7329b50928263040e5",
+        "size": 227919,
+        "extractedAt": "2025-06-29T04:15:53.916Z",
+        "formatInfo": {
+          "width": 2519680,
+          "height": 2519680,
+          "dpi": null,
+          "compression": null
+        },
+        "positionInfo": {
+          "page": 3,
+          "section": null,
+          "paragraph": null,
+          "line": null,
+          "xPosition": 4079875,
+          "yPosition": 150495,
+          "anchor": "floating",
+          "wrapType": "wrapSquare",
+          "zOrder": null
+        },
+        "cropInfo": {
+          "left": 0,
+          "top": 12500,
+          "right": 0,
+          "bottom": 12500,
+          "rotation": 0,
+          "flipHorizontal": false,
+          "flipVertical": false
+        },
+        "relationshipInfo": {
+          "relationshipId": null,
+          "embedId": "rId15",
+          "linkId": null
+        },
+        "contextInfo": {
+          "isInHeader": false,
+          "isInFooter": false,
+          "isInTable": false,
+          "tablePosition": null,
+          "precedingText": "",
+          "followingText": "",
+          "isFloating": false,
+          "isInline": true
+        },
+        "relationship": {
+          "relationshipId": "rId21",
+          "embedId": null,
+          "context": "document"
+        },
+        "position": {
+          "page": 1,
+          "section": 1,
+          "headerType": null,
+          "tableId": null,
+          "cellPosition": null,
+          "paragraphId": 128,
+          "runId": null,
+          "absolutePosition": {
+            "x": 4085590,
+            "xRelativeFrom": "column",
+            "y": 197485,
+            "yRelativeFrom": "paragraph"
+          },
+          "relativePosition": null
+        },
+        "context": {
+          "isInHeader": false,
+          "isInFooter": false,
+          "isInTable": false,
+          "isFloating": true,
+          "isInline": false,
+          "wrapType": "square",
+          "anchor": null,
+          "zOrder": null,
+          "behindText": false
+        },
+        "formatting": {
+          "width": 265,
+          "height": 265,
+          "scaleX": 100,
+          "scaleY": 100,
+          "rotation": 0,
+          "flipHorizontal": false,
+          "flipVertical": false,
+          "brightness": 0,
+          "contrast": 0,
+          "cropLeft": 12.5,
+          "cropTop": 0,
+          "cropRight": 12.5,
+          "cropBottom": 0
+        }
+      },
+      {
+        "originalPath": "word/media/image16.jpeg",
+        "extractedPath": "extracted_images\\image16_8348b85b.jpeg",
+        "fileName": "image16_8348b85b.jpeg",
+        "hash": "8348b85bb63a01c5f1a08dff41db0846",
+        "size": 207594,
+        "extractedAt": "2025-06-29T04:15:53.918Z",
+        "formatInfo": {
+          "width": 2519680,
+          "height": 2519680,
+          "dpi": null,
+          "compression": null
+        },
+        "positionInfo": {
+          "page": 3,
+          "section": null,
+          "paragraph": null,
+          "line": null,
+          "xPosition": 1100455,
+          "yPosition": 150495,
+          "anchor": "floating",
+          "wrapType": "wrapSquare",
+          "zOrder": null
+        },
+        "cropInfo": {
+          "left": 0,
+          "top": 12500,
+          "right": 0,
+          "bottom": 12500,
+          "rotation": 0,
+          "flipHorizontal": false,
+          "flipVertical": false
+        },
+        "relationshipInfo": {
+          "relationshipId": null,
+          "embedId": "rId16",
+          "linkId": null
+        },
+        "contextInfo": {
+          "isInHeader": false,
+          "isInFooter": false,
+          "isInTable": false,
+          "tablePosition": null,
+          "precedingText": "",
+          "followingText": "",
+          "isFloating": false,
+          "isInline": true
+        },
+        "relationship": {
+          "relationshipId": "rId22",
+          "embedId": null,
+          "context": "document"
+        },
+        "position": {
+          "page": 1,
+          "section": 1,
+          "headerType": null,
+          "tableId": null,
+          "cellPosition": null,
+          "paragraphId": 128,
+          "runId": null,
+          "absolutePosition": {
+            "x": 1109980,
+            "xRelativeFrom": "column",
+            "y": 197485,
+            "yRelativeFrom": "paragraph"
+          },
+          "relativePosition": null
+        },
+        "context": {
+          "isInHeader": false,
+          "isInFooter": false,
+          "isInTable": false,
+          "isFloating": true,
+          "isInline": false,
+          "wrapType": "square",
+          "anchor": null,
+          "zOrder": null,
+          "behindText": false
+        },
+        "formatting": {
+          "width": 265,
+          "height": 265,
+          "scaleX": 100,
+          "scaleY": 100,
+          "rotation": 0,
+          "flipHorizontal": false,
+          "flipVertical": false,
+          "brightness": 0,
+          "contrast": 0,
+          "cropLeft": 12.5,
+          "cropTop": 0,
+          "cropRight": 12.5,
+          "cropBottom": 0
+        }
+      },
+      {
+        "originalPath": "word/media/image4.jpeg",
+        "extractedPath": "extracted_images\\image4_fe4f8c66.jpeg",
+        "fileName": "image4_fe4f8c66.jpeg",
+        "hash": "fe4f8c66e4f7e78d54c8cc13fe4f785f",
+        "size": 216192,
+        "extractedAt": "2025-06-29T04:15:53.920Z",
+        "formatInfo": {
+          "width": 2519680,
+          "height": 2519680,
+          "dpi": null,
+          "compression": null
+        },
+        "positionInfo": {
+          "page": 4,
+          "section": null,
+          "paragraph": null,
+          "line": null,
+          "xPosition": 1115695,
+          "yPosition": 205105,
+          "anchor": "floating",
+          "wrapType": "wrapSquare",
+          "zOrder": null
+        },
+        "cropInfo": {
+          "left": 12500,
+          "top": 0,
+          "right": 12500,
+          "bottom": 0,
+          "rotation": 0,
+          "flipHorizontal": false,
+          "flipVertical": false
+        },
+        "relationshipInfo": {
+          "relationshipId": null,
+          "embedId": "rId18",
+          "linkId": null
+        },
+        "contextInfo": {
+          "isInHeader": false,
+          "isInFooter": false,
+          "isInTable": false,
+          "tablePosition": null,
+          "precedingText": "",
+          "followingText": "",
+          "isFloating": false,
+          "isInline": true
+        },
+        "relationship": {
+          "relationshipId": "rId10",
+          "embedId": null,
+          "context": "document"
+        },
+        "position": {
+          "page": 1,
+          "section": 1,
+          "headerType": null,
+          "tableId": null,
+          "cellPosition": null,
+          "paragraphId": 38,
+          "runId": null,
+          "absolutePosition": {
+            "x": 1115695,
+            "xRelativeFrom": "column",
+            "y": 205105,
+            "yRelativeFrom": "paragraph"
+          },
+          "relativePosition": null
+        },
+        "context": {
+          "isInHeader": false,
+          "isInFooter": false,
+          "isInTable": false,
+          "isFloating": true,
+          "isInline": false,
+          "wrapType": "square",
+          "anchor": null,
+          "zOrder": null,
+          "behindText": false
+        },
+        "formatting": {
+          "width": 265,
+          "height": 265,
+          "scaleX": 100,
+          "scaleY": 100,
+          "rotation": 0,
+          "flipHorizontal": false,
+          "flipVertical": false,
+          "brightness": 0,
+          "contrast": 0,
+          "cropLeft": 12.5,
+          "cropTop": 0,
+          "cropRight": 12.5,
+          "cropBottom": 0
+        }
+      }
+    ]
   },
-  "16e2aa59876832906e93f18665f27bd6": {
-    "originalPath": "word/media/image8.jpeg",
-    "extractedPath": "extracted_images\\image8_16e2aa59.jpeg",
-    "fileName": "image8_16e2aa59.jpeg",
-    "hash": "16e2aa59876832906e93f18665f27bd6",
-    "size": 284247,
-    "extractedAt": "2025-06-29T03:30:46.206Z"
+  "images": {
+    "bfca8351268c989e4d2d6333649d5233": {
+      "originalPath": "word/media/image17.jpeg",
+      "extractedPath": "extracted_images\\image17_bfca8351.jpeg",
+      "fileName": "image17_bfca8351.jpeg",
+      "hash": "bfca8351268c989e4d2d6333649d5233",
+      "size": 94882,
+      "extractedAt": "2025-06-29T04:15:53.891Z",
+      "formatInfo": {
+        "width": null,
+        "height": null,
+        "dpi": null,
+        "compression": null
+      },
+      "positionInfo": {
+        "page": null,
+        "section": null,
+        "paragraph": null,
+        "line": null,
+        "xPosition": null,
+        "yPosition": null,
+        "anchor": null,
+        "wrapType": null,
+        "zOrder": null
+      },
+      "cropInfo": {
+        "left": 0,
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "rotation": 0,
+        "flipHorizontal": false,
+        "flipVertical": false
+      },
+      "relationshipInfo": {
+        "relationshipId": null,
+        "embedId": null,
+        "linkId": null
+      },
+      "contextInfo": {
+        "isInHeader": false,
+        "isInFooter": false,
+        "isInTable": false,
+        "tablePosition": null,
+        "precedingText": null,
+        "followingText": null,
+        "isFloating": false,
+        "isInline": true
+      },
+      "position": {
+        "page": null,
+        "section": null,
+        "headerType": null,
+        "tableId": null,
+        "cellPosition": null,
+        "paragraphId": null,
+        "runId": null,
+        "absolutePosition": null,
+        "relativePosition": null
+      },
+      "context": {
+        "isInHeader": false,
+        "isInFooter": false,
+        "isInTable": false,
+        "isFloating": false,
+        "isInline": false,
+        "wrapType": null,
+        "anchor": null,
+        "zOrder": null,
+        "behindText": false
+      },
+      "formatting": {
+        "width": null,
+        "height": null,
+        "scaleX": 100,
+        "scaleY": 100,
+        "rotation": 0,
+        "flipHorizontal": false,
+        "flipVertical": false,
+        "brightness": 0,
+        "contrast": 0,
+        "cropLeft": 0,
+        "cropTop": 0,
+        "cropRight": 0,
+        "cropBottom": 0
+      }
+    },
+    "6fa52ec64f82de579e342db3f1a202cf": {
+      "originalPath": "word/media/image5.jpeg",
+      "extractedPath": "extracted_images\\image5_6fa52ec6.jpeg",
+      "fileName": "image5_6fa52ec6.jpeg",
+      "hash": "6fa52ec64f82de579e342db3f1a202cf",
+      "size": 277624,
+      "extractedAt": "2025-06-29T04:15:53.893Z",
+      "formatInfo": {
+        "width": null,
+        "height": null,
+        "dpi": null,
+        "compression": null
+      },
+      "positionInfo": {
+        "page": null,
+        "section": null,
+        "paragraph": null,
+        "line": null,
+        "xPosition": null,
+        "yPosition": null,
+        "anchor": null,
+        "wrapType": null,
+        "zOrder": null
+      },
+      "cropInfo": {
+        "left": 0,
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "rotation": 0,
+        "flipHorizontal": false,
+        "flipVertical": false
+      },
+      "relationshipInfo": {
+        "relationshipId": null,
+        "embedId": null,
+        "linkId": null
+      },
+      "contextInfo": {
+        "isInHeader": false,
+        "isInFooter": false,
+        "isInTable": false,
+        "tablePosition": null,
+        "precedingText": null,
+        "followingText": null,
+        "isFloating": false,
+        "isInline": true
+      },
+      "relationship": {
+        "relationshipId": "rId11",
+        "embedId": null,
+        "context": "document"
+      },
+      "position": {
+        "page": 1,
+        "section": 1,
+        "headerType": null,
+        "tableId": null,
+        "cellPosition": null,
+        "paragraphId": 61,
+        "runId": null,
+        "absolutePosition": {
+          "x": 4079875,
+          "xRelativeFrom": "column",
+          "y": 153670,
+          "yRelativeFrom": "paragraph"
+        },
+        "relativePosition": null
+      },
+      "context": {
+        "isInHeader": false,
+        "isInFooter": false,
+        "isInTable": false,
+        "isFloating": true,
+        "isInline": false,
+        "wrapType": "square",
+        "anchor": null,
+        "zOrder": null,
+        "behindText": false
+      },
+      "formatting": {
+        "width": 265,
+        "height": 265,
+        "scaleX": 100,
+        "scaleY": 100,
+        "rotation": 0,
+        "flipHorizontal": false,
+        "flipVertical": false,
+        "brightness": 0,
+        "contrast": 0,
+        "cropLeft": 12.5,
+        "cropTop": 0,
+        "cropRight": 12.5,
+        "cropBottom": 0
+      }
+    },
+    "6d5eee18bfa2bd17680421698fa04e2f": {
+      "originalPath": "word/media/image6.jpeg",
+      "extractedPath": "extracted_images\\image6_6d5eee18.jpeg",
+      "fileName": "image6_6d5eee18.jpeg",
+      "hash": "6d5eee18bfa2bd17680421698fa04e2f",
+      "size": 245559,
+      "extractedAt": "2025-06-29T04:15:53.894Z",
+      "formatInfo": {
+        "width": null,
+        "height": null,
+        "dpi": null,
+        "compression": null
+      },
+      "positionInfo": {
+        "page": null,
+        "section": null,
+        "paragraph": null,
+        "line": null,
+        "xPosition": null,
+        "yPosition": null,
+        "anchor": null,
+        "wrapType": null,
+        "zOrder": null
+      },
+      "cropInfo": {
+        "left": 0,
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "rotation": 0,
+        "flipHorizontal": false,
+        "flipVertical": false
+      },
+      "relationshipInfo": {
+        "relationshipId": null,
+        "embedId": null,
+        "linkId": null
+      },
+      "contextInfo": {
+        "isInHeader": false,
+        "isInFooter": false,
+        "isInTable": false,
+        "tablePosition": null,
+        "precedingText": null,
+        "followingText": null,
+        "isFloating": false,
+        "isInline": true
+      },
+      "relationship": {
+        "relationshipId": "rId12",
+        "embedId": null,
+        "context": "document"
+      },
+      "position": {
+        "page": 1,
+        "section": 1,
+        "headerType": null,
+        "tableId": null,
+        "cellPosition": null,
+        "paragraphId": 61,
+        "runId": null,
+        "absolutePosition": {
+          "x": 1100455,
+          "xRelativeFrom": "column",
+          "y": 153670,
+          "yRelativeFrom": "paragraph"
+        },
+        "relativePosition": null
+      },
+      "context": {
+        "isInHeader": false,
+        "isInFooter": false,
+        "isInTable": false,
+        "isFloating": true,
+        "isInline": false,
+        "wrapType": "square",
+        "anchor": null,
+        "zOrder": null,
+        "behindText": false
+      },
+      "formatting": {
+        "width": 265,
+        "height": 265,
+        "scaleX": 100,
+        "scaleY": 100,
+        "rotation": 0,
+        "flipHorizontal": false,
+        "flipVertical": false,
+        "brightness": 0,
+        "contrast": 0,
+        "cropLeft": 12.5,
+        "cropTop": 0,
+        "cropRight": 12.5,
+        "cropBottom": 0
+      }
+    },
+    "6cdb4b1e61f65724091e3d919c5ceb07": {
+      "originalPath": "word/media/image7.jpeg",
+      "extractedPath": "extracted_images\\image7_6cdb4b1e.jpeg",
+      "fileName": "image7_6cdb4b1e.jpeg",
+      "hash": "6cdb4b1e61f65724091e3d919c5ceb07",
+      "size": 267263,
+      "extractedAt": "2025-06-29T04:15:53.896Z",
+      "formatInfo": {
+        "width": null,
+        "height": null,
+        "dpi": null,
+        "compression": null
+      },
+      "positionInfo": {
+        "page": null,
+        "section": null,
+        "paragraph": null,
+        "line": null,
+        "xPosition": null,
+        "yPosition": null,
+        "anchor": null,
+        "wrapType": null,
+        "zOrder": null
+      },
+      "cropInfo": {
+        "left": 0,
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "rotation": 0,
+        "flipHorizontal": false,
+        "flipVertical": false
+      },
+      "relationshipInfo": {
+        "relationshipId": null,
+        "embedId": null,
+        "linkId": null
+      },
+      "contextInfo": {
+        "isInHeader": false,
+        "isInFooter": false,
+        "isInTable": false,
+        "tablePosition": null,
+        "precedingText": null,
+        "followingText": null,
+        "isFloating": false,
+        "isInline": true
+      },
+      "relationship": {
+        "relationshipId": "rId13",
+        "embedId": null,
+        "context": "document"
+      },
+      "position": {
+        "page": 1,
+        "section": 1,
+        "headerType": null,
+        "tableId": null,
+        "cellPosition": null,
+        "paragraphId": 69,
+        "runId": null,
+        "absolutePosition": {
+          "x": 4079875,
+          "xRelativeFrom": "column",
+          "y": 207645,
+          "yRelativeFrom": "paragraph"
+        },
+        "relativePosition": null
+      },
+      "context": {
+        "isInHeader": false,
+        "isInFooter": false,
+        "isInTable": false,
+        "isFloating": true,
+        "isInline": false,
+        "wrapType": "square",
+        "anchor": null,
+        "zOrder": null,
+        "behindText": false
+      },
+      "formatting": {
+        "width": 265,
+        "height": 265,
+        "scaleX": 100,
+        "scaleY": 100,
+        "rotation": 0,
+        "flipHorizontal": false,
+        "flipVertical": false,
+        "brightness": 0,
+        "contrast": 0,
+        "cropLeft": 12.5,
+        "cropTop": 0,
+        "cropRight": 12.5,
+        "cropBottom": 0
+      }
+    },
+    "16e2aa59876832906e93f18665f27bd6": {
+      "originalPath": "word/media/image8.jpeg",
+      "extractedPath": "extracted_images\\image8_16e2aa59.jpeg",
+      "fileName": "image8_16e2aa59.jpeg",
+      "hash": "16e2aa59876832906e93f18665f27bd6",
+      "size": 284247,
+      "extractedAt": "2025-06-29T04:15:53.898Z",
+      "formatInfo": {
+        "width": null,
+        "height": null,
+        "dpi": null,
+        "compression": null
+      },
+      "positionInfo": {
+        "page": null,
+        "section": null,
+        "paragraph": null,
+        "line": null,
+        "xPosition": null,
+        "yPosition": null,
+        "anchor": null,
+        "wrapType": null,
+        "zOrder": null
+      },
+      "cropInfo": {
+        "left": 0,
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "rotation": 0,
+        "flipHorizontal": false,
+        "flipVertical": false
+      },
+      "relationshipInfo": {
+        "relationshipId": null,
+        "embedId": null,
+        "linkId": null
+      },
+      "contextInfo": {
+        "isInHeader": false,
+        "isInFooter": false,
+        "isInTable": false,
+        "tablePosition": null,
+        "precedingText": null,
+        "followingText": null,
+        "isFloating": false,
+        "isInline": true
+      },
+      "relationship": {
+        "relationshipId": "rId14",
+        "embedId": null,
+        "context": "document"
+      },
+      "position": {
+        "page": 1,
+        "section": 1,
+        "headerType": null,
+        "tableId": null,
+        "cellPosition": null,
+        "paragraphId": 69,
+        "runId": null,
+        "absolutePosition": {
+          "x": 1115695,
+          "xRelativeFrom": "column",
+          "y": 207645,
+          "yRelativeFrom": "paragraph"
+        },
+        "relativePosition": null
+      },
+      "context": {
+        "isInHeader": false,
+        "isInFooter": false,
+        "isInTable": false,
+        "isFloating": true,
+        "isInline": false,
+        "wrapType": "square",
+        "anchor": null,
+        "zOrder": null,
+        "behindText": false
+      },
+      "formatting": {
+        "width": 265,
+        "height": 265,
+        "scaleX": 100,
+        "scaleY": 100,
+        "rotation": 0,
+        "flipHorizontal": false,
+        "flipVertical": false,
+        "brightness": 0,
+        "contrast": 0,
+        "cropLeft": 12.5,
+        "cropTop": 0,
+        "cropRight": 12.5,
+        "cropBottom": 0
+      }
+    },
+    "a76dccdafbdef422a8fef8f60c200135": {
+      "originalPath": "word/media/image9.jpeg",
+      "extractedPath": "extracted_images\\image9_a76dccda.jpeg",
+      "fileName": "image9_a76dccda.jpeg",
+      "hash": "a76dccdafbdef422a8fef8f60c200135",
+      "size": 258149,
+      "extractedAt": "2025-06-29T04:15:53.900Z",
+      "formatInfo": {
+        "width": null,
+        "height": null,
+        "dpi": null,
+        "compression": null
+      },
+      "positionInfo": {
+        "page": null,
+        "section": null,
+        "paragraph": null,
+        "line": null,
+        "xPosition": null,
+        "yPosition": null,
+        "anchor": null,
+        "wrapType": null,
+        "zOrder": null
+      },
+      "cropInfo": {
+        "left": 0,
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "rotation": 0,
+        "flipHorizontal": false,
+        "flipVertical": false
+      },
+      "relationshipInfo": {
+        "relationshipId": null,
+        "embedId": null,
+        "linkId": null
+      },
+      "contextInfo": {
+        "isInHeader": false,
+        "isInFooter": false,
+        "isInTable": false,
+        "tablePosition": null,
+        "precedingText": null,
+        "followingText": null,
+        "isFloating": false,
+        "isInline": true
+      },
+      "relationship": {
+        "relationshipId": "rId15",
+        "embedId": null,
+        "context": "document"
+      },
+      "position": {
+        "page": 1,
+        "section": 1,
+        "headerType": null,
+        "tableId": null,
+        "cellPosition": null,
+        "paragraphId": 89,
+        "runId": null,
+        "absolutePosition": {
+          "x": 4079875,
+          "xRelativeFrom": "column",
+          "y": 150495,
+          "yRelativeFrom": "paragraph"
+        },
+        "relativePosition": null
+      },
+      "context": {
+        "isInHeader": false,
+        "isInFooter": false,
+        "isInTable": false,
+        "isFloating": true,
+        "isInline": false,
+        "wrapType": "square",
+        "anchor": null,
+        "zOrder": null,
+        "behindText": false
+      },
+      "formatting": {
+        "width": 265,
+        "height": 265,
+        "scaleX": 100,
+        "scaleY": 100,
+        "rotation": 0,
+        "flipHorizontal": false,
+        "flipVertical": false,
+        "brightness": 0,
+        "contrast": 0,
+        "cropLeft": 0,
+        "cropTop": 12.5,
+        "cropRight": 0,
+        "cropBottom": 12.5
+      }
+    },
+    "44c3c1fe062bd42789c8e4f31b7d13d9": {
+      "originalPath": "word/media/image3.jpeg",
+      "extractedPath": "extracted_images\\image3_44c3c1fe.jpeg",
+      "fileName": "image3_44c3c1fe.jpeg",
+      "hash": "44c3c1fe062bd42789c8e4f31b7d13d9",
+      "size": 173795,
+      "extractedAt": "2025-06-29T04:15:53.905Z",
+      "formatInfo": {
+        "width": 2519680,
+        "height": 2519680,
+        "dpi": null,
+        "compression": null
+      },
+      "positionInfo": {
+        "page": 1,
+        "section": null,
+        "paragraph": null,
+        "line": null,
+        "xPosition": 4079875,
+        "yPosition": 150495,
+        "anchor": "floating",
+        "wrapType": "wrapSquare",
+        "zOrder": null
+      },
+      "cropInfo": {
+        "left": 12500,
+        "top": 0,
+        "right": 12500,
+        "bottom": 0,
+        "rotation": 0,
+        "flipHorizontal": false,
+        "flipVertical": false
+      },
+      "relationshipInfo": {
+        "relationshipId": null,
+        "embedId": "rId7",
+        "linkId": null
+      },
+      "contextInfo": {
+        "isInHeader": false,
+        "isInFooter": false,
+        "isInTable": false,
+        "tablePosition": null,
+        "precedingText": "",
+        "followingText": "",
+        "isFloating": false,
+        "isInline": true
+      },
+      "relationship": {
+        "relationshipId": "rId9",
+        "embedId": null,
+        "context": "document"
+      },
+      "position": {
+        "page": 1,
+        "section": 1,
+        "headerType": null,
+        "tableId": null,
+        "cellPosition": null,
+        "paragraphId": 38,
+        "runId": null,
+        "absolutePosition": {
+          "x": 4079875,
+          "xRelativeFrom": "column",
+          "y": 205105,
+          "yRelativeFrom": "paragraph"
+        },
+        "relativePosition": null
+      },
+      "context": {
+        "isInHeader": false,
+        "isInFooter": false,
+        "isInTable": false,
+        "isFloating": true,
+        "isInline": false,
+        "wrapType": "square",
+        "anchor": null,
+        "zOrder": null,
+        "behindText": false
+      },
+      "formatting": {
+        "width": 265,
+        "height": 265,
+        "scaleX": 100,
+        "scaleY": 100,
+        "rotation": 0,
+        "flipHorizontal": false,
+        "flipVertical": false,
+        "brightness": 0,
+        "contrast": 0,
+        "cropLeft": 12.5,
+        "cropTop": 0,
+        "cropRight": 12.5,
+        "cropBottom": 0
+      }
+    },
+    "077bc1b116fa9b21d6f208764f67ad73": {
+      "originalPath": "word/media/image2.jpeg",
+      "extractedPath": "extracted_images\\image2_077bc1b1.jpeg",
+      "fileName": "image2_077bc1b1.jpeg",
+      "hash": "077bc1b116fa9b21d6f208764f67ad73",
+      "size": 146112,
+      "extractedAt": "2025-06-29T04:15:53.907Z",
+      "formatInfo": {
+        "width": 2519680,
+        "height": 2519680,
+        "dpi": null,
+        "compression": null
+      },
+      "positionInfo": {
+        "page": 1,
+        "section": null,
+        "paragraph": null,
+        "line": null,
+        "xPosition": 1100455,
+        "yPosition": 150495,
+        "anchor": "floating",
+        "wrapType": "wrapSquare",
+        "zOrder": null
+      },
+      "cropInfo": {
+        "left": 0,
+        "top": 12500,
+        "right": 0,
+        "bottom": 12500,
+        "rotation": 0,
+        "flipHorizontal": false,
+        "flipVertical": false
+      },
+      "relationshipInfo": {
+        "relationshipId": null,
+        "embedId": "rId8",
+        "linkId": null
+      },
+      "contextInfo": {
+        "isInHeader": false,
+        "isInFooter": false,
+        "isInTable": false,
+        "tablePosition": null,
+        "precedingText": "",
+        "followingText": "",
+        "isFloating": false,
+        "isInline": true
+      },
+      "relationship": {
+        "relationshipId": "rId8",
+        "embedId": null,
+        "context": "document"
+      },
+      "position": {
+        "page": 1,
+        "section": 1,
+        "headerType": null,
+        "tableId": null,
+        "cellPosition": null,
+        "paragraphId": 30,
+        "runId": null,
+        "absolutePosition": {
+          "x": 1100455,
+          "xRelativeFrom": "column",
+          "y": 150495,
+          "yRelativeFrom": "paragraph"
+        },
+        "relativePosition": null
+      },
+      "context": {
+        "isInHeader": false,
+        "isInFooter": false,
+        "isInTable": false,
+        "isFloating": true,
+        "isInline": false,
+        "wrapType": "square",
+        "anchor": null,
+        "zOrder": null,
+        "behindText": false
+      },
+      "formatting": {
+        "width": 265,
+        "height": 265,
+        "scaleX": 100,
+        "scaleY": 100,
+        "rotation": 0,
+        "flipHorizontal": false,
+        "flipVertical": false,
+        "brightness": 0,
+        "contrast": 0,
+        "cropLeft": 0,
+        "cropTop": 12.5,
+        "cropRight": 0,
+        "cropBottom": 12.5
+      }
+    },
+    "32f311ba5055b7ecb8ba3d06d447a353": {
+      "originalPath": "word/media/image1.jpeg",
+      "extractedPath": "extracted_images\\image1_32f311ba.jpeg",
+      "fileName": "image1_32f311ba.jpeg",
+      "hash": "32f311ba5055b7ecb8ba3d06d447a353",
+      "size": 175436,
+      "extractedAt": "2025-06-29T04:15:53.908Z",
+      "formatInfo": {
+        "width": 2519680,
+        "height": 2519680,
+        "dpi": null,
+        "compression": null
+      },
+      "positionInfo": {
+        "page": 1,
+        "section": null,
+        "paragraph": null,
+        "line": null,
+        "xPosition": 4079875,
+        "yPosition": 205105,
+        "anchor": "floating",
+        "wrapType": "wrapSquare",
+        "zOrder": null
+      },
+      "cropInfo": {
+        "left": 12500,
+        "top": 0,
+        "right": 12500,
+        "bottom": 0,
+        "rotation": 0,
+        "flipHorizontal": false,
+        "flipVertical": false
+      },
+      "relationshipInfo": {
+        "relationshipId": null,
+        "embedId": "rId9",
+        "linkId": null
+      },
+      "contextInfo": {
+        "isInHeader": false,
+        "isInFooter": false,
+        "isInTable": false,
+        "tablePosition": null,
+        "precedingText": "",
+        "followingText": "",
+        "isFloating": false,
+        "isInline": true
+      },
+      "relationship": {
+        "relationshipId": "rId7",
+        "embedId": null,
+        "context": "document"
+      },
+      "position": {
+        "page": 1,
+        "section": 1,
+        "headerType": null,
+        "tableId": null,
+        "cellPosition": null,
+        "paragraphId": 30,
+        "runId": null,
+        "absolutePosition": {
+          "x": 4079875,
+          "xRelativeFrom": "column",
+          "y": 150495,
+          "yRelativeFrom": "paragraph"
+        },
+        "relativePosition": null
+      },
+      "context": {
+        "isInHeader": false,
+        "isInFooter": false,
+        "isInTable": false,
+        "isFloating": true,
+        "isInline": false,
+        "wrapType": "square",
+        "anchor": null,
+        "zOrder": null,
+        "behindText": false
+      },
+      "formatting": {
+        "width": 265,
+        "height": 265,
+        "scaleX": 100,
+        "scaleY": 100,
+        "rotation": 0,
+        "flipHorizontal": false,
+        "flipVertical": false,
+        "brightness": 0,
+        "contrast": 0,
+        "cropLeft": 12.5,
+        "cropTop": 0,
+        "cropRight": 12.5,
+        "cropBottom": 0
+      }
+    },
+    "9ea91d3f853c245f605962ea8c8075c3": {
+      "originalPath": "word/media/image10.jpeg",
+      "extractedPath": "extracted_images\\image10_9ea91d3f.jpeg",
+      "fileName": "image10_9ea91d3f.jpeg",
+      "hash": "9ea91d3f853c245f605962ea8c8075c3",
+      "size": 196297,
+      "extractedAt": "2025-06-29T04:15:53.910Z",
+      "formatInfo": {
+        "width": 2519680,
+        "height": 2519680,
+        "dpi": null,
+        "compression": null
+      },
+      "positionInfo": {
+        "page": 2,
+        "section": null,
+        "paragraph": null,
+        "line": null,
+        "xPosition": 1115695,
+        "yPosition": 205105,
+        "anchor": "floating",
+        "wrapType": "wrapSquare",
+        "zOrder": null
+      },
+      "cropInfo": {
+        "left": 12500,
+        "top": 0,
+        "right": 12500,
+        "bottom": 0,
+        "rotation": 0,
+        "flipHorizontal": false,
+        "flipVertical": false
+      },
+      "relationshipInfo": {
+        "relationshipId": null,
+        "embedId": "rId10",
+        "linkId": null
+      },
+      "contextInfo": {
+        "isInHeader": false,
+        "isInFooter": false,
+        "isInTable": false,
+        "tablePosition": null,
+        "precedingText": "",
+        "followingText": "",
+        "isFloating": false,
+        "isInline": true
+      },
+      "relationship": {
+        "relationshipId": "rId16",
+        "embedId": null,
+        "context": "document"
+      },
+      "position": {
+        "page": 1,
+        "section": 1,
+        "headerType": null,
+        "tableId": null,
+        "cellPosition": null,
+        "paragraphId": 89,
+        "runId": null,
+        "absolutePosition": {
+          "x": 1100455,
+          "xRelativeFrom": "column",
+          "y": 150495,
+          "yRelativeFrom": "paragraph"
+        },
+        "relativePosition": null
+      },
+      "context": {
+        "isInHeader": false,
+        "isInFooter": false,
+        "isInTable": false,
+        "isFloating": true,
+        "isInline": false,
+        "wrapType": "square",
+        "anchor": null,
+        "zOrder": null,
+        "behindText": false
+      },
+      "formatting": {
+        "width": 265,
+        "height": 265,
+        "scaleX": 100,
+        "scaleY": 100,
+        "rotation": 0,
+        "flipHorizontal": false,
+        "flipVertical": false,
+        "brightness": 0,
+        "contrast": 0,
+        "cropLeft": 0,
+        "cropTop": 12.5,
+        "cropRight": 0,
+        "cropBottom": 12.5
+      }
+    },
+    "a501ce4e0c760c420642b0ea9bfb0ae0": {
+      "originalPath": "word/media/image11.jpeg",
+      "extractedPath": "extracted_images\\image11_a501ce4e.jpeg",
+      "fileName": "image11_a501ce4e.jpeg",
+      "hash": "a501ce4e0c760c420642b0ea9bfb0ae0",
+      "size": 267070,
+      "extractedAt": "2025-06-29T04:15:53.911Z",
+      "formatInfo": {
+        "width": 2519680,
+        "height": 2519680,
+        "dpi": null,
+        "compression": null
+      },
+      "positionInfo": {
+        "page": 2,
+        "section": null,
+        "paragraph": null,
+        "line": null,
+        "xPosition": 4079875,
+        "yPosition": 153670,
+        "anchor": "floating",
+        "wrapType": "wrapSquare",
+        "zOrder": null
+      },
+      "cropInfo": {
+        "left": 12500,
+        "top": 0,
+        "right": 12500,
+        "bottom": 0,
+        "rotation": 0,
+        "flipHorizontal": false,
+        "flipVertical": false
+      },
+      "relationshipInfo": {
+        "relationshipId": null,
+        "embedId": "rId11",
+        "linkId": null
+      },
+      "contextInfo": {
+        "isInHeader": false,
+        "isInFooter": false,
+        "isInTable": false,
+        "tablePosition": null,
+        "precedingText": "",
+        "followingText": "",
+        "isFloating": false,
+        "isInline": true
+      },
+      "relationship": {
+        "relationshipId": "rId17",
+        "embedId": null,
+        "context": "document"
+      },
+      "position": {
+        "page": 1,
+        "section": 1,
+        "headerType": null,
+        "tableId": null,
+        "cellPosition": null,
+        "paragraphId": 97,
+        "runId": null,
+        "absolutePosition": {
+          "x": 4079875,
+          "xRelativeFrom": "column",
+          "y": 205105,
+          "yRelativeFrom": "paragraph"
+        },
+        "relativePosition": null
+      },
+      "context": {
+        "isInHeader": false,
+        "isInFooter": false,
+        "isInTable": false,
+        "isFloating": true,
+        "isInline": false,
+        "wrapType": "square",
+        "anchor": null,
+        "zOrder": null,
+        "behindText": false
+      },
+      "formatting": {
+        "width": 265,
+        "height": 265,
+        "scaleX": 100,
+        "scaleY": 100,
+        "rotation": 0,
+        "flipHorizontal": false,
+        "flipVertical": false,
+        "brightness": 0,
+        "contrast": 0,
+        "cropLeft": 12.5,
+        "cropTop": 0,
+        "cropRight": 12.5,
+        "cropBottom": 0
+      }
+    },
+    "b8645677ead4537f77decf4ff9d7bb04": {
+      "originalPath": "word/media/image12.jpeg",
+      "extractedPath": "extracted_images\\image12_b8645677.jpeg",
+      "fileName": "image12_b8645677.jpeg",
+      "hash": "b8645677ead4537f77decf4ff9d7bb04",
+      "size": 291725,
+      "extractedAt": "2025-06-29T04:15:53.913Z",
+      "formatInfo": {
+        "width": 2519680,
+        "height": 2519680,
+        "dpi": null,
+        "compression": null
+      },
+      "positionInfo": {
+        "page": 2,
+        "section": null,
+        "paragraph": null,
+        "line": null,
+        "xPosition": 1100455,
+        "yPosition": 153670,
+        "anchor": "floating",
+        "wrapType": "wrapSquare",
+        "zOrder": null
+      },
+      "cropInfo": {
+        "left": 12500,
+        "top": 0,
+        "right": 12500,
+        "bottom": 0,
+        "rotation": 0,
+        "flipHorizontal": false,
+        "flipVertical": false
+      },
+      "relationshipInfo": {
+        "relationshipId": null,
+        "embedId": "rId12",
+        "linkId": null
+      },
+      "contextInfo": {
+        "isInHeader": false,
+        "isInFooter": false,
+        "isInTable": false,
+        "tablePosition": null,
+        "precedingText": "",
+        "followingText": "",
+        "isFloating": false,
+        "isInline": true
+      },
+      "relationship": {
+        "relationshipId": "rId18",
+        "embedId": null,
+        "context": "document"
+      },
+      "position": {
+        "page": 1,
+        "section": 1,
+        "headerType": null,
+        "tableId": null,
+        "cellPosition": null,
+        "paragraphId": 97,
+        "runId": null,
+        "absolutePosition": {
+          "x": 1115695,
+          "xRelativeFrom": "column",
+          "y": 205105,
+          "yRelativeFrom": "paragraph"
+        },
+        "relativePosition": null
+      },
+      "context": {
+        "isInHeader": false,
+        "isInFooter": false,
+        "isInTable": false,
+        "isFloating": true,
+        "isInline": false,
+        "wrapType": "square",
+        "anchor": null,
+        "zOrder": null,
+        "behindText": false
+      },
+      "formatting": {
+        "width": 265,
+        "height": 265,
+        "scaleX": 100,
+        "scaleY": 100,
+        "rotation": 0,
+        "flipHorizontal": false,
+        "flipVertical": false,
+        "brightness": 0,
+        "contrast": 0,
+        "cropLeft": 12.5,
+        "cropTop": 0,
+        "cropRight": 12.5,
+        "cropBottom": 0
+      }
+    },
+    "d09b35bbe539d32d018e1e277b8a19bc": {
+      "originalPath": "word/media/image13.jpeg",
+      "extractedPath": "extracted_images\\image13_d09b35bb.jpeg",
+      "fileName": "image13_d09b35bb.jpeg",
+      "hash": "d09b35bbe539d32d018e1e277b8a19bc",
+      "size": 205941,
+      "extractedAt": "2025-06-29T04:15:53.914Z",
+      "formatInfo": {
+        "width": 2519680,
+        "height": 2519680,
+        "dpi": null,
+        "compression": null
+      },
+      "positionInfo": {
+        "page": 2,
+        "section": null,
+        "paragraph": null,
+        "line": null,
+        "xPosition": 4079875,
+        "yPosition": 207645,
+        "anchor": "floating",
+        "wrapType": "wrapSquare",
+        "zOrder": null
+      },
+      "cropInfo": {
+        "left": 12500,
+        "top": 0,
+        "right": 12500,
+        "bottom": 0,
+        "rotation": 0,
+        "flipHorizontal": false,
+        "flipVertical": false
+      },
+      "relationshipInfo": {
+        "relationshipId": null,
+        "embedId": "rId13",
+        "linkId": null
+      },
+      "contextInfo": {
+        "isInHeader": false,
+        "isInFooter": false,
+        "isInTable": false,
+        "tablePosition": null,
+        "precedingText": "",
+        "followingText": "",
+        "isFloating": false,
+        "isInline": true
+      },
+      "relationship": {
+        "relationshipId": "rId19",
+        "embedId": null,
+        "context": "document"
+      },
+      "position": {
+        "page": 1,
+        "section": 1,
+        "headerType": null,
+        "tableId": null,
+        "cellPosition": null,
+        "paragraphId": 120,
+        "runId": null,
+        "absolutePosition": {
+          "x": 4085590,
+          "xRelativeFrom": "column",
+          "y": 153670,
+          "yRelativeFrom": "paragraph"
+        },
+        "relativePosition": null
+      },
+      "context": {
+        "isInHeader": false,
+        "isInFooter": false,
+        "isInTable": false,
+        "isFloating": true,
+        "isInline": false,
+        "wrapType": "square",
+        "anchor": null,
+        "zOrder": null,
+        "behindText": false
+      },
+      "formatting": {
+        "width": 265,
+        "height": 265,
+        "scaleX": 100,
+        "scaleY": 100,
+        "rotation": 0,
+        "flipHorizontal": false,
+        "flipVertical": false,
+        "brightness": 0,
+        "contrast": 0,
+        "cropLeft": 12.5,
+        "cropTop": 0,
+        "cropRight": 12.5,
+        "cropBottom": 0
+      }
+    },
+    "3570ed4bd0c6a3ca83602f317ff2cce1": {
+      "originalPath": "word/media/image14.jpeg",
+      "extractedPath": "extracted_images\\image14_3570ed4b.jpeg",
+      "fileName": "image14_3570ed4b.jpeg",
+      "hash": "3570ed4bd0c6a3ca83602f317ff2cce1",
+      "size": 189718,
+      "extractedAt": "2025-06-29T04:15:53.915Z",
+      "formatInfo": {
+        "width": 2519680,
+        "height": 2519680,
+        "dpi": null,
+        "compression": null
+      },
+      "positionInfo": {
+        "page": 3,
+        "section": null,
+        "paragraph": null,
+        "line": null,
+        "xPosition": 1115695,
+        "yPosition": 207645,
+        "anchor": "floating",
+        "wrapType": "wrapSquare",
+        "zOrder": null
+      },
+      "cropInfo": {
+        "left": 12500,
+        "top": 0,
+        "right": 12500,
+        "bottom": 0,
+        "rotation": 0,
+        "flipHorizontal": false,
+        "flipVertical": false
+      },
+      "relationshipInfo": {
+        "relationshipId": null,
+        "embedId": "rId14",
+        "linkId": null
+      },
+      "contextInfo": {
+        "isInHeader": false,
+        "isInFooter": false,
+        "isInTable": false,
+        "tablePosition": null,
+        "precedingText": "",
+        "followingText": "",
+        "isFloating": false,
+        "isInline": true
+      },
+      "relationship": {
+        "relationshipId": "rId20",
+        "embedId": null,
+        "context": "document"
+      },
+      "position": {
+        "page": 1,
+        "section": 1,
+        "headerType": null,
+        "tableId": null,
+        "cellPosition": null,
+        "paragraphId": 120,
+        "runId": null,
+        "absolutePosition": {
+          "x": 1092835,
+          "xRelativeFrom": "column",
+          "y": 153670,
+          "yRelativeFrom": "paragraph"
+        },
+        "relativePosition": null
+      },
+      "context": {
+        "isInHeader": false,
+        "isInFooter": false,
+        "isInTable": false,
+        "isFloating": true,
+        "isInline": false,
+        "wrapType": "square",
+        "anchor": null,
+        "zOrder": null,
+        "behindText": false
+      },
+      "formatting": {
+        "width": 265,
+        "height": 265,
+        "scaleX": 100,
+        "scaleY": 100,
+        "rotation": 0,
+        "flipHorizontal": false,
+        "flipVertical": false,
+        "brightness": 0,
+        "contrast": 0,
+        "cropLeft": 12.5,
+        "cropTop": 0,
+        "cropRight": 12.5,
+        "cropBottom": 0
+      }
+    },
+    "b7b5d6a69161da7329b50928263040e5": {
+      "originalPath": "word/media/image15.jpeg",
+      "extractedPath": "extracted_images\\image15_b7b5d6a6.jpeg",
+      "fileName": "image15_b7b5d6a6.jpeg",
+      "hash": "b7b5d6a69161da7329b50928263040e5",
+      "size": 227919,
+      "extractedAt": "2025-06-29T04:15:53.916Z",
+      "formatInfo": {
+        "width": 2519680,
+        "height": 2519680,
+        "dpi": null,
+        "compression": null
+      },
+      "positionInfo": {
+        "page": 3,
+        "section": null,
+        "paragraph": null,
+        "line": null,
+        "xPosition": 4079875,
+        "yPosition": 150495,
+        "anchor": "floating",
+        "wrapType": "wrapSquare",
+        "zOrder": null
+      },
+      "cropInfo": {
+        "left": 0,
+        "top": 12500,
+        "right": 0,
+        "bottom": 12500,
+        "rotation": 0,
+        "flipHorizontal": false,
+        "flipVertical": false
+      },
+      "relationshipInfo": {
+        "relationshipId": null,
+        "embedId": "rId15",
+        "linkId": null
+      },
+      "contextInfo": {
+        "isInHeader": false,
+        "isInFooter": false,
+        "isInTable": false,
+        "tablePosition": null,
+        "precedingText": "",
+        "followingText": "",
+        "isFloating": false,
+        "isInline": true
+      },
+      "relationship": {
+        "relationshipId": "rId21",
+        "embedId": null,
+        "context": "document"
+      },
+      "position": {
+        "page": 1,
+        "section": 1,
+        "headerType": null,
+        "tableId": null,
+        "cellPosition": null,
+        "paragraphId": 128,
+        "runId": null,
+        "absolutePosition": {
+          "x": 4085590,
+          "xRelativeFrom": "column",
+          "y": 197485,
+          "yRelativeFrom": "paragraph"
+        },
+        "relativePosition": null
+      },
+      "context": {
+        "isInHeader": false,
+        "isInFooter": false,
+        "isInTable": false,
+        "isFloating": true,
+        "isInline": false,
+        "wrapType": "square",
+        "anchor": null,
+        "zOrder": null,
+        "behindText": false
+      },
+      "formatting": {
+        "width": 265,
+        "height": 265,
+        "scaleX": 100,
+        "scaleY": 100,
+        "rotation": 0,
+        "flipHorizontal": false,
+        "flipVertical": false,
+        "brightness": 0,
+        "contrast": 0,
+        "cropLeft": 12.5,
+        "cropTop": 0,
+        "cropRight": 12.5,
+        "cropBottom": 0
+      }
+    },
+    "8348b85bb63a01c5f1a08dff41db0846": {
+      "originalPath": "word/media/image16.jpeg",
+      "extractedPath": "extracted_images\\image16_8348b85b.jpeg",
+      "fileName": "image16_8348b85b.jpeg",
+      "hash": "8348b85bb63a01c5f1a08dff41db0846",
+      "size": 207594,
+      "extractedAt": "2025-06-29T04:15:53.918Z",
+      "formatInfo": {
+        "width": 2519680,
+        "height": 2519680,
+        "dpi": null,
+        "compression": null
+      },
+      "positionInfo": {
+        "page": 3,
+        "section": null,
+        "paragraph": null,
+        "line": null,
+        "xPosition": 1100455,
+        "yPosition": 150495,
+        "anchor": "floating",
+        "wrapType": "wrapSquare",
+        "zOrder": null
+      },
+      "cropInfo": {
+        "left": 0,
+        "top": 12500,
+        "right": 0,
+        "bottom": 12500,
+        "rotation": 0,
+        "flipHorizontal": false,
+        "flipVertical": false
+      },
+      "relationshipInfo": {
+        "relationshipId": null,
+        "embedId": "rId16",
+        "linkId": null
+      },
+      "contextInfo": {
+        "isInHeader": false,
+        "isInFooter": false,
+        "isInTable": false,
+        "tablePosition": null,
+        "precedingText": "",
+        "followingText": "",
+        "isFloating": false,
+        "isInline": true
+      },
+      "relationship": {
+        "relationshipId": "rId22",
+        "embedId": null,
+        "context": "document"
+      },
+      "position": {
+        "page": 1,
+        "section": 1,
+        "headerType": null,
+        "tableId": null,
+        "cellPosition": null,
+        "paragraphId": 128,
+        "runId": null,
+        "absolutePosition": {
+          "x": 1109980,
+          "xRelativeFrom": "column",
+          "y": 197485,
+          "yRelativeFrom": "paragraph"
+        },
+        "relativePosition": null
+      },
+      "context": {
+        "isInHeader": false,
+        "isInFooter": false,
+        "isInTable": false,
+        "isFloating": true,
+        "isInline": false,
+        "wrapType": "square",
+        "anchor": null,
+        "zOrder": null,
+        "behindText": false
+      },
+      "formatting": {
+        "width": 265,
+        "height": 265,
+        "scaleX": 100,
+        "scaleY": 100,
+        "rotation": 0,
+        "flipHorizontal": false,
+        "flipVertical": false,
+        "brightness": 0,
+        "contrast": 0,
+        "cropLeft": 12.5,
+        "cropTop": 0,
+        "cropRight": 12.5,
+        "cropBottom": 0
+      }
+    },
+    "1eeb3f5e1fdecce211e82bda38cc502c": {
+      "originalPath": "word/media/image18.jpeg",
+      "extractedPath": "extracted_images\\image18_1eeb3f5e.jpeg",
+      "fileName": "image18_1eeb3f5e.jpeg",
+      "hash": "1eeb3f5e1fdecce211e82bda38cc502c",
+      "size": 118656,
+      "extractedAt": "2025-06-29T04:15:53.919Z",
+      "formatInfo": {
+        "width": 2519680,
+        "height": 2519680,
+        "dpi": null,
+        "compression": null
+      },
+      "positionInfo": {
+        "page": 3,
+        "section": null,
+        "paragraph": null,
+        "line": null,
+        "xPosition": 4079875,
+        "yPosition": 205105,
+        "anchor": "floating",
+        "wrapType": "wrapSquare",
+        "zOrder": null
+      },
+      "cropInfo": {
+        "left": 12500,
+        "top": 0,
+        "right": 12500,
+        "bottom": 0,
+        "rotation": 0,
+        "flipHorizontal": false,
+        "flipVertical": false
+      },
+      "relationshipInfo": {
+        "relationshipId": null,
+        "embedId": "rId17",
+        "linkId": null
+      },
+      "contextInfo": {
+        "isInHeader": false,
+        "isInFooter": false,
+        "isInTable": false,
+        "tablePosition": null,
+        "precedingText": "",
+        "followingText": "",
+        "isFloating": false,
+        "isInline": true
+      },
+      "relationship": {
+        "relationshipId": "rId1",
+        "embedId": null,
+        "context": "header2"
+      },
+      "position": {
+        "page": 1,
+        "section": 1,
+        "headerType": "header2",
+        "tableId": null,
+        "cellPosition": null,
+        "paragraphId": 0,
+        "runId": null,
+        "absolutePosition": {
+          "x": 0,
+          "xRelativeFrom": "page",
+          "y": 0,
+          "yRelativeFrom": "page"
+        },
+        "relativePosition": null
+      },
+      "context": {
+        "isInHeader": true,
+        "isInFooter": false,
+        "isInTable": false,
+        "isFloating": true,
+        "isInline": false,
+        "wrapType": "none",
+        "anchor": null,
+        "zOrder": null,
+        "behindText": true
+      },
+      "formatting": {
+        "width": 820,
+        "height": 1150,
+        "scaleX": 100,
+        "scaleY": 100,
+        "rotation": 0,
+        "flipHorizontal": false,
+        "flipVertical": false,
+        "brightness": 0,
+        "contrast": 0,
+        "cropLeft": 0.9,
+        "cropTop": 0,
+        "cropRight": 24.934,
+        "cropBottom": 15.846
+      }
+    },
+    "fe4f8c66e4f7e78d54c8cc13fe4f785f": {
+      "originalPath": "word/media/image4.jpeg",
+      "extractedPath": "extracted_images\\image4_fe4f8c66.jpeg",
+      "fileName": "image4_fe4f8c66.jpeg",
+      "hash": "fe4f8c66e4f7e78d54c8cc13fe4f785f",
+      "size": 216192,
+      "extractedAt": "2025-06-29T04:15:53.920Z",
+      "formatInfo": {
+        "width": 2519680,
+        "height": 2519680,
+        "dpi": null,
+        "compression": null
+      },
+      "positionInfo": {
+        "page": 4,
+        "section": null,
+        "paragraph": null,
+        "line": null,
+        "xPosition": 1115695,
+        "yPosition": 205105,
+        "anchor": "floating",
+        "wrapType": "wrapSquare",
+        "zOrder": null
+      },
+      "cropInfo": {
+        "left": 12500,
+        "top": 0,
+        "right": 12500,
+        "bottom": 0,
+        "rotation": 0,
+        "flipHorizontal": false,
+        "flipVertical": false
+      },
+      "relationshipInfo": {
+        "relationshipId": null,
+        "embedId": "rId18",
+        "linkId": null
+      },
+      "contextInfo": {
+        "isInHeader": false,
+        "isInFooter": false,
+        "isInTable": false,
+        "tablePosition": null,
+        "precedingText": "",
+        "followingText": "",
+        "isFloating": false,
+        "isInline": true
+      },
+      "relationship": {
+        "relationshipId": "rId10",
+        "embedId": null,
+        "context": "document"
+      },
+      "position": {
+        "page": 1,
+        "section": 1,
+        "headerType": null,
+        "tableId": null,
+        "cellPosition": null,
+        "paragraphId": 38,
+        "runId": null,
+        "absolutePosition": {
+          "x": 1115695,
+          "xRelativeFrom": "column",
+          "y": 205105,
+          "yRelativeFrom": "paragraph"
+        },
+        "relativePosition": null
+      },
+      "context": {
+        "isInHeader": false,
+        "isInFooter": false,
+        "isInTable": false,
+        "isFloating": true,
+        "isInline": false,
+        "wrapType": "square",
+        "anchor": null,
+        "zOrder": null,
+        "behindText": false
+      },
+      "formatting": {
+        "width": 265,
+        "height": 265,
+        "scaleX": 100,
+        "scaleY": 100,
+        "rotation": 0,
+        "flipHorizontal": false,
+        "flipVertical": false,
+        "brightness": 0,
+        "contrast": 0,
+        "cropLeft": 12.5,
+        "cropTop": 0,
+        "cropRight": 12.5,
+        "cropBottom": 0
+      }
+    }
   },
-  "a76dccdafbdef422a8fef8f60c200135": {
-    "originalPath": "word/media/image9.jpeg",
-    "extractedPath": "extracted_images\\image9_a76dccda.jpeg",
-    "fileName": "image9_a76dccda.jpeg",
-    "hash": "a76dccdafbdef422a8fef8f60c200135",
-    "size": 258149,
-    "extractedAt": "2025-06-29T03:30:46.207Z"
-  },
-  "44c3c1fe062bd42789c8e4f31b7d13d9": {
-    "originalPath": "word/media/image3.jpeg",
-    "extractedPath": "extracted_images\\image3_44c3c1fe.jpeg",
-    "fileName": "image3_44c3c1fe.jpeg",
-    "hash": "44c3c1fe062bd42789c8e4f31b7d13d9",
-    "size": 173795,
-    "extractedAt": "2025-06-29T03:30:46.213Z"
-  },
-  "077bc1b116fa9b21d6f208764f67ad73": {
-    "originalPath": "word/media/image2.jpeg",
-    "extractedPath": "extracted_images\\image2_077bc1b1.jpeg",
-    "fileName": "image2_077bc1b1.jpeg",
-    "hash": "077bc1b116fa9b21d6f208764f67ad73",
-    "size": 146112,
-    "extractedAt": "2025-06-29T03:30:46.215Z"
-  },
-  "32f311ba5055b7ecb8ba3d06d447a353": {
-    "originalPath": "word/media/image1.jpeg",
-    "extractedPath": "extracted_images\\image1_32f311ba.jpeg",
-    "fileName": "image1_32f311ba.jpeg",
-    "hash": "32f311ba5055b7ecb8ba3d06d447a353",
-    "size": 175436,
-    "extractedAt": "2025-06-29T03:30:46.216Z"
-  },
-  "9ea91d3f853c245f605962ea8c8075c3": {
-    "originalPath": "word/media/image10.jpeg",
-    "extractedPath": "extracted_images\\image10_9ea91d3f.jpeg",
-    "fileName": "image10_9ea91d3f.jpeg",
-    "hash": "9ea91d3f853c245f605962ea8c8075c3",
-    "size": 196297,
-    "extractedAt": "2025-06-29T03:30:46.218Z"
-  },
-  "a501ce4e0c760c420642b0ea9bfb0ae0": {
-    "originalPath": "word/media/image11.jpeg",
-    "extractedPath": "extracted_images\\image11_a501ce4e.jpeg",
-    "fileName": "image11_a501ce4e.jpeg",
-    "hash": "a501ce4e0c760c420642b0ea9bfb0ae0",
-    "size": 267070,
-    "extractedAt": "2025-06-29T03:30:46.219Z"
-  },
-  "b8645677ead4537f77decf4ff9d7bb04": {
-    "originalPath": "word/media/image12.jpeg",
-    "extractedPath": "extracted_images\\image12_b8645677.jpeg",
-    "fileName": "image12_b8645677.jpeg",
-    "hash": "b8645677ead4537f77decf4ff9d7bb04",
-    "size": 291725,
-    "extractedAt": "2025-06-29T03:30:46.221Z"
-  },
-  "d09b35bbe539d32d018e1e277b8a19bc": {
-    "originalPath": "word/media/image13.jpeg",
-    "extractedPath": "extracted_images\\image13_d09b35bb.jpeg",
-    "fileName": "image13_d09b35bb.jpeg",
-    "hash": "d09b35bbe539d32d018e1e277b8a19bc",
-    "size": 205941,
-    "extractedAt": "2025-06-29T03:30:46.222Z"
-  },
-  "3570ed4bd0c6a3ca83602f317ff2cce1": {
-    "originalPath": "word/media/image14.jpeg",
-    "extractedPath": "extracted_images\\image14_3570ed4b.jpeg",
-    "fileName": "image14_3570ed4b.jpeg",
-    "hash": "3570ed4bd0c6a3ca83602f317ff2cce1",
-    "size": 189718,
-    "extractedAt": "2025-06-29T03:30:46.223Z"
-  },
-  "b7b5d6a69161da7329b50928263040e5": {
-    "originalPath": "word/media/image15.jpeg",
-    "extractedPath": "extracted_images\\image15_b7b5d6a6.jpeg",
-    "fileName": "image15_b7b5d6a6.jpeg",
-    "hash": "b7b5d6a69161da7329b50928263040e5",
-    "size": 227919,
-    "extractedAt": "2025-06-29T03:30:46.224Z"
-  },
-  "8348b85bb63a01c5f1a08dff41db0846": {
-    "originalPath": "word/media/image16.jpeg",
-    "extractedPath": "extracted_images\\image16_8348b85b.jpeg",
-    "fileName": "image16_8348b85b.jpeg",
-    "hash": "8348b85bb63a01c5f1a08dff41db0846",
-    "size": 207594,
-    "extractedAt": "2025-06-29T03:30:46.225Z"
-  },
-  "1eeb3f5e1fdecce211e82bda38cc502c": {
-    "originalPath": "word/media/image18.jpeg",
-    "extractedPath": "extracted_images\\image18_1eeb3f5e.jpeg",
-    "fileName": "image18_1eeb3f5e.jpeg",
-    "hash": "1eeb3f5e1fdecce211e82bda38cc502c",
-    "size": 118656,
-    "extractedAt": "2025-06-29T03:30:46.226Z"
-  },
-  "fe4f8c66e4f7e78d54c8cc13fe4f785f": {
-    "originalPath": "word/media/image4.jpeg",
-    "extractedPath": "extracted_images\\image4_fe4f8c66.jpeg",
-    "fileName": "image4_fe4f8c66.jpeg",
-    "hash": "fe4f8c66e4f7e78d54c8cc13fe4f785f",
-    "size": 216192,
-    "extractedAt": "2025-06-29T03:30:46.228Z"
+  "statistics": {
+    "totalImages": 18,
+    "byFormat": {
+      "undefined": 18
+    },
+    "byContext": {
+      "header": 1,
+      "footer": 0,
+      "table": 0,
+      "paragraph": 1,
+      "floating": 16
+    },
+    "byPosition": {
+      "inline": 0,
+      "floating": 17
+    },
+    "withCropping": 17,
+    "withTransformations": 0,
+    "avgDimensions": {
+      "width": 298,
+      "height": 317
+    }
   }
 }

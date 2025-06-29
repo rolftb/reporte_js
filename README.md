@@ -1,30 +1,37 @@
 # 🎯 Generador de Reportes PUMA
 
-Sistema simplificado para generar reportes PUMA con imágenes reales extraídas del documento original "PUMA MES 6 2025.docx".
+Sistema optimizado para generar reportes PUMA con análisis avanzado de imágenes y replicación exacta del formato del documento original "PUMA MES 6 2025.docx".
 
 ## 🚀 Características
 
-- ✅ **Extrae imágenes automáticamente** del documento DOCX original
+- ✅ **Análisis avanzado de imágenes v3.0** con metadata completa de posicionamiento
+- ✅ **Extracción de coordenadas exactas** (x, y) y propiedades de recorte
+- ✅ **Información de contexto detallada** (header, footer, tabla, párrafo, flotante)
+- ✅ **Captura de propiedades de wrap** (square, tight, through, etc.)
+- ✅ **Dimensiones reales y transformaciones** (rotación, volteo, escala)
+- ✅ **Distribución por páginas** con ubicación estructural específica
 - ✅ **Genera reportes con estructura real** basada en el documento original
-- ✅ **Incluye logos corporativos** en el header
-- ✅ **Distribuye fotos de actividades** en las páginas (4 por página)
-- ✅ **Evita duplicados** usando hash MD5
-- ✅ **Sistema totalmente automatizado**
+- ✅ **Sistema totalmente automatizado** con estadísticas completas
 
 ## ⚡ Uso Rápido
 
-### 1. Extraer Imágenes (Solo una vez)
+### 1. Análisis Avanzado de Imágenes (Recomendado)
 ```bash
 cd C:\Users\rolft\Repositorios\Pauli\reporte_js
-node src/documentImageExtractor.cjs "./uploads/PUMA MES 6 2025.docx"
+node runAdvancedAnalysis.cjs
 ```
 
-### 2. Generar Reporte
+### 2. Análisis Básico (Legacy)
+```bash
+node src/documentImageExtractor.cjs
+```
+
+### 3. Generar Reporte
 ```bash
 node generatePumaReport.js
 ```
 
-¡Eso es todo! El reporte se genera en `./output/reporte_puma_[timestamp].docx`
+¡El reporte se genera en `./output/reporte_puma_[timestamp].docx` con toda la información de posicionamiento capturada!
 
 ## 📁 Estructura del Proyecto
 
@@ -136,3 +143,82 @@ node src/documentImageExtractor.cjs "./uploads/PUMA MES 6 2025.docx"
 - **Mantenibilidad**: Código enfocado en la funcionalidad principal
 
 El sistema está optimizado para generar reportes PUMA de alta calidad con el mínimo de archivos y máxima eficiencia.
+
+## 🔍 Análisis Avanzado de Imágenes v3.0
+
+El nuevo sistema de análisis captura información extremadamente detallada sobre cada imagen:
+
+### 📍 Información de Posicionamiento
+- **Coordenadas absolutas**: Posición exacta (x, y) en unidades EMU
+- **Referencias espaciales**: Punto de anclaje (column, paragraph, page, etc.)
+- **Ubicación estructural**: Header, footer, tabla, párrafo, imagen flotante
+- **Distribución por páginas**: Asignación específica a cada página del documento
+
+### 🎨 Información de Formato
+- **Dimensiones reales**: Ancho y alto en píxeles (ej: 265x265)
+- **Recorte detallado**: cropLeft, cropTop, cropRight, cropBottom en porcentajes
+- **Transformaciones**: Rotación, volteo horizontal/vertical, escala
+- **Propiedades de wrap**: square, tight, through, topAndBottom, none
+
+### 📊 Estadísticas Capturadas
+Del análisis del documento PUMA se obtuvieron estas métricas:
+- **18 imágenes totales** procesadas
+- **17 imágenes con recorte** (94% tienen algún tipo de recorte)
+- **17 imágenes flotantes** (94% están posicionadas de forma flotante)
+- **1 imagen en header**, **16 imágenes flotantes**, **1 en párrafo**
+- **Dimensiones promedio**: 298x317 píxeles
+
+### 📁 Estructura del Registro v3.0
+```json
+{
+  "metadata": {
+    "version": "3.0",
+    "features": [
+      "positioning", "cropping", "context", "formatting",
+      "absolute_positioning", "wrap_settings", "transformations"
+    ]
+  },
+  "pageDistribution": {
+    "1": [
+      {
+        "fileName": "image5_6fa52ec6.jpeg",
+        "position": {
+          "page": 1,
+          "paragraphId": 61,
+          "absolutePosition": {
+            "x": 4079875,        // Coordenada X exacta
+            "xRelativeFrom": "column",
+            "y": 153670,         // Coordenada Y exacta
+            "yRelativeFrom": "paragraph"
+          }
+        },
+        "formatting": {
+          "width": 265,          // Ancho real en píxeles
+          "height": 265,         // Alto real en píxeles
+          "cropLeft": 12.5,      // Recorte izquierdo 12.5%
+          "cropRight": 12.5      // Recorte derecho 12.5%
+        },
+        "context": {
+          "isFloating": true,    // Imagen flotante
+          "wrapType": "square"   // Texto rodea en cuadrado
+        }
+      }
+    ]
+  },
+  "statistics": {
+    "withCropping": 17,        // 17 de 18 imágenes tienen recorte
+    "avgDimensions": {
+      "width": 298,            // Ancho promedio
+      "height": 317            // Alto promedio
+    }
+  }
+}
+```
+
+### 🎯 Casos de Uso de la Metadata
+Esta información detallada permite:
+- **Replicación exacta** del posicionamiento original
+- **Aplicación correcta de recortes** a las imágenes
+- **Configuración precisa** de propiedades de wrap de texto
+- **Distribución fiel** de imágenes por página
+- **Análisis de patrones** de diseño en el documento

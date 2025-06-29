@@ -4,11 +4,13 @@
  * ESTRUCTURA REAL IDENTIFICADA:
  * - Header: Completamente compuesto de imágenes (logos corporativos)
  * - Páginas: Principalmente imágenes con mínimo texto
- * - No hay tablas estructuradas como pensábamos inicialmente
- * - Es un documento visual/fotográfico, no un formulario de texto
+ * - Formato corregido para evitar archivos DOCX rotos
  */
 
-import { Document, Packer, Paragraph, TextRun, ImageRun, Header, SectionType, AlignmentType } from 'docx';
+import { 
+    Document, Packer, Paragraph, TextRun, ImageRun, Header, SectionType, AlignmentType,
+    Table, TableRow, TableCell, WidthType, BorderStyle, VerticalAlign
+} from 'docx';
 import fs from 'fs-extra';
 import path from 'path';
 
@@ -22,10 +24,15 @@ class PumaRealStructureGenerator {
         
         this.config = {
             margins: {
-                top: 720,    // Reducido para más espacio para imágenes
+                top: 720,
                 right: 720,
                 bottom: 720,
                 left: 720
+            },
+            colors: {
+                headerBg: "003366",
+                headerText: "FFFFFF",
+                borderColor: "000000"
             }
         };
     }
@@ -44,15 +51,17 @@ class PumaRealStructureGenerator {
                 
                 console.log(`📋 Registro cargado: ${Object.keys(this.imageRegistry).length} imágenes`);
                 
-                // Clasificar imágenes según estructura real
+                // Clasificar imágenes según estructura real del README
                 for (const [hash, imageInfo] of Object.entries(this.imageRegistry)) {
-                    const isHeaderImage = imageInfo.originalPath.includes('image17.') || 
-                                         imageInfo.originalPath.includes('image18.');
+                    // Imágenes del header según página (image1 y image2 son header)
+                    const isHeaderImage = imageInfo.originalPath.includes('image1.') || 
+                                         imageInfo.originalPath.includes('image2.');
                     
                     if (isHeaderImage) {
                         this.headerImages.push({
                             ...imageInfo,
-                            hash: hash
+                            hash: hash,
+                            isFirstPage: imageInfo.originalPath.includes('image1.') // Logo primera página
                         });
                     } else {
                         this.documentImages.push({
@@ -74,101 +83,336 @@ class PumaRealStructureGenerator {
         }
     }
 
-    async createImageHeader() {
-        if (!this.useRealImages || this.headerImages.length === 0) {
-            // Header simple con texto
-            return new Header({
-                children: [
-                    new Paragraph({
-                        alignment: AlignmentType.CENTER,
-                        children: [
-                            new TextRun({
-                                text: "REGISTRO FOTOGRÁFICO PUMA",
-                                bold: true,
-                                size: 24
-                            })
-                        ]
-                    })
-                ]
-            });
-        }
-
-        // Header con imágenes reales
+    async createImageHeader(isFirstPage = false) {
+        // Header simplificado para evitar problemas de estructura
         const headerChildren = [];
         
-        for (let i = 0; i < this.headerImages.length; i++) {
-            const imageInfo = this.headerImages[i];
-            const imagePath = path.join(this.extractedImagesPath, imageInfo.fileName);
+        // Logos del header según página
+        if (this.useRealImages && this.headerImages.length > 0) {
+            const headerImage = this.headerImages.find(img => 
+                isFirstPage ? img.isFirstPage : !img.isFirstPage
+            );
             
-            try {
-                if (await fs.pathExists(imagePath)) {
-                    const imageBuffer = await fs.readFile(imagePath);
-                    
-                    headerChildren.push(
-                        new Paragraph({
-                            alignment: AlignmentType.CENTER,
-                            children: [
-                                new ImageRun({
-                                    data: imageBuffer,
-                                    transformation: {
-                                        width: 600,  // Header grande como en el original
-                                        height: 150
-                                    }
-                                })
-                            ]
-                        })
-                    );
-                    
-                    console.log(`✅ Header imagen agregada: ${imageInfo.fileName}`);
+            if (headerImage) {
+                const imagePath = path.join(this.extractedImagesPath, headerImage.fileName);
+                
+                try {
+                    if (await fs.pathExists(imagePath)) {
+                        const imageBuffer = await fs.readFile(imagePath);
+                        
+                        headerChildren.push(
+                            new Paragraph({
+                                alignment: AlignmentType.CENTER,
+                                children: [
+                                    new ImageRun({
+                                        data: imageBuffer,
+                                        transformation: {
+                                            width: 600,
+                                            height: 100
+                                        }
+                                    })
+                                ]
+                            })
+                        );
+                        
+                        console.log(`✅ Header imagen agregada: ${headerImage.fileName}`);
+                    }
+                } catch (error) {
+                    console.warn(`⚠️ Error cargando imagen header:`, error);
                 }
-            } catch (error) {
-                console.warn(`⚠️ Error cargando imagen header:`, error);
             }
         }
 
-        // Si no se pudieron cargar imágenes, usar texto
-        if (headerChildren.length === 0) {
-            headerChildren.push(
-                new Paragraph({
-                    alignment: AlignmentType.CENTER,
+        // Título del registro fotográfico como párrafo simple
+        headerChildren.push(
+            new Paragraph({
+                alignment: AlignmentType.CENTER,
+                children: [
+                    new TextRun({
+                        text: "REGISTRO FOTOGRÁFICO DE LA ACTIVIDAD",
+                        bold: true,
+                        size: 20,
+                        color: this.config.colors.headerBg
+                    })
+                ]
+            })
+        );
+
+        // Línea separadora
+        headerChildren.push(
+            new Paragraph({
+                alignment: AlignmentType.CENTER,
+                children: [
+                    new TextRun({
+                        text: "════════════════════════════════════════",
+                        size: 12,
+                        color: this.config.colors.headerBg
+                    })
+                ]
+            })
+        );
+
+        return new Header({ children: headerChildren });
+    }
+
+    createRegistroFotograficoTable() {
+        // Tabla "REGISTRO FOTOGRÁFICO DE LA ACTIVIDAD" como contenido de página
+        return new Table({
+            width: { size: 100, type: WidthType.PERCENTAGE },
+            rows: [
+                new TableRow({
                     children: [
-                        new TextRun({
-                            text: "REGISTRO FOTOGRÁFICO PUMA",
-                            bold: true,
-                            size: 24
+                        new TableCell({
+                            children: [
+                                new Paragraph({
+                                    alignment: AlignmentType.CENTER,
+                                    children: [
+                                        new TextRun({
+                                            text: "REGISTRO FOTOGRÁFICO DE LA ACTIVIDAD",
+                                            bold: true,
+                                            size: 20,
+                                            color: this.config.colors.headerText
+                                        })
+                                    ]
+                                })
+                            ],
+                            shading: { fill: this.config.colors.headerBg },
+                            borders: this.getTableBorders(),
+                            margins: {
+                                top: 150,
+                                bottom: 150,
+                                left: 100,
+                                right: 100
+                            }
                         })
                     ]
                 })
-            );
-        }
+            ]
+        });
+    }
 
-        return new Header({ children: headerChildren });
+    createAspectosTecnicosTable() {
+        // Tabla "ASPECTOS TÉCNICOS DE LA ACTIVIDAD EN TERRENO" según README
+        return new Table({
+            width: { size: 100, type: WidthType.PERCENTAGE },
+            columnWidths: [40, 60],
+            rows: [
+                // Título
+                new TableRow({
+                    children: [
+                        new TableCell({
+                            children: [
+                                new Paragraph({
+                                    alignment: AlignmentType.CENTER,
+                                    children: [
+                                        new TextRun({
+                                            text: "ASPECTOS TÉCNICOS DE LA ACTIVIDAD EN TERRENO",
+                                            bold: true,
+                                            size: 20,
+                                            color: this.config.colors.headerText
+                                        })
+                                    ]
+                                })
+                            ],
+                            columnSpan: 2,
+                            shading: { fill: this.config.colors.headerBg },
+                            borders: this.getTableBorders(),
+                            margins: {
+                                top: 200,
+                                bottom: 200,
+                                left: 100,
+                                right: 100
+                            }
+                        })
+                    ]
+                }),
+                // Contenido según README
+                this.createDataRow("Nombre de la actividad", "Programa de Calidad de Vida."),
+                this.createDataRow("Fecha", "Desde el 21 de mayo al 20 de junio"),
+                this.createDataRow("Lugar", "Av. Pdte. Kennedy 5454"),
+                this.createDataRow("Profesional a cargo", "Profesional área Calidad de Vida - Mutual Asesorías.")
+            ]
+        });
+    }
+
+    createDataRow(label, value) {
+        return new TableRow({
+            children: [
+                new TableCell({
+                    children: [
+                        new Paragraph({
+                            children: [
+                                new TextRun({
+                                    text: label,
+                                    bold: true,
+                                    size: 16
+                                })
+                            ]
+                        })
+                    ],
+                    borders: this.getTableBorders(),
+                    margins: {
+                        top: 150,
+                        bottom: 150,
+                        left: 100,
+                        right: 100
+                    }
+                }),
+                new TableCell({
+                    children: [
+                        new Paragraph({
+                            children: [
+                                new TextRun({
+                                    text: value,
+                                    size: 16
+                                })
+                            ]
+                        })
+                    ],
+                    borders: this.getTableBorders(),
+                    margins: {
+                        top: 150,
+                        bottom: 150,
+                        left: 100,
+                        right: 100
+                    }
+                })
+            ]
+        });
+    }
+
+    createActivityInfoTable(pageNumber) {
+        // Tabla interna de 3 filas, 2 columnas según README
+        return new Table({
+            width: { size: 80, type: WidthType.PERCENTAGE },
+            columnWidths: [50, 50],
+            rows: [
+                new TableRow({
+                    children: [
+                        new TableCell({
+                            children: [
+                                new Paragraph({
+                                    children: [
+                                        new TextRun({
+                                            text: "Fecha",
+                                            bold: true,
+                                            size: 14
+                                        })
+                                    ]
+                                })
+                            ],
+                            borders: this.getTableBorders()
+                        }),
+                        new TableCell({
+                            children: [
+                                new Paragraph({
+                                    children: [
+                                        new TextRun({
+                                            text: `Actividad ${pageNumber}`,
+                                            size: 14
+                                        })
+                                    ]
+                                })
+                            ],
+                            borders: this.getTableBorders()
+                        })
+                    ]
+                }),
+                new TableRow({
+                    children: [
+                        new TableCell({
+                            children: [
+                                new Paragraph({
+                                    children: [
+                                        new TextRun({
+                                            text: "Cantidad de pausas",
+                                            bold: true,
+                                            size: 14
+                                        })
+                                    ]
+                                })
+                            ],
+                            borders: this.getTableBorders()
+                        }),
+                        new TableCell({
+                            children: [
+                                new Paragraph({
+                                    children: [
+                                        new TextRun({
+                                            text: "4",
+                                            size: 14
+                                        })
+                                    ]
+                                })
+                            ],
+                            borders: this.getTableBorders()
+                        })
+                    ]
+                }),
+                new TableRow({
+                    children: [
+                        new TableCell({
+                            children: [
+                                new Paragraph({
+                                    children: [
+                                        new TextRun({
+                                            text: "Participantes",
+                                            bold: true,
+                                            size: 14
+                                        })
+                                    ]
+                                })
+                            ],
+                            borders: this.getTableBorders()
+                        }),
+                        new TableCell({
+                            children: [
+                                new Paragraph({
+                                    children: [
+                                        new TextRun({
+                                            text: "Trabajadores del área",
+                                            size: 14
+                                        })
+                                    ]
+                                })
+                            ],
+                            borders: this.getTableBorders()
+                        })
+                    ]
+                })
+            ]
+        });
+    }
+
+    getTableBorders() {
+        return {
+            top: { style: BorderStyle.SINGLE, size: 1, color: this.config.colors.borderColor },
+            bottom: { style: BorderStyle.SINGLE, size: 1, color: this.config.colors.borderColor },
+            left: { style: BorderStyle.SINGLE, size: 1, color: this.config.colors.borderColor },
+            right: { style: BorderStyle.SINGLE, size: 1, color: this.config.colors.borderColor }
+        };
     }
 
     async createImagePage(pageNumber) {
         const pageChildren = [];
         
-        // Título pequeño de la página
-        pageChildren.push(
-            new Paragraph({
-                alignment: AlignmentType.CENTER,
-                children: [
-                    new TextRun({
-                        text: `ACTIVIDAD ${pageNumber}`,
-                        bold: true,
-                        size: 16
-                    })
-                ]
-            })
-        );
+        // Tabla del registro fotográfico al inicio de cada página
+        pageChildren.push(this.createRegistroFotograficoTable());
         
-        // Línea vacía
+        // Espacio
         pageChildren.push(new Paragraph({ children: [new TextRun("")] }));
         
-        // Agregar hasta 4 imágenes por página
+        // Tabla interna de información de actividad (3 filas, 2 columnas)
+        pageChildren.push(this.createActivityInfoTable(pageNumber));
+        
+        // Espacio antes de fotos
+        pageChildren.push(new Paragraph({ children: [new TextRun("")] }));
+        
+        // Agregar hasta 4 imágenes por página según README
         const imagesPerPage = 4;
         const startIndex = (pageNumber - 1) * imagesPerPage;
         
+        // Crear grid para las fotos
         for (let i = 0; i < imagesPerPage && (startIndex + i) < this.documentImages.length; i++) {
             const imageInfo = this.documentImages[startIndex + i];
             const imagePath = path.join(this.extractedImagesPath, imageInfo.fileName);
@@ -184,21 +428,21 @@ class PumaRealStructureGenerator {
                                 new ImageRun({
                                     data: imageBuffer,
                                     transformation: {
-                                        width: 400,
-                                        height: 300
+                                        width: 300,
+                                        height: 225
                                     }
                                 })
                             ]
                         })
                     );
                     
-                    // Pequeña descripción
+                    // Descripción de la foto
                     pageChildren.push(
                         new Paragraph({
                             alignment: AlignmentType.CENTER,
                             children: [
                                 new TextRun({
-                                    text: `Foto ${i + 1} - ${imageInfo.fileName}`,
+                                    text: `Foto ${i + 1}`,
                                     size: 12,
                                     italic: true
                                 })
@@ -206,8 +450,10 @@ class PumaRealStructureGenerator {
                         })
                     );
                     
-                    // Espacio
-                    pageChildren.push(new Paragraph({ children: [new TextRun("")] }));
+                    // Pequeño espacio entre fotos
+                    if (i < imagesPerPage - 1) {
+                        pageChildren.push(new Paragraph({ children: [new TextRun("")] }));
+                    }
                     
                     console.log(`📸 Imagen página ${pageNumber}: ${imageInfo.fileName}`);
                 } else {
@@ -218,49 +464,51 @@ class PumaRealStructureGenerator {
             }
         }
         
-        // Si no hay imágenes, agregar placeholder
-        if (pageChildren.length <= 2) {
-            pageChildren.push(
-                new Paragraph({
-                    alignment: AlignmentType.CENTER,
-                    children: [
-                        new TextRun({
-                            text: "[CONTENIDO VISUAL DE LA ACTIVIDAD]",
-                            italic: true,
-                            size: 14
-                        })
-                    ]
-                })
-            );
-        }
-        
         return pageChildren;
     }
 
     async generateDocument() {
-        console.log('📄 Generando documento PUMA con estructura real (basado en imágenes)...');
+        console.log('📄 Generando documento PUMA con estructura real (corregido)...');
         
         await this.loadExtractedImages();
         
         const sections = [];
-        const header = await this.createImageHeader();
         
-        // Calcular número de páginas necesarias
+        // PRIMERA PÁGINA: Tabla de aspectos técnicos + header
+        const firstPageHeader = await this.createImageHeader(true); // Header primera página
+        const aspectosTecnicosTable = this.createAspectosTecnicosTable();
+        
+        sections.push({
+            properties: {
+                page: { margin: this.config.margins }
+            },
+            headers: {
+                default: firstPageHeader
+            },
+            children: [
+                aspectosTecnicosTable,
+                new Paragraph({ children: [new TextRun("")] }), // Espacio
+                new Paragraph({ children: [new TextRun("")] })  // Espacio adicional
+            ]
+        });
+        
+        // PÁGINAS SIGUIENTES: Una por cada set de 4 actividades
         const imagesPerPage = 4;
         const totalPages = Math.ceil(this.documentImages.length / imagesPerPage) || 1;
         
-        console.log(`📊 Generando ${totalPages} páginas para ${this.documentImages.length} imágenes`);
+        console.log(`📊 Generando ${totalPages} páginas de actividades para ${this.documentImages.length} imágenes`);
         
         for (let pageNum = 1; pageNum <= totalPages; pageNum++) {
+            const activityPageHeader = await this.createImageHeader(false); // Header páginas siguientes
             const pageChildren = await this.createImagePage(pageNum);
             
             sections.push({
                 properties: {
                     page: { margin: this.config.margins },
-                    type: pageNum === 1 ? undefined : SectionType.NEXT_PAGE
+                    type: SectionType.NEXT_PAGE
                 },
                 headers: {
-                    default: header
+                    default: activityPageHeader
                 },
                 children: pageChildren
             });
