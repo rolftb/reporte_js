@@ -13,7 +13,7 @@
  * - 16 imágenes reales de las actividades
  */
 
-import { Document, Packer, Paragraph, TextRun, ImageRun, Header, SectionType, AlignmentType, Table, TableRow, TableCell, WidthType, BorderStyle } from 'docx';
+import { Document, Packer, Paragraph, TextRun, ImageRun, Header, SectionType, AlignmentType, Table, TableRow, TableCell, WidthType, BorderStyle, ShadingType } from 'docx';
 import fs from 'fs-extra';
 import path from 'path';
 
@@ -102,8 +102,16 @@ class PumaExactReplicatorGenerator {
             let imageInfo = null;
             if (this.imageRegistry) {
                 for (const [hash, info] of Object.entries(this.imageRegistry)) {
+                    // Mapear nombres personalizados a nombres originales
+                    let searchName = imageName;
+                    if (imageName === "encabezado_default") {
+                        searchName = "image17.jpeg";
+                    } else if (imageName === "image_primera_pagina") {
+                        searchName = "image18.jpeg";
+                    }
+                    
                     // Buscar por nombre de imagen (ej: "image1.jpeg" en "word/media/image1.jpeg")
-                    if (info.originalPath.includes(imageName) || info.originalPath.endsWith(imageName)) {
+                    if (info.originalPath.includes(searchName) || info.originalPath.endsWith(searchName)) {
                         imageInfo = info;
                         break;
                     }
@@ -163,13 +171,18 @@ class PumaExactReplicatorGenerator {
                                         new TextRun({
                                             text: "ASPECTOS TÉCNICOS DE LA ACTIVIDAD EN TERRENO",
                                             bold: true,
-                                            size: 22
+                                            size: 22,
+                                            color: "FFFFFF" // Texto blanco
                                         })
                                     ],
                                     alignment: AlignmentType.CENTER,
                                 })
                             ],
                             columnSpan: 2,
+                            shading: {
+                                type: ShadingType.SOLID,
+                                color: "4472C4", // Fondo azul corporativo típico de PUMA
+                            },
                         })
                     ]
                 }),
@@ -446,19 +459,38 @@ class PumaExactReplicatorGenerator {
                     page: {
                         margin: this.config.margins,
                     },
+                    titlePage: true, // Habilita header diferente para primera página
                 },
                 headers: {
+                    // Header para la primera página - con imágenes según especificaciones originales
+                    first: new Header({
+                        children: [
+                            new Paragraph({
+                                children: [
+                                    await this.createImageRun("encabezado_default", 814, 1072), // image17.jpeg - dimensiones exactas
+                                ],
+                                alignment: AlignmentType.CENTER,
+                            }),
+                            new Paragraph({
+                                children: [
+                                    await this.createImageRun("encabezado_default", 816, 1042), // image17.jpeg - segunda instancia
+                                ],
+                                alignment: AlignmentType.CENTER,
+                            }),
+                            new Paragraph({
+                                children: [
+                                    await this.createImageRun("image_primera_pagina", 814, 1172), // image18.jpeg - dimensiones exactas
+                                ],
+                                alignment: AlignmentType.CENTER,
+                            })
+                        ]
+                    }),
+                    // Header para páginas siguientes - solo una imagen según especificaciones
                     default: new Header({
                         children: [
                             new Paragraph({
                                 children: [
-                                    await this.createImageRun("image17.jpeg", 120, 60), // Logo izquierdo
-                                    new TextRun({
-                                        text: "    PUMA ENERGY CHILE S.A.    ",
-                                        bold: true,
-                                        size: 20
-                                    }),
-                                    await this.createImageRun("image18.jpeg", 120, 60), // Logo derecho
+                                    await this.createImageRun("image_primera_pagina", 820, 1150), // image18.jpeg - dimensiones exactas
                                 ],
                                 alignment: AlignmentType.CENTER,
                             })

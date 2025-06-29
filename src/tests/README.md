@@ -22,6 +22,7 @@ Este directorio contiene scripts de prueba para validar el funcionamiento de ext
 
 ### Tests de Replicación
 - **`testExactReplicator.js`** - 🆕 Genera replicación exacta del documento "PUMA MES 6 2025.docx"
+- **`validateCorrections.js`** - 🆕 Valida correcciones específicas de headers y colores
 
 ## 🚀 Ejecución de Tests
 
@@ -54,6 +55,12 @@ node src/tests/testSimple.js
 node src/tests/testExactReplicator.js
 ```
 **Qué hace**: Genera una replicación exacta del documento "PUMA MES 6 2025.docx" con todos los datos específicos extraídos
+
+### Validar Correcciones (Nuevo)
+```bash
+node src/tests/validateCorrections.js
+```
+**Qué hace**: Valida las correcciones específicas de headers diferenciados y colores de celda en los documentos generados
 
 ## 📊 Resultados de Tests
 
@@ -117,3 +124,4 @@ miNuevoTest();
 - **Simple**: Verificación rápida de funcionalidad básica
 - **Document**: Test general de capacidades del generador
 - **Exact Replicator**: Asegurar replicación exacta de documentos fuente
+- **Validate Corrections**: Comprobar correcciones específicas en headers y colores
