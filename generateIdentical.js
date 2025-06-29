@@ -516,9 +516,38 @@ El documento generado incluye:
 }
 
 // Función principal
+async function findLatestAnalysisFile() {
+    const outputDir = './output';
+    const files = await fs.readdir(outputDir);
+    
+    const analysisFiles = files
+        .filter(file => file.startsWith('complete_analysis_') && file.endsWith('.json'))
+        .map(file => ({
+            name: file,
+            path: path.join(outputDir, file),
+            stat: fs.statSync(path.join(outputDir, file))
+        }))
+        .sort((a, b) => b.stat.mtime - a.stat.mtime);
+    
+    if (analysisFiles.length === 0) {
+        throw new Error('No se encontraron archivos de análisis');
+    }
+    
+    console.log(`📊 Usando archivo de análisis más reciente: ${analysisFiles[0].name}`);
+    return analysisFiles[0].path;
+}
+
 async function main() {
-    const sourcePath = process.argv[2] || './output/complete_analysis_2025-06-29T02-24-21.json';
-    const outputPath = process.argv[3] || './output/PUMA_MES_6_2025_GENERADO_IDENTICO.docx';
+    let sourcePath, outputPath;
+    
+    try {
+        // Si se proporciona por argumento, usar ese; sino buscar el más reciente
+        sourcePath = process.argv[2] || await findLatestAnalysisFile();
+        outputPath = process.argv[3] || './output/PUMA_MES_6_2025_GENERADO_IDENTICO.docx';
+    } catch (error) {
+        console.error('❌ Error buscando archivo de análisis:', error.message);
+        return;
+    }
 
     console.log('🎯 GENERADOR DE DOCUMENTOS DOCX IDÉNTICOS');
     console.log('============================================================');

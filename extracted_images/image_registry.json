@@ -1,0 +1,193 @@
+{
+  "extractedAt": "2025-06-29T02:54:12.753Z",
+  "totalImages": 18,
+  "images": [
+    {
+      "id": 1,
+      "originalPath": "word/media/image17.jpeg",
+      "fileName": "image_001.jpeg",
+      "outputPath": "extracted_images\\image_001.jpeg",
+      "size": 94882,
+      "hash": "bfca8351268c989e4d2d6333649d5233",
+      "extension": ".jpeg",
+      "extracted": "2025-06-29T02:54:12.722Z"
+    },
+    {
+      "id": 2,
+      "originalPath": "word/media/image5.jpeg",
+      "fileName": "image_002.jpeg",
+      "outputPath": "extracted_images\\image_002.jpeg",
+      "size": 277624,
+      "hash": "6fa52ec64f82de579e342db3f1a202cf",
+      "extension": ".jpeg",
+      "extracted": "2025-06-29T02:54:12.724Z"
+    },
+    {
+      "id": 3,
+      "originalPath": "word/media/image6.jpeg",
+      "fileName": "image_003.jpeg",
+      "outputPath": "extracted_images\\image_003.jpeg",
+      "size": 245559,
+      "hash": "6d5eee18bfa2bd17680421698fa04e2f",
+      "extension": ".jpeg",
+      "extracted": "2025-06-29T02:54:12.725Z"
+    },
+    {
+      "id": 4,
+      "originalPath": "word/media/image7.jpeg",
+      "fileName": "image_004.jpeg",
+      "outputPath": "extracted_images\\image_004.jpeg",
+      "size": 267263,
+      "hash": "6cdb4b1e61f65724091e3d919c5ceb07",
+      "extension": ".jpeg",
+      "extracted": "2025-06-29T02:54:12.728Z"
+    },
+    {
+      "id": 5,
+      "originalPath": "word/media/image8.jpeg",
+      "fileName": "image_005.jpeg",
+      "outputPath": "extracted_images\\image_005.jpeg",
+      "size": 284247,
+      "hash": "16e2aa59876832906e93f18665f27bd6",
+      "extension": ".jpeg",
+      "extracted": "2025-06-29T02:54:12.731Z"
+    },
+    {
+      "id": 6,
+      "originalPath": "word/media/image9.jpeg",
+      "fileName": "image_006.jpeg",
+      "outputPath": "extracted_images\\image_006.jpeg",
+      "size": 258149,
+      "hash": "a76dccdafbdef422a8fef8f60c200135",
+      "extension": ".jpeg",
+      "extracted": "2025-06-29T02:54:12.734Z"
+    },
+    {
+      "id": 7,
+      "originalPath": "word/media/image3.jpeg",
+      "fileName": "image_007.jpeg",
+      "outputPath": "extracted_images\\image_007.jpeg",
+      "size": 173795,
+      "hash": "44c3c1fe062bd42789c8e4f31b7d13d9",
+      "extension": ".jpeg",
+      "extracted": "2025-06-29T02:54:12.736Z"
+    },
+    {
+      "id": 8,
+      "originalPath": "word/media/image2.jpeg",
+      "fileName": "image_008.jpeg",
+      "outputPath": "extracted_images\\image_008.jpeg",
+      "size": 146112,
+      "hash": "077bc1b116fa9b21d6f208764f67ad73",
+      "extension": ".jpeg",
+      "extracted": "2025-06-29T02:54:12.737Z"
+    },
+    {
+      "id": 9,
+      "originalPath": "word/media/image1.jpeg",
+      "fileName": "image_009.jpeg",
+      "outputPath": "extracted_images\\image_009.jpeg",
+      "size": 175436,
+      "hash": "32f311ba5055b7ecb8ba3d06d447a353",
+      "extension": ".jpeg",
+      "extracted": "2025-06-29T02:54:12.739Z"
+    },
+    {
+      "id": 10,
+      "originalPath": "word/media/image10.jpeg",
+      "fileName": "image_010.jpeg",
+      "outputPath": "extracted_images\\image_010.jpeg",
+      "size": 196297,
+      "hash": "9ea91d3f853c245f605962ea8c8075c3",
+      "extension": ".jpeg",
+      "extracted": "2025-06-29T02:54:12.741Z"
+    },
+    {
+      "id": 11,
+      "originalPath": "word/media/image11.jpeg",
+      "fileName": "image_011.jpeg",
+      "outputPath": "extracted_images\\image_011.jpeg",
+      "size": 267070,
+      "hash": "a501ce4e0c760c420642b0ea9bfb0ae0",
+      "extension": ".jpeg",
+      "extracted": "2025-06-29T02:54:12.743Z"
+    },
+    {
+      "id": 12,
+      "originalPath": "word/media/image12.jpeg",
+      "fileName": "image_012.jpeg",
+      "outputPath": "extracted_images\\image_012.jpeg",
+      "size": 291725,
+      "hash": "b8645677ead4537f77decf4ff9d7bb04",
+      "extension": ".jpeg",
+      "extracted": "2025-06-29T02:54:12.744Z"
+    },
+    {
+      "id": 13,
+      "originalPath": "word/media/image13.jpeg",
+      "fileName": "image_013.jpeg",
+      "outputPath": "extracted_images\\image_013.jpeg",
+      "size": 205941,
+      "hash": "d09b35bbe539d32d018e1e277b8a19bc",
+      "extension": ".jpeg",
+      "extracted": "2025-06-29T02:54:12.746Z"
+    },
+    {
+      "id": 14,
+      "originalPath": "word/media/image14.jpeg",
+      "fileName": "image_014.jpeg",
+      "outputPath": "extracted_images\\image_014.jpeg",
+      "size": 189718,
+      "hash": "3570ed4bd0c6a3ca83602f317ff2cce1",
+      "extension": ".jpeg",
+      "extracted": "2025-06-29T02:54:12.747Z"
+    },
+    {
+      "id": 15,
+      "originalPath": "word/media/image15.jpeg",
+      "fileName": "image_015.jpeg",
+      "outputPath": "extracted_images\\image_015.jpeg",
+      "size": 227919,
+      "hash": "b7b5d6a69161da7329b50928263040e5",
+      "extension": ".jpeg",
+      "extracted": "2025-06-29T02:54:12.749Z"
+    },
+    {
+      "id": 16,
+      "originalPath": "word/media/image16.jpeg",
+      "fileName": "image_016.jpeg",
+      "outputPath": "extracted_images\\image_016.jpeg",
+      "size": 207594,
+      "hash": "8348b85bb63a01c5f1a08dff41db0846",
+      "extension": ".jpeg",
+      "extracted": "2025-06-29T02:54:12.751Z"
+    },
+    {
+      "id": 17,
+      "originalPath": "word/media/image18.jpeg",
+      "fileName": "image_017.jpeg",
+      "outputPath": "extracted_images\\image_017.jpeg",
+      "size": 118656,
+      "hash": "1eeb3f5e1fdecce211e82bda38cc502c",
+      "extension": ".jpeg",
+      "extracted": "2025-06-29T02:54:12.752Z"
+    },
+    {
+      "id": 18,
+      "originalPath": "word/media/image4.jpeg",
+      "fileName": "image_018.jpeg",
+      "outputPath": "extracted_images\\image_018.jpeg",
+      "size": 216192,
+      "hash": "fe4f8c66e4f7e78d54c8cc13fe4f785f",
+      "extension": ".jpeg",
+      "extracted": "2025-06-29T02:54:12.753Z"
+    }
+  ],
+  "summary": {
+    "totalSize": 3844179,
+    "extensions": [
+      ".jpeg"
+    ],
+    "uniqueHashes": 18
+  }
+}
