@@ -13,7 +13,7 @@
  * - 16 imágenes reales de las actividades
  */
 
-import { Document, Packer, Paragraph, TextRun, ImageRun, Header, SectionType, AlignmentType, Table, TableRow, TableCell, WidthType, BorderStyle, ShadingType, TextWrappingType, TextWrappingSide, HorizontalPositionRelativeFrom, VerticalPositionRelativeFrom, HorizontalPositionAlign, VerticalPositionAlign } from 'docx';
+import { Document, Packer, Paragraph, TextRun, ImageRun, Header, SectionType, AlignmentType, Table, TableRow, TableCell, WidthType, BorderStyle, ShadingType, TextWrappingType, TextWrappingSide, HorizontalPositionRelativeFrom, VerticalPositionRelativeFrom, HorizontalPositionAlign, VerticalPositionAlign, PageBreak } from 'docx';
 import fs from 'fs-extra';
 import path from 'path';
 
@@ -272,6 +272,197 @@ class PumaExactReplicatorGenerator {
                 italics: true
             });
         }
+    }
+
+    /**
+     * Crea una imagen para el body con posicionamiento específico
+     * Basado en el análisis del documento original con coordenadas exactas
+     */
+    async createBodyImageRun(imageName, imageConfig, positioning = {}, cropping = null) {
+        if (!this.useRealImages) {
+            return new TextRun({
+                text: `[${imageName}]`,
+                color: "666666",
+                italics: true
+            });
+        }
+
+        try {
+            // Buscar imagen en el registro
+            let imageInfo = null;
+            if (this.imageRegistry) {
+                for (const [hash, info] of Object.entries(this.imageRegistry)) {
+                    if (info.originalPath.includes(imageName) || info.originalPath.endsWith(imageName)) {
+                        imageInfo = info;
+                        break;
+                    }
+                }
+            }
+
+            if (imageInfo) {
+                const imagePath = path.join(this.extractedImagesPath, imageInfo.fileName);
+                if (await fs.pathExists(imagePath)) {
+                    const imageBuffer = await fs.readFile(imagePath);
+                    
+                    // Configurar posicionamiento basado en análisis
+                    const imageRunConfig = {
+                        data: imageBuffer,
+                        transformation: {
+                            width: imageConfig.width || 265,
+                            height: imageConfig.height || 265,
+                        }
+                    };
+
+                    // Si tiene posicionamiento anchor, aplicar floating
+                    if (positioning.tipo === 'anchor') {
+                        imageRunConfig.floating = {
+                            horizontalPosition: {
+                                relative: this.mapRelativeFrom(positioning.horizontal?.relativeFrom || 'column'),
+                                align: HorizontalPositionAlign.LEFT,
+                                offset: positioning.horizontal?.offset ? Math.round(parseInt(positioning.horizontal.offset) / 635) : 0,
+                            },
+                            verticalPosition: {
+                                relative: this.mapVerticalRelativeFrom(positioning.vertical?.relativeFrom || 'paragraph'),
+                                align: VerticalPositionAlign.TOP,
+                                offset: positioning.vertical?.offset ? Math.round(parseInt(positioning.vertical.offset) / 635) : 0,
+                            },
+                            wrap: {
+                                type: this.mapWrappingType(positioning.wrapping?.tipo || 'square'),
+                                side: positioning.wrapping?.propiedades?.wrapText === 'bothSides' ? 
+                                      TextWrappingSide.BOTH_SIDES : TextWrappingSide.LARGEST,
+                            },
+                            allowOverlap: positioning.comportamiento?.allowOverlap || true,
+                            layoutInCell: positioning.comportamiento?.layoutInCell || true,
+                        };
+                    }
+
+                    // Aplicar recorte si se especifica
+                    if (cropping) {
+                        console.log(`✂️ Aplicando recorte a imagen del body ${imageName}:`, cropping);
+                        
+                        const { default: sharp } = await import('sharp');
+                        const metadata = await sharp(imageBuffer).metadata();
+                        
+                        const cropLeft = cropping.left ? parseInt(cropping.left) / 100000 : 0;
+                        const cropTop = cropping.top ? parseInt(cropping.top) / 100000 : 0;
+                        const cropRight = cropping.right ? parseInt(cropping.right) / 100000 : 0;
+                        const cropBottom = cropping.bottom ? parseInt(cropping.bottom) / 100000 : 0;
+                        
+                        const cropX = Math.round(metadata.width * cropLeft);
+                        const cropY = Math.round(metadata.height * cropTop);
+                        const cropWidth = Math.round(metadata.width * (1 - cropLeft - cropRight));
+                        const cropHeight = Math.round(metadata.height * (1 - cropTop - cropBottom));
+                        
+                        const croppedBuffer = await sharp(imageBuffer)
+                            .extract({
+                                left: cropX,
+                                top: cropY, 
+                                width: cropWidth,
+                                height: cropHeight
+                            })
+                            .toBuffer();
+                        
+                        imageRunConfig.data = croppedBuffer;
+                    }
+
+                    return new ImageRun(imageRunConfig);
+                }
+            }
+
+            return new TextRun({
+                text: `[${imageName}]`,
+                color: "666666",
+                italics: true
+            });
+
+        } catch (error) {
+            console.log(`⚠️ Error al crear imagen del body ${imageName}: ${error.message}`);
+            return new TextRun({
+                text: `[${imageName}]`,
+                color: "666666",
+                italics: true
+            });
+        }
+    }
+
+    /**
+     * Crea la tabla de aspectos técnicos con posicionamiento flotante
+     */
+    createAspectosTableWithFloating(floatingInfo) {
+        const table = this.createAspectosTable();
+        
+        if (floatingInfo && floatingInfo.posicionamiento) {
+            console.log('📊 Aplicando posicionamiento flotante a tabla principal:', floatingInfo.posicionamiento);
+            // Nota: La biblioteca docx no soporta completamente el posicionamiento flotante de tablas
+            // Por ahora mantenemos la tabla con posicionamiento normal
+        }
+        
+        return table;
+    }
+
+    /**
+     * Crea una tabla de sesión con posicionamiento flotante
+     */
+    createSesionTableWithFloating(sesion, positioning) {
+        const table = this.createSesionTable(sesion);
+        
+        if (positioning) {
+            console.log('📊 Aplicando posicionamiento flotante a tabla de sesión:', positioning);
+            // Nota: La biblioteca docx no soporta completamente el posicionamiento flotante de tablas
+            // Se podría implementar usando frames o textboxes en versiones futuras
+            // Por ahora mantenemos la tabla con posicionamiento normal pero centrada
+        }
+        
+        return table;
+    }
+
+    /**
+     * Mapea los tipos de posicionamiento relativo horizontal
+     */
+    mapRelativeFrom(relative) {
+        const mapping = {
+            'column': HorizontalPositionRelativeFrom.COLUMN,
+            'margin': HorizontalPositionRelativeFrom.MARGIN,
+            'page': HorizontalPositionRelativeFrom.PAGE,
+            'character': HorizontalPositionRelativeFrom.CHARACTER,
+            'leftMargin': HorizontalPositionRelativeFrom.LEFT_MARGIN,
+            'rightMargin': HorizontalPositionRelativeFrom.RIGHT_MARGIN,
+            'insideMargin': HorizontalPositionRelativeFrom.INSIDE_MARGIN,
+            'outsideMargin': HorizontalPositionRelativeFrom.OUTSIDE_MARGIN
+        };
+        return mapping[relative] || HorizontalPositionRelativeFrom.COLUMN;
+    }
+
+    /**
+     * Mapea los tipos de posicionamiento relativo vertical
+     */
+    mapVerticalRelativeFrom(relative) {
+        const mapping = {
+            'paragraph': VerticalPositionRelativeFrom.PARAGRAPH,
+            'margin': VerticalPositionRelativeFrom.MARGIN,
+            'page': VerticalPositionRelativeFrom.PAGE,
+            'line': VerticalPositionRelativeFrom.LINE,
+            'topMargin': VerticalPositionRelativeFrom.TOP_MARGIN,
+            'bottomMargin': VerticalPositionRelativeFrom.BOTTOM_MARGIN,
+            'insideMargin': VerticalPositionRelativeFrom.INSIDE_MARGIN,
+            'outsideMargin': VerticalPositionRelativeFrom.OUTSIDE_MARGIN
+        };
+        return mapping[relative] || VerticalPositionRelativeFrom.PARAGRAPH;
+    }
+
+    /**
+     * Mapea los tipos de wrapping de texto
+     */
+    mapWrappingType(type) {
+        const mapping = {
+            'square': TextWrappingType.SQUARE,
+            'tight': TextWrappingType.TIGHT,
+            'through': TextWrappingType.THROUGH,
+            'topAndBottom': TextWrappingType.TOP_AND_BOTTOM,
+            'behind': TextWrappingType.NONE,
+            'inFrontOf': TextWrappingType.NONE
+        };
+        return mapping[type] || TextWrappingType.SQUARE;
     }
 
     createAspectosTable() {
@@ -537,9 +728,37 @@ class PumaExactReplicatorGenerator {
         return imageDistribution[sessionIndex] || [];
     }
 
+    async loadBodyPositioning() {
+        try {
+            // Buscar el archivo más reciente de análisis del body
+            const outputDir = './output';
+            const files = await fs.readdir(outputDir);
+            const bodyFiles = files.filter(f => f.startsWith('body_positioning_'));
+            
+            if (bodyFiles.length === 0) {
+                console.log('⚠️ No se encontró análisis del body. Ejecuta: node src/analyzers/analyzeBodyPositioning.cjs');
+                return null;
+            }
+            
+            const latestFile = bodyFiles.sort().pop();
+            const analysisPath = path.join(outputDir, latestFile);
+            
+            console.log(`📋 Cargando análisis del body: ${latestFile}`);
+            const analysisData = await fs.readFile(analysisPath, 'utf8');
+            return JSON.parse(analysisData);
+            
+        } catch (error) {
+            console.log(`⚠️ Error cargando análisis del body: ${error.message}`);
+            return null;
+        }
+    }
+
     async generateDocument() {
         console.log('🏗️ Generando replicación exacta del documento PUMA...');
         await this.loadExtractedImages();
+
+        // Cargar análisis de posicionamiento del body
+        const bodyAnalysis = await this.loadBodyPositioning();
 
         const children = [];
 
@@ -547,34 +766,125 @@ class PumaExactReplicatorGenerator {
         children.push(this.createAspectosTable());
         children.push(new Paragraph({ text: "" })); // Espacio
 
-        // Agregar imágenes y tablas de cada sesión
-        for (let i = 0; i < this.documentData.sesiones.length; i++) {
-            const sesion = this.documentData.sesiones[i];
+        // Si tenemos análisis del body, crear estructura por páginas
+        if (bodyAnalysis && bodyAnalysis.posicionamiento) {
+            console.log('📍 Aplicando estructura por páginas basada en análisis del body...');
             
-            // Agregar tabla de sesión
-            children.push(this.createSesionTable(sesion));
+            // Agregar tabla principal (primera en el análisis)
+            console.log('📊 Agregando tabla principal (aspectos técnicos)...');
+            const tablaPrincipal = this.createAspectosTableWithFloating(bodyAnalysis.posicionamiento.elementos_flotantes[0]);
+            children.push(tablaPrincipal);
             children.push(new Paragraph({ text: "" })); // Espacio
 
-            // Agregar imágenes correspondientes a esta sesión
-            // Usar distribución más realista basada en las imágenes extraídas
-            const imageNumbers = this.getImageNumbersForSession(i);
+            // Crear páginas para cada sesión (1 tabla + 4 imágenes por página)
+            const imagenesPorPagina = 4;
+            const tablasSesiones = bodyAnalysis.posicionamiento.elementos_flotantes.filter(el => el.indice > 102);
             
-            for (const imageNum of imageNumbers) {
-                const imageName = `image${imageNum}.jpeg`;
-                const imageRun = await this.createImageRun(imageName, 300, 200);
-                children.push(new Paragraph({
-                    children: [imageRun],
-                    alignment: AlignmentType.CENTER
-                }));
-                children.push(new Paragraph({ text: "" })); // Espacio entre imágenes
+            for (let sesionIndex = 0; sesionIndex < this.documentData.sesiones.length; sesionIndex++) {
+                const sesion = this.documentData.sesiones[sesionIndex];
+                
+                console.log(`\n📄 PÁGINA ${sesionIndex + 1} - Sesión ${sesion.fecha}:`);
+                
+                // 1. Agregar tabla de la sesión
+                if (sesionIndex < tablasSesiones.length) {
+                    console.log(`📊 Agregando tabla de sesión ${sesionIndex + 1}...`);
+                    const tablaFloating = tablasSesiones[sesionIndex];
+                    const tabla = this.createSesionTableWithFloating(sesion, tablaFloating.posicionamiento);
+                    children.push(tabla);
+                    children.push(new Paragraph({ text: "" })); // Espacio
+                }
+                
+                // 2. Agregar 4 imágenes correspondientes a esta sesión
+                const imagenesIniciales = sesionIndex * imagenesPorPagina;
+                const imagenesFinales = imagenesIniciales + imagenesPorPagina;
+                const imagenesEnPagina = bodyAnalysis.posicionamiento.imagenes.slice(imagenesIniciales, imagenesFinales);
+                
+                console.log(`🖼️ Agregando ${imagenesEnPagina.length} imágenes a la página ${sesionIndex + 1}...`);
+                
+                // Agrupar imágenes por párrafo para mantener estructura
+                const imagenesPorParrafo = {};
+                imagenesEnPagina.forEach(img => {
+                    if (!imagenesPorParrafo[img.paragraph]) {
+                        imagenesPorParrafo[img.paragraph] = [];
+                    }
+                    imagenesPorParrafo[img.paragraph].push(img);
+                });
+                
+                // Agregar imágenes agrupadas por párrafo
+                for (const [paragraph, imagenes] of Object.entries(imagenesPorParrafo)) {
+                    const paraImageRuns = [];
+                    
+                    for (const imageInfo of imagenes) {
+                        // Encontrar el nombre de imagen
+                        let imageName = 'image1.jpeg';
+                        if (bodyAnalysis.body.imageRelations && imageInfo.relacionId) {
+                            const relation = bodyAnalysis.body.imageRelations[imageInfo.relacionId];
+                            if (relation && relation.archivo) {
+                                imageName = relation.archivo.split('/').pop();
+                            }
+                        }
+
+                        // Crear imagen con posicionamiento específico
+                        const imageRun = await this.createBodyImageRun(
+                            imageName,
+                            {
+                                width: imageInfo.dimensiones?.cx_pixels || 265,
+                                height: imageInfo.dimensiones?.cy_pixels || 265
+                            },
+                            imageInfo.posicionamiento,
+                            imageInfo.recorte
+                        );
+                        
+                        paraImageRuns.push(imageRun);
+                    }
+                    
+                    // Crear párrafo con las imágenes
+                    children.push(new Paragraph({
+                        children: paraImageRuns,
+                        alignment: AlignmentType.LEFT
+                    }));
+                }
+                
+                // Agregar salto de página si no es la última sesión
+                if (sesionIndex < this.documentData.sesiones.length - 1) {
+                    console.log(`📄 Agregando salto de página...`);
+                    children.push(new Paragraph({
+                        children: [new PageBreak()]
+                    }));
+                }
             }
 
-            // Salto de página entre sesiones (excepto la última)
-            if (i < this.documentData.sesiones.length - 1) {
-                children.push(new Paragraph({
-                    pageBreakBefore: true,
-                    text: ""
-                }));
+        } else {
+            console.log('⚠️ No se encontró análisis del body, usando posicionamiento por defecto...');
+            
+            // Agregar imágenes y tablas de cada sesión (método original)
+            for (let i = 0; i < this.documentData.sesiones.length; i++) {
+                const sesion = this.documentData.sesiones[i];
+                
+                // Agregar tabla de sesión
+                children.push(this.createSesionTable(sesion));
+                children.push(new Paragraph({ text: "" })); // Espacio
+
+                // Agregar imágenes correspondientes a esta sesión
+                const imageNumbers = this.getImageNumbersForSession(i);
+                
+                for (const imageNum of imageNumbers) {
+                    const imageName = `image${imageNum}.jpeg`;
+                    const imageRun = await this.createImageRun(imageName, 300, 200);
+                    children.push(new Paragraph({
+                        children: [imageRun],
+                        alignment: AlignmentType.CENTER
+                    }));
+                    children.push(new Paragraph({ text: "" })); // Espacio entre imágenes
+                }
+
+                // Salto de página entre sesiones (excepto la última)
+                if (i < this.documentData.sesiones.length - 1) {
+                    children.push(new Paragraph({
+                        pageBreakBefore: true,
+                        text: ""
+                    }));
+                }
             }
         }
 
