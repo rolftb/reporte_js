@@ -2,6 +2,44 @@
 
 Sistema optimizado para generar reportes PUMA con análisis avanzado de imágenes y replicación exacta del formato del documento original "PUMA MES 6 2025.docx".
 
+```
+reporte_js/
+├── src/
+│   ├── documentImageExtractor.cjs     # Extractor de imágenes
+│   └── generators/
+│       ├── PumaRealStructureGenerator.js   # Generador principal
+│       └── PumaDocumentGenerator.js        # Generador alternativo
+├── extracted_images/                  # Imágenes extraídas (18 imágenes)
+│   ├── image18_1eeb3f5e.jpeg          # Header primera página (logo corporativo)
+│   ├── image17_bfca8351.jpeg          # Header páginas siguientes
+│   ├── image4_fe4f8c66.jpeg          # Actividad 1 - Foto de la actividad realizada
+│   ├── image5_6fa52ec6.jpeg          # Actividad 2 - Foto de la actividad realizada
+│   ├── image6_6d5eee18.jpeg          # Actividad 3 - Foto de la actividad realizada
+│   ├── image7_6cdb4b1e.jpeg          # Actividad 4 - Foto de la actividad realizada
+│   ├── ...                           # Actividades 5-15 (fotos de actividades realizadas)
+│   └── image_registry.json           # Registro de imágenes
+├── media/                            # Imágenes multimedia para reportes
+│   ├── header_primera_pagina.jpeg    # Header primera página (backup/multimedia)
+│   ├── header_paginas_siguientes.jpeg # Header páginas siguientes (backup/multimedia)
+│   ├── header_images_info.json       # Información detallada de headers
+│   └── README.md                     # Documentación de multimediamages/                  
+
+# Imágenes extraídas (18 imágenes)
+│   ├── image18_1eeb3f5e.jpeg         # Header primera página (logo corporativo)
+│   ├── image17_bfca8351.jpeg         # Header páginas siguientes
+│   ├── image4_fe4f8c66.jpeg          # Actividad 1 - Foto de la actividad realizada
+│   ├── image5_6fa52ec6.jpeg          # Actividad 2 - Foto de la actividad realizada
+│   ├── image6_6d5eee18.jpeg          # Actividad 3 - Foto de la actividad realizada
+│   ├── image7_6cdb4b1e.jpeg          # Actividad 4 - Foto de la actividad realizadamages/                  # Imágenes extraídas (18 imágenes)
+│   ├── image18_1eeb3f5e.jpeg          # Header primera página (logo corporativo)
+│   ├── image17_bfca8351.jpeg          # Header páginas siguientes
+│   ├── image4_fe4f8c66.jpeg          # Actividad 1 - Foto de la actividad realizada
+│   ├── image5_6fa52ec6.jpeg          # Actividad 2 - Foto de la actividad realizada
+│   ├── image6_6d5eee18.jpeg          # Actividad 3 - Foto de la actividad realizada
+│   ├── image7_6cdb4b1e.jpeg          # Actividad 4 - Foto de la actividad realizada
+│   ├── ...                           # Actividades 5-15 (fotos de actividades realizadas)
+│   └── image_registry.json           # Registro de imágenes para 
+
 ## 🚀 Características
 
 - ✅ **Análisis avanzado de imágenes v3.0** con metadata completa de posicionamiento
@@ -43,10 +81,13 @@ reporte_js/
 │       ├── PumaRealStructureGenerator.js   # Generador principal
 │       └── PumaDocumentGenerator.js        # Generador alternativo
 ├── extracted_images/                  # Imágenes extraídas (18 imágenes)
-│   ├── image1_32f311ba.jpeg          # Header primer pagina (logo 1) TODO
-│   ├── image2_077bc1b1.jpeg          # Header segunda pagina (logo 2) TODO
-│   ├── image4_fe4f8c66.jpeg          # Foto actividad 1
-│   ├── ...                           # Fotos actividades 2-15
+│   ├── image18_1eeb3f5e.jpeg          # Header primera página (logo corporativo)
+│   ├── image17_bfca8351.jpeg          # Header páginas siguientes
+│   ├── image4_fe4f8c66.jpeg          # Actividad 4 - Foto de la actividad realizada
+│   ├── image5_6fa52ec6.jpeg          # Actividad 5 - Foto de la actividad realizada
+│   ├── image6_6d5eee18.jpeg          # Actividad 6 - Foto de la actividad realizada
+│   ├── image7_6cdb4b1e.jpeg          # Actividad 7 - Foto de la actividad realizada
+│   ├── ...                           # Actividades 5-15 (fotos de actividades realizadas)
 │   └── image_registry.json           # Registro de imágenes
 ├── uploads/
 │   └── PUMA MES 6 2025.docx          # Documento original
@@ -99,12 +140,21 @@ Script principal simplificado:
 El sistema genera reportes que incluyen:
 
 - **Header**: Logos corporativos reales del documento original
-- **Página 1**: 4 imágenes de actividades
-- **Página 2**: 4 imágenes de actividades  
-- **Página 3**: 4 imágenes de actividades
-- **Página 4**: 4 imágenes de actividades
+- **Página 1**: Tabla de aspectos técnicos + 4 imágenes de actividades realizadas
+- **Página 2**: 4 imágenes de actividades realizadas (organizadas en cuadrícula 2x2)
+- **Página 3**: 4 imágenes de actividades realizadas (organizadas en cuadrícula 2x2)  
+- **Página 4**: 4 imágenes de actividades realizadas (organizadas en cuadrícula 2x2)
 
-**Total**: 18 imágenes distribuidas correctamente
+**Total**: 16 imágenes de actividades distribuidas en 4 páginas + 2 imágenes de header
+
+### 🎯 Distribución de Imágenes de Actividades
+
+Cada página del cuerpo del documento muestra **exactamente 4 imágenes** que reflejan las actividades realizadas ese día:
+
+- **Formato**: Cuadrícula 2x2 (2 filas, 2 columnas)
+- **Descripción**: Cada imagen lleva el texto "Actividad N"
+- **Tamaño**: 200x150 píxeles para optimal visualización
+- **Centrado**: Todas las imágenes están centradas en sus celdas
 
 ## 🔧 Instalación
 

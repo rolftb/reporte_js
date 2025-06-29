@@ -1,0 +1,146 @@
+{
+  "header_images": {
+    "primera_pagina": {
+      "fileName": "header_primera_pagina.jpeg",
+      "originalName": "image18_1eeb3f5e.jpeg",
+      "originalPath": "word/media/image18.jpeg",
+      "hash": "1eeb3f5e1fdecce211e82bda38cc502c",
+      "size": 118656,
+      "description": "Header primera página (logo corporativo)",
+      "formatInfo": {
+        "width": 2519680,
+        "height": 2519680,
+        "units": "EMU"
+      },
+      "finalDimensions": {
+        "width": 820,
+        "height": 1150,
+        "units": "pixels"
+      },
+      "cropping": {
+        "left": 0.9,
+        "top": 0,
+        "right": 24.934,
+        "bottom": 15.846,
+        "units": "percentage"
+      },
+      "positioning": {
+        "x": 0,
+        "y": 0,
+        "xRelativeFrom": "page",
+        "yRelativeFrom": "page",
+        "anchor": "floating",
+        "zOrder": null
+      },
+      "transformations": {
+        "scaleX": 100,
+        "scaleY": 100,
+        "rotation": 0,
+        "flipHorizontal": false,
+        "flipVertical": false,
+        "brightness": 0,
+        "contrast": 0
+      },
+      "contextInfo": {
+        "isInHeader": true,
+        "isInFooter": false,
+        "isFloating": true,
+        "isInline": false,
+        "wrapType": "none",
+        "behindText": true,
+        "headerType": "header2"
+      },
+      "usage": "Se utiliza como header en la primera página del documento PUMA",
+      "context": "Imagen de header con logos corporativos"
+    },
+    "paginas_siguientes": {
+      "fileName": "header_paginas_siguientes.jpeg", 
+      "originalName": "image17_bfca8351.jpeg",
+      "originalPath": "word/media/image17.jpeg",
+      "hash": "bfca8351268c989e4d2d6333649d5233",
+      "size": 94882,
+      "description": "Header páginas siguientes",
+      "formatInfo": {
+        "width": null,
+        "height": null,
+        "units": "EMU"
+      },
+      "finalDimensions": {
+        "width": 600,
+        "height": 100,
+        "units": "pixels"
+      },
+      "cropping": {
+        "left": 0,
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "units": "percentage"
+      },
+      "positioning": {
+        "x": 0,
+        "y": 0,
+        "xRelativeFrom": "page",
+        "yRelativeFrom": "page",
+        "anchor": "floating",
+        "zOrder": null
+      },
+      "transformations": {
+        "scaleX": 100,
+        "scaleY": 100,
+        "rotation": 0,
+        "flipHorizontal": false,
+        "flipVertical": false,
+        "brightness": 0,
+        "contrast": 0
+      },
+      "contextInfo": {
+        "isInHeader": true,
+        "isInFooter": false,
+        "isFloating": true,
+        "isInline": false,
+        "wrapType": "none",
+        "behindText": true,
+        "headerType": "default"
+      },
+      "usage": "Se utiliza como header en las páginas 2, 3, 4, etc. del documento PUMA",
+      "context": "Imagen de header sin logos corporativos para páginas internas"
+    }
+  },
+  "metadata": {
+    "extracted_from": "PUMA MES 6 2025.docx",
+    "extraction_date": "2025-06-29T04:15:53.919Z",
+    "location": "reporte_js/media/",
+    "purpose": "Multimedia assets para generación de reportes PUMA",
+    "version": "2.0",
+    "last_updated": "2025-06-29T12:00:00.000Z",
+    "source_data": "image_registry.json formatting section",
+    "format_specification": "Incluye dimensiones finales, recorte, posicionamiento y transformaciones"
+  },
+  "usage_instructions": {
+    "primera_pagina": "Usar header_primera_pagina.jpeg para la primera página del reporte",
+    "paginas_siguientes": "Usar header_paginas_siguientes.jpeg para todas las páginas después de la primera",
+    "formato_recomendado": "600x100 píxeles para óptima visualización en documentos DOCX",
+    "alineacion": "Centrado en el header del documento",
+    "cropping_info": "Los valores de recorte están en porcentajes (0-100)",
+    "positioning_info": "Coordenadas relativas a la página (x=0, y=0 = esquina superior izquierda)",
+    "floating_behavior": "Todas las imágenes de header son flotantes y se posicionan detrás del texto"
+  },
+  "technical_specifications": {
+    "units": {
+      "EMU": "English Metric Units (914400 EMU = 1 inch at 96 DPI)",
+      "pixels": "Píxeles de pantalla a 96 DPI",
+      "percentage": "Porcentaje para valores de recorte"
+    },
+    "conversion_formulas": {
+      "pixels_to_emu": "pixels * 914400 / 96",
+      "emu_to_pixels": "emu * 96 / 914400",
+      "crop_percentage_to_emu": "percentage * 1000"
+    },
+    "docx_compatibility": {
+      "wrap_type": "behindDocument para headers",
+      "positioning": "Relativo a página para headers",
+      "header_types": ["header2 (primera página)", "default (páginas siguientes)"]
+    }
+  }
+}

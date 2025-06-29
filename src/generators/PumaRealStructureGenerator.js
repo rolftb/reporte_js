@@ -47,27 +47,66 @@ class PumaRealStructureGenerator {
             const registryPath = path.join(this.extractedImagesPath, 'image_registry.json');
             
             if (await fs.pathExists(registryPath)) {
-                this.imageRegistry = await fs.readJson(registryPath);
+                const registry = await fs.readJson(registryPath);
                 
-                console.log(`📋 Registro cargado: ${Object.keys(this.imageRegistry).length} imágenes`);
-                
-                // Clasificar imágenes según estructura real del README
-                for (const [hash, imageInfo] of Object.entries(this.imageRegistry)) {
-                    // Imágenes del header según página (image1 y image2 son header)
-                    const isHeaderImage = imageInfo.originalPath.includes('image1.') || 
-                                         imageInfo.originalPath.includes('image2.');
+                // Verificar si es la nueva estructura v3.0
+                if (registry.metadata && registry.metadata.version === "3.0") {
+                    console.log(`📋 Registro v3.0 cargado: ${registry.metadata.totalImages} imágenes`);
+                    console.log(`🎯 Características: ${registry.metadata.features.join(', ')}`);
                     
-                    if (isHeaderImage) {
-                        this.headerImages.push({
-                            ...imageInfo,
-                            hash: hash,
-                            isFirstPage: imageInfo.originalPath.includes('image1.') // Logo primera página
-                        });
-                    } else {
-                        this.documentImages.push({
-                            ...imageInfo,
-                            hash: hash
-                        });
+                    this.imageRegistry = registry;
+                    
+                    // Clasificar imágenes usando la nueva estructura
+                    for (const [hash, imageInfo] of Object.entries(registry.images)) {
+                        // Determinar si es imagen de header según contexto o path
+                        const isHeaderImage = imageInfo.context?.isInHeader || 
+                                             imageInfo.originalPath.includes('image18.') || 
+                                             imageInfo.originalPath.includes('image17.');
+                        
+                        if (isHeaderImage) {
+                            this.headerImages.push({
+                                ...imageInfo,
+                                hash: hash,
+                                isFirstPage: imageInfo.originalPath.includes('image18.')
+                            });
+                        } else {
+                            this.documentImages.push({
+                                ...imageInfo,
+                                hash: hash
+                            });
+                        }
+                    }
+                    
+                    console.log(`📊 Estadísticas del análisis:`);
+                    console.log(`   - Imágenes con recorte: ${registry.statistics?.withCropping || 0}`);
+                    console.log(`   - Imágenes flotantes: ${registry.statistics?.byPosition?.floating || 0}`);
+                    console.log(`   - Dimensiones promedio: ${registry.statistics?.avgDimensions?.width}x${registry.statistics?.avgDimensions?.height}`);
+                    
+                } else {
+                    // Estructura legacy
+                    console.log(`📋 Registro legacy cargado: ${Object.keys(registry).length} imágenes`);
+                    this.imageRegistry = registry;
+                    
+                    // Clasificar imágenes según estructura legacy
+                    for (const [hash, imageInfo] of Object.entries(registry)) {
+                        // Saltar metadata si existe
+                        if (hash === 'metadata') continue;
+                        
+                        const isHeaderImage = imageInfo.originalPath?.includes('image18.') || 
+                                             imageInfo.originalPath?.includes('image17.');
+                        
+                        if (isHeaderImage) {
+                            this.headerImages.push({
+                                ...imageInfo,
+                                hash: hash,
+                                isFirstPage: imageInfo.originalPath?.includes('image18.')
+                            });
+                        } else {
+                            this.documentImages.push({
+                                ...imageInfo,
+                                hash: hash
+                            });
+                        }
                     }
                 }
                 
@@ -94,7 +133,14 @@ class PumaRealStructureGenerator {
             );
             
             if (headerImage) {
-                const imagePath = path.join(this.extractedImagesPath, headerImage.fileName);
+                let imagePath = path.join(this.extractedImagesPath, headerImage.fileName);
+                
+                // Alternativa: usar imágenes de media si no están en extracted_images
+                if (!await fs.pathExists(imagePath)) {
+                    const mediaFileName = isFirstPage ? 'header_primera_pagina.jpeg' : 'header_paginas_siguientes.jpeg';
+                    imagePath = path.join('./media', mediaFileName);
+                    console.log(`📁 Usando imagen de media: ${mediaFileName}`);
+                }
                 
                 try {
                     if (await fs.pathExists(imagePath)) {
@@ -408,61 +454,131 @@ class PumaRealStructureGenerator {
         // Espacio antes de fotos
         pageChildren.push(new Paragraph({ children: [new TextRun("")] }));
         
-        // Agregar hasta 4 imágenes por página según README
+        // Agregar exactamente 4 imágenes por página en formato 2x2
         const imagesPerPage = 4;
         const startIndex = (pageNumber - 1) * imagesPerPage;
         
-        // Crear grid para las fotos
-        for (let i = 0; i < imagesPerPage && (startIndex + i) < this.documentImages.length; i++) {
-            const imageInfo = this.documentImages[startIndex + i];
-            const imagePath = path.join(this.extractedImagesPath, imageInfo.fileName);
+        console.log(`📸 Página ${pageNumber}: Mostrando imágenes ${startIndex + 1} a ${Math.min(startIndex + imagesPerPage, this.documentImages.length)}`);
+        
+        // Crear filas para la tabla 2x2
+        const tableRows = [];
+        
+        // Crear 2 filas de la tabla (2 filas, 2 columnas cada una)
+        for (let row = 0; row < 2; row++) {
+            const tableCells = [];
             
-            try {
-                if (await fs.pathExists(imagePath)) {
-                    const imageBuffer = await fs.readFile(imagePath);
+            for (let col = 0; col < 2; col++) {
+                const imageIndex = startIndex + (row * 2) + col;
+                let cellContent = [];
+                
+                if (imageIndex < this.documentImages.length) {
+                    const imageInfo = this.documentImages[imageIndex];
+                    const imagePath = path.join(this.extractedImagesPath, imageInfo.fileName);
                     
-                    pageChildren.push(
-                        new Paragraph({
-                            alignment: AlignmentType.CENTER,
-                            children: [
-                                new ImageRun({
-                                    data: imageBuffer,
-                                    transformation: {
-                                        width: 300,
-                                        height: 225
-                                    }
+                    try {
+                        if (await fs.pathExists(imagePath)) {
+                            const imageBuffer = await fs.readFile(imagePath);
+                            
+                            // Imagen centrada
+                            cellContent.push(
+                                new Paragraph({
+                                    alignment: AlignmentType.CENTER,
+                                    spacing: { after: 100 },
+                                    children: [
+                                        new ImageRun({
+                                            data: imageBuffer,
+                                            transformation: {
+                                                width: 200,  // Tamaño reducido para que quepan 2x2
+                                                height: 150
+                                            }
+                                        })
+                                    ]
                                 })
-                            ]
-                        })
-                    );
-                    
-                    // Descripción de la foto
-                    pageChildren.push(
-                        new Paragraph({
-                            alignment: AlignmentType.CENTER,
-                            children: [
-                                new TextRun({
-                                    text: `Foto ${i + 1}`,
-                                    size: 12,
-                                    italic: true
+                            );
+                            
+                            // Descripción de la actividad
+                            cellContent.push(
+                                new Paragraph({
+                                    alignment: AlignmentType.CENTER,
+                                    children: [
+                                        new TextRun({
+                                            text: `Actividad ${imageIndex + 1}`,
+                                            size: 16,
+                                            bold: true
+                                        })
+                                    ]
                                 })
-                            ]
-                        })
-                    );
-                    
-                    // Pequeño espacio entre fotos
-                    if (i < imagesPerPage - 1) {
-                        pageChildren.push(new Paragraph({ children: [new TextRun("")] }));
+                            );
+                            
+                            console.log(`📸 Imagen página ${pageNumber}: ${imageInfo.fileName}`);
+                        } else {
+                            console.warn(`⚠️ Imagen no encontrada: ${imagePath}`);
+                            cellContent.push(
+                                new Paragraph({
+                                    alignment: AlignmentType.CENTER,
+                                    children: [
+                                        new TextRun({
+                                            text: `Imagen no disponible`,
+                                            size: 12,
+                                            italic: true
+                                        })
+                                    ]
+                                })
+                            );
+                        }
+                    } catch (error) {
+                        console.warn(`⚠️ Error cargando imagen:`, error);
+                        cellContent.push(
+                            new Paragraph({
+                                alignment: AlignmentType.CENTER,
+                                children: [
+                                    new TextRun({
+                                        text: `Error cargando imagen`,
+                                        size: 12,
+                                        italic: true
+                                    })
+                                ]
+                            })
+                        );
                     }
-                    
-                    console.log(`📸 Imagen página ${pageNumber}: ${imageInfo.fileName}`);
                 } else {
-                    console.warn(`⚠️ Imagen no encontrada: ${imagePath}`);
+                    // Celda vacía si no hay más imágenes
+                    cellContent.push(
+                        new Paragraph({
+                            children: [new TextRun(" ")]
+                        })
+                    );
                 }
-            } catch (error) {
-                console.warn(`⚠️ Error cargando imagen:`, error);
+                
+                tableCells.push(
+                    new TableCell({
+                        width: {
+                            size: 50,
+                            type: WidthType.PERCENTAGE
+                        },
+                        verticalAlign: VerticalAlign.CENTER,
+                        children: cellContent
+                    })
+                );
             }
+            
+            tableRows.push(
+                new TableRow({
+                    children: tableCells
+                })
+            );
         }
+        
+        // Crear tabla con las filas generadas
+        const imageTable = new Table({
+            width: {
+                size: 100,
+                type: WidthType.PERCENTAGE
+            },
+            rows: tableRows
+        });
+        
+        pageChildren.push(imageTable);
         
         return pageChildren;
     }
@@ -470,6 +586,7 @@ class PumaRealStructureGenerator {
     async generateDocument() {
         console.log('📄 Generando documento PUMA con estructura real (corregido)...');
         
+        // Cargar imágenes (detecta automáticamente v3.0 vs legacy)
         await this.loadExtractedImages();
         
         const sections = [];
